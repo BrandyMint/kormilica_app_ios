@@ -1,0 +1,5 @@
+platform :ios, '6.0'
+pod 'AFNetworking', '1.3.3', '< 2.0'
+pod 'EasyMapping', '~>0.5.3'
+pod 'WYPopoverController', '~> 0.1.7'
+pod 'NSString-HTML', :podspec =>'https://raw.githubusercontent.com/bespalown/NSString-HTML/master/NSString-HTML.podspec'
