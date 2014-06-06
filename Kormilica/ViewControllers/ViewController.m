@@ -142,6 +142,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [self initDataArrayWithCategoriesID:selectedIDCategory];
+    [self calculateAmount];
 }
 
 - (void)viewDidLoad
@@ -273,6 +274,7 @@
     selectedIDProduct = product.idProduct;
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"segDetail" sender:self];
+    [self calculateAmount];
 }
 
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath
@@ -290,6 +292,19 @@
     appDelegate.bundles.products = arr;
     
     [self initDataArrayWithCategoriesID:selectedIDCategory];
+    [self calculateAmount];
+}
+
+-(void)calculateAmount
+{
+    NSInteger sum = 0;
+    for (int i = 0; i < appDelegate.bundles.products.count; i++) {
+        Product* productArr = [appDelegate.bundles.products objectAtIndex:i];
+        if (productArr.count != 0) {
+            sum += productArr.price.cents;
+        }
+    }
+    [_onBuy isAllowed:sum > 2000 ? YES : NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
