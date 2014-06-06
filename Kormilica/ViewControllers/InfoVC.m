@@ -63,22 +63,12 @@
 
 -(void)updateText
 {
-    NSMutableString *currentStrDate = [[NSMutableString alloc] initWithString:appDelegate.bundles.vendor.updated_at];
-    [currentStrDate replaceOccurrencesOfString:@"T" withString:@" " options:0 range:NSMakeRange(0, currentStrDate.length)];
-    
-    NSDateFormatter *dateFormatterStr = [NSDateFormatter new];
-    [dateFormatterStr setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
-    [dateFormatterStr setDateFormat:@"yyyy-MM-dd HH:mm:ss.AZZZZZ"];
-    NSDate *dateFromStr = [dateFormatterStr dateFromString:currentStrDate];
-    
-    NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"dd/MM/yyyy"];
-    NSString *string = [format stringFromDate:dateFromStr];
+    NSString* date = [appDelegate.convertTime iso8601_to_ddMMYYYY:appDelegate.bundles.vendor.updated_at];
     
     _header.text = appDelegate.bundles.vendor.mobile_subject;
     _descriptions.text = [appDelegate.bundles.vendor.mobile_description kv_stripHTMLCharacterEntities];
     _city.text = appDelegate.bundles.vendor.city;
-    [_onUpdate setTitle:[NSString stringWithFormat:@"Последнее обновление от %@", string] forState:UIControlStateNormal];
+    [_onUpdate setTitle:[NSString stringWithFormat:@"Последнее обновление от %@", date] forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning

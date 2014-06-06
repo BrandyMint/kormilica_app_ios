@@ -15,6 +15,7 @@
     // Override point for customization after application launch.
     _managers = [Managers new];
     _bundles = [Bundles new];
+    _convertTime = [ConvertTime new];
     return YES;
 }
 							

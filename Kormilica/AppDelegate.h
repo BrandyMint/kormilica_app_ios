@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Managers.h"
+#import "ConvertTime.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -15,5 +16,6 @@
 
 @property (nonatomic, strong) Bundles* bundles;
 @property (nonatomic, strong) Managers* managers;
+@property (nonatomic, strong) ConvertTime* convertTime;
 
 @end
