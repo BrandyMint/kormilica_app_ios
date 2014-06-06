@@ -12,7 +12,9 @@
 @interface ViewController : MasterVC
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *bottomBarView;
+@property (weak, nonatomic) IBOutlet UIButton *onBuy;
+- (IBAction)onBuy:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

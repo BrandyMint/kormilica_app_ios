@@ -34,6 +34,7 @@
 		664911D91941AE0800CFA99D /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911D81941AE0800CFA99D /* NSString+Size.m */; };
 		664911DC1941E33C00CFA99D /* DetailGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DB1941E33C00CFA99D /* DetailGoodsVC.m */; };
 		664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DE1941FAAF00CFA99D /* MasterVC.m */; };
+		664911E21942040F00CFA99D /* UIButton+Buy.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911E11942040F00CFA99D /* UIButton+Buy.m */; };
 		FF483C3D983C44C1875D9126 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2958C20ED84050A6FD4DBF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,8 @@
 		664911DB1941E33C00CFA99D /* DetailGoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailGoodsVC.m; path = ViewControllers/DetailGoodsVC.m; sourceTree = "<group>"; };
 		664911DD1941FAAF00CFA99D /* MasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterVC.h; path = ViewControllers/MasterVC.h; sourceTree = "<group>"; };
 		664911DE1941FAAF00CFA99D /* MasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterVC.m; path = ViewControllers/MasterVC.m; sourceTree = "<group>"; };
+		664911E01942040F00CFA99D /* UIButton+Buy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Buy.h"; path = "Helpers/UIButton+Buy.h"; sourceTree = "<group>"; };
+		664911E11942040F00CFA99D /* UIButton+Buy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Buy.m"; path = "Helpers/UIButton+Buy.m"; sourceTree = "<group>"; };
 		BC2958C20ED84050A6FD4DBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C34A13AB244E24AEC265C2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,6 +264,8 @@
 				6643BBFF19406F4F0066D330 /* DefaultSettings.h */,
 				664911D71941AE0800CFA99D /* NSString+Size.h */,
 				664911D81941AE0800CFA99D /* NSString+Size.m */,
+				664911E01942040F00CFA99D /* UIButton+Buy.h */,
+				664911E11942040F00CFA99D /* UIButton+Buy.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -411,6 +416,7 @@
 				6643BC0E194078580066D330 /* Vendor.m in Sources */,
 				6643BC2019407DA50066D330 /* Factory.m in Sources */,
 				6643BC23194084B90066D330 /* Bundles.m in Sources */,
+				664911E21942040F00CFA99D /* UIButton+Buy.m in Sources */,
 				6643BC11194079550066D330 /* Price.m in Sources */,
 				6643BC1A19407CF60066D330 /* Image.m in Sources */,
 			);

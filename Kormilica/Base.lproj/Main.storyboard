@@ -20,6 +20,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wd-46-aYf">
                                 <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kPw-fR-GZD">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="onBuy:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="2Tc-Y3-eO5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="wGn-1L-NH3"/>
@@ -85,7 +97,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="g4g-qx-wz6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="1Gc-AN-50g"/>
                             <constraint firstItem="g4g-qx-wz6" firstAttribute="top" secondItem="pda-E8-bTm" secondAttribute="bottom" id="JwA-yN-3Eo"/>
@@ -101,7 +112,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="M62-aX-Eta"/>
                     <connections>
-                        <outlet property="bottomBarView" destination="0Wd-46-aYf" id="yEe-Rw-PmY"/>
+                        <outlet property="onBuy" destination="kPw-fR-GZD" id="Vih-LK-KYm"/>
                         <outlet property="scrollView" destination="pda-E8-bTm" id="0nm-g2-4wB"/>
                         <outlet property="tableView" destination="g4g-qx-wz6" id="925-I0-6P6"/>
                     </connections>

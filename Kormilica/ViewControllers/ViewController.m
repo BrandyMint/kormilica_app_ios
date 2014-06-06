@@ -13,6 +13,7 @@
 #import "NSString-HTML.h"
 #import "HMSegmentedControl.h"
 #import "DetailGoodsVC.h"
+#import "UIButton+Buy.h"
 
 @interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate>
 {
@@ -24,41 +25,12 @@
     NSInteger selectedIDCategory;
     NSInteger selectedIDProduct;
     
-    //bottom
-    UILabel* buttomSelectLabel;
-    UILabel* buttomDeliveryLabel;
+    BOOL isBuy;
 }
 
 @end
 
 @implementation ViewController
-
--(void)initBottomView
-{
-    _bottomBarView.backgroundColor = COLOR_GRAY;
-    
-    buttomSelectLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                     0,
-                                                                     CGRectGetWidth(_bottomBarView.frame),
-                                                                     CGRectGetHeight(_bottomBarView.frame)/2)];
-    buttomSelectLabel.font = [UIFont systemFontOfSize:14];
-    buttomSelectLabel.textColor = [UIColor blackColor];
-    buttomSelectLabel.textAlignment = NSTextAlignmentCenter;
-    buttomSelectLabel.contentMode = UIViewContentModeCenter;
-    buttomSelectLabel.backgroundColor = [UIColor clearColor];
-    [_bottomBarView addSubview: buttomSelectLabel];
-    
-    buttomDeliveryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                       CGRectGetHeight(_bottomBarView.frame)/2,
-                                                                       CGRectGetWidth(_bottomBarView.frame),
-                                                                       CGRectGetHeight(_bottomBarView.frame)/2)];
-    buttomDeliveryLabel.font = [UIFont systemFontOfSize:14];
-    buttomDeliveryLabel. textColor = COLOR_ORANGE;
-    buttomDeliveryLabel.textAlignment = NSTextAlignmentCenter;
-    buttomDeliveryLabel.contentMode = UIViewContentModeCenter;
-    buttomDeliveryLabel.backgroundColor = [UIColor clearColor];
-    [_bottomBarView addSubview: buttomDeliveryLabel];
-}
 
 -(void)initTopView
 {
@@ -81,7 +53,7 @@
 
 -(void)initScrollViewContent
 {
-    UIFont* font = [UIFont systemFontOfSize:14];
+    UIFont* font = [UIFont systemFontOfSize:16];
     CGFloat weightButtons = 0;
     
     for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
@@ -90,22 +62,29 @@
         
         UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setFrame:CGRectMake(100*i, 0, 100, 40)];
-        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
         [button setTitle:title forState:UIControlStateNormal];
         [button.titleLabel setFont:font];
         [button setTag:i+1];
         [button addTarget:self action:@selector(slideAction:) forControlEvents:UIControlEventTouchUpInside];
         button.layer.borderColor = COLOR_SKY.CGColor;
+        button.layer.borderWidth = 0;
+        button.layer.cornerRadius = 8;
+        button.layer.masksToBounds = YES;
         [_scrollView addSubview:button];
         
-        button.layer.borderWidth = i == 0 ? 1 : 0;
+        if (i == 0) {
+            button.layer.borderWidth = 1;
+            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [button setBackgroundColor:COLOR_BLUE_];
+        }
+        
         weightButtons += CGRectGetWidth(button.frame);
     }
     
     _scrollView.backgroundColor = COLOR_GRAY;
     _scrollView.contentSize = CGSizeMake(weightButtons, CGRectGetHeight(_scrollView.frame));
     _scrollView.showsHorizontalScrollIndicator = NO;
-    NSLog(@"%f",weightButtons);
 }
 
 -(void)slideAction:(id)sender
@@ -113,9 +92,13 @@
     for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
         UIButton* button = (UIButton *)[self.view viewWithTag:i+1];
         button.layer.borderWidth = 0;
+        [button setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
+        [button setBackgroundColor:[UIColor clearColor]];
     }
     UIButton* button = (UIButton *)sender;
     button.layer.borderWidth = 1;
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [button setBackgroundColor:COLOR_BLUE_];
     
     Categories* categories = [appDelegate.bundles.categories objectAtIndex:button.tag - 1];
     [self initDataArrayWithCategoriesID:categories.idCategories];
@@ -137,9 +120,8 @@
 
 -(void)initText
 {
-    buttomSelectLabel.text = appDelegate.bundles.vendor.mobile_footer;
-    buttomDeliveryLabel.text = appDelegate.bundles.vendor.mobile_delivery;
-    
+    [_onBuy isAllowed:NO];
+
     NSMutableString* title = [[NSMutableString alloc] initWithString:appDelegate.bundles.vendor.mobile_title];
     [title replaceOccurrencesOfString:@"<br>" withString:@" " options:0 range:NSMakeRange(0, title.length)];
     self.navigationItem.title = title;
@@ -167,7 +149,6 @@
     [super viewDidLoad];
     appDelegate = [[UIApplication sharedApplication] delegate];
     
-    [self initBottomView];
     [self initTopView];
 
     [appDelegate.managers getBundles:^(Bundles* bundles) {
@@ -317,6 +298,10 @@
         DetailGoodsVC* destination = [segue destinationViewController];
         destination.idProduct = selectedIDProduct;
     }
+}
+
+- (IBAction)onBuy:(id)sender {
+    
 }
 
 @end
