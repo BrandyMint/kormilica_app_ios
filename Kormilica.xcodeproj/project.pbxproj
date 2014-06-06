@@ -31,6 +31,9 @@
 		6643BC2019407DA50066D330 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC1F19407DA50066D330 /* Factory.m */; };
 		6643BC23194084B90066D330 /* Bundles.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC22194084B90066D330 /* Bundles.m */; };
 		6643BC2619409A4B0066D330 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC2519409A4B0066D330 /* InfoVC.m */; };
+		664911D91941AE0800CFA99D /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911D81941AE0800CFA99D /* NSString+Size.m */; };
+		664911DC1941E33C00CFA99D /* DetailGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DB1941E33C00CFA99D /* DetailGoodsVC.m */; };
+		664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DE1941FAAF00CFA99D /* MasterVC.m */; };
 		FF483C3D983C44C1875D9126 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2958C20ED84050A6FD4DBF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +88,12 @@
 		6643BC22194084B90066D330 /* Bundles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bundles.m; path = Models/Bundles.m; sourceTree = "<group>"; };
 		6643BC2419409A4B0066D330 /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoVC.h; path = ViewControllers/InfoVC.h; sourceTree = "<group>"; };
 		6643BC2519409A4B0066D330 /* InfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoVC.m; path = ViewControllers/InfoVC.m; sourceTree = "<group>"; };
+		664911D71941AE0800CFA99D /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Size.h"; path = "Helpers/NSString+Size.h"; sourceTree = "<group>"; };
+		664911D81941AE0800CFA99D /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Size.m"; path = "Helpers/NSString+Size.m"; sourceTree = "<group>"; };
+		664911DA1941E33C00CFA99D /* DetailGoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailGoodsVC.h; path = ViewControllers/DetailGoodsVC.h; sourceTree = "<group>"; };
+		664911DB1941E33C00CFA99D /* DetailGoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailGoodsVC.m; path = ViewControllers/DetailGoodsVC.m; sourceTree = "<group>"; };
+		664911DD1941FAAF00CFA99D /* MasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterVC.h; path = ViewControllers/MasterVC.h; sourceTree = "<group>"; };
+		664911DE1941FAAF00CFA99D /* MasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterVC.m; path = ViewControllers/MasterVC.m; sourceTree = "<group>"; };
 		BC2958C20ED84050A6FD4DBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C34A13AB244E24AEC265C2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -152,7 +161,7 @@
 				6643BC0B194076E20066D330 /* Factory */,
 				6643BC0A194076DA0066D330 /* Models */,
 				6643BBFA194062B10066D330 /* Managers */,
-				6643BBFF19406F4F0066D330 /* DefaultSettings.h */,
+				664911D61941ADE500CFA99D /* Helpers */,
 				6643BBD4194061490066D330 /* AppDelegate.h */,
 				6643BBD5194061490066D330 /* AppDelegate.m */,
 				6643BBD7194061490066D330 /* Main.storyboard */,
@@ -204,12 +213,16 @@
 		6643BC0019406F600066D330 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				664911DD1941FAAF00CFA99D /* MasterVC.h */,
+				664911DE1941FAAF00CFA99D /* MasterVC.m */,
 				6643BC0319406F6D0066D330 /* ViewController.h */,
 				6643BC0419406F6D0066D330 /* ViewController.m */,
 				6643BC2419409A4B0066D330 /* InfoVC.h */,
 				6643BC2519409A4B0066D330 /* InfoVC.m */,
 				6643BC0119406F6D0066D330 /* TableViewCell.h */,
 				6643BC0219406F6D0066D330 /* TableViewCell.m */,
+				664911DA1941E33C00CFA99D /* DetailGoodsVC.h */,
+				664911DB1941E33C00CFA99D /* DetailGoodsVC.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -240,6 +253,16 @@
 				6643BC1F19407DA50066D330 /* Factory.m */,
 			);
 			name = Factory;
+			sourceTree = "<group>";
+		};
+		664911D61941ADE500CFA99D /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				6643BBFF19406F4F0066D330 /* DefaultSettings.h */,
+				664911D71941AE0800CFA99D /* NSString+Size.h */,
+				664911D81941AE0800CFA99D /* NSString+Size.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,10 +401,13 @@
 				6643BC0519406F6D0066D330 /* TableViewCell.m in Sources */,
 				6643BC0619406F6D0066D330 /* ViewController.m in Sources */,
 				6643BC1719407C050066D330 /* Product.m in Sources */,
+				664911DC1941E33C00CFA99D /* DetailGoodsVC.m in Sources */,
+				664911D91941AE0800CFA99D /* NSString+Size.m in Sources */,
 				6643BBD2194061490066D330 /* main.m in Sources */,
 				6643BC2619409A4B0066D330 /* InfoVC.m in Sources */,
 				6643BC09194073420066D330 /* Managers.m in Sources */,
 				6643BC1419407B5C0066D330 /* Categories.m in Sources */,
+				664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */,
 				6643BC0E194078580066D330 /* Vendor.m in Sources */,
 				6643BC2019407DA50066D330 /* Factory.m in Sources */,
 				6643BC23194084B90066D330 /* Bundles.m in Sources */,
@@ -515,6 +541,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kormilica/Kormilica-Prefix.pch";
 				INFOPLIST_FILE = "Kormilica/Kormilica-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -529,6 +556,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Kormilica/Kormilica-Prefix.pch";
 				INFOPLIST_FILE = "Kormilica/Kormilica-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

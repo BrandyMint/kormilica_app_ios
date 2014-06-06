@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MasterVC.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : MasterVC
 
-@property (weak, nonatomic) IBOutlet UIView *topBarView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIView *bottomBarView;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 

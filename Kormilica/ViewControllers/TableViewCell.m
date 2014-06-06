@@ -38,10 +38,33 @@
     
     _title.textColor = [UIColor blackColor];
     _title.font = [UIFont systemFontOfSize:16];
+
+    [_onOrder.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    _onOrder.layer.cornerRadius = 4;
+    _onOrder.layer.borderWidth = 1;
+    _onOrder.layer.masksToBounds = YES;
     
-    [_onOrder setTitle:@"В заказ" forState:UIControlStateNormal];
-    [_onOrder setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [_onOrder setBackgroundColor:COLOR_SKY];
+    if (_count == 0) {
+        [_onOrder setTitle:@"в заказ" forState:UIControlStateNormal];
+        [_onOrder setBackgroundColor:[UIColor clearColor]];
+        [_onOrder setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
+        _onOrder.layer.borderColor = COLOR_BLUE_.CGColor;
+    }
+    else {
+        [_onOrder setTitle:[NSString stringWithFormat:@"в заказе: %d",_count] forState:UIControlStateNormal];
+        [_onOrder setBackgroundColor:COLOR_GREEN_];
+        [_onOrder setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _onOrder.layer.borderColor = COLOR_GREEN_.CGColor;
+    }
+}
+
+- (IBAction)onOrder:(id)sender {
+    if (_count == 0) {
+        [_delegate onOrderCellSelect:_indexPath];
+    }
+    else {
+        [_delegate onOrderCellAlreadySelect:_indexPath];
+    }
 }
 
 @end

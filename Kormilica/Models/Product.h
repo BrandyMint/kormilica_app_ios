@@ -12,6 +12,9 @@
 
 @interface Product : NSObject
 
+//my
+@property (nonatomic, assign) NSInteger count;
+
 @property (nonatomic, assign) NSInteger idProduct;
 @property (nonatomic, assign) NSInteger idCategory;
 @property (nonatomic, strong) NSString* title;
