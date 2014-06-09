@@ -20,8 +20,6 @@
 		6643BBE7194061490066D330 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC9194061490066D330 /* UIKit.framework */; };
 		6643BBEF194061490066D330 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6643BBED194061490066D330 /* InfoPlist.strings */; };
 		6643BBF1194061490066D330 /* KormilicaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BBF0194061490066D330 /* KormilicaTests.m */; };
-		6643BC0519406F6D0066D330 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC0219406F6D0066D330 /* TableViewCell.m */; };
-		6643BC0619406F6D0066D330 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC0419406F6D0066D330 /* ViewController.m */; };
 		6643BC09194073420066D330 /* Managers.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC08194073420066D330 /* Managers.m */; };
 		6643BC0E194078580066D330 /* Vendor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC0D194078580066D330 /* Vendor.m */; };
 		6643BC11194079550066D330 /* Price.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC10194079550066D330 /* Price.m */; };
@@ -30,11 +28,18 @@
 		6643BC1A19407CF60066D330 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC1919407CF60066D330 /* Image.m */; };
 		6643BC2019407DA50066D330 /* Factory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC1F19407DA50066D330 /* Factory.m */; };
 		6643BC23194084B90066D330 /* Bundles.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC22194084B90066D330 /* Bundles.m */; };
-		6643BC2619409A4B0066D330 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC2519409A4B0066D330 /* InfoVC.m */; };
 		664911D91941AE0800CFA99D /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911D81941AE0800CFA99D /* NSString+Size.m */; };
-		664911DC1941E33C00CFA99D /* DetailGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DB1941E33C00CFA99D /* DetailGoodsVC.m */; };
 		664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DE1941FAAF00CFA99D /* MasterVC.m */; };
 		664911E21942040F00CFA99D /* UIButton+Buy.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911E11942040F00CFA99D /* UIButton+Buy.m */; };
+		668F840A1945DFD0004C8DFE /* AccessoriesOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668F84091945DFD0004C8DFE /* AccessoriesOrderView.m */; };
+		66EDEAA619458DB900DB9DA8 /* onBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAA519458DB900DB9DA8 /* onBuyView.m */; };
+		66EDEAB21945CAD200DB9DA8 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAAF1945CAD200DB9DA8 /* TableViewCell.m */; };
+		66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAB11945CAD200DB9DA8 /* ViewController.m */; };
+		66EDEAB71945CB2E00DB9DA8 /* DetailGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAB61945CB2E00DB9DA8 /* DetailGoodsVC.m */; };
+		66EDEABD1945CB4B00DB9DA8 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */; };
+		66EDEABE1945CB4B00DB9DA8 /* OrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */; };
+		66EDEAC21945CB6100DB9DA8 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC11945CB6100DB9DA8 /* InfoVC.m */; };
+		66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */; };
 		FF483C3D983C44C1875D9126 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2958C20ED84050A6FD4DBF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -67,10 +72,6 @@
 		6643BBEE194061490066D330 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6643BBF0194061490066D330 /* KormilicaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KormilicaTests.m; sourceTree = "<group>"; };
 		6643BBFF19406F4F0066D330 /* DefaultSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DefaultSettings.h; path = Helpers/DefaultSettings.h; sourceTree = "<group>"; };
-		6643BC0119406F6D0066D330 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ViewControllers/TableViewCell.h; sourceTree = "<group>"; };
-		6643BC0219406F6D0066D330 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ViewControllers/TableViewCell.m; sourceTree = "<group>"; };
-		6643BC0319406F6D0066D330 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ViewControllers/ViewController.h; sourceTree = "<group>"; };
-		6643BC0419406F6D0066D330 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ViewControllers/ViewController.m; sourceTree = "<group>"; };
 		6643BC07194073420066D330 /* Managers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Managers.h; path = Managers/Managers.h; sourceTree = "<group>"; };
 		6643BC08194073420066D330 /* Managers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Managers.m; path = Managers/Managers.m; sourceTree = "<group>"; };
 		6643BC0C194078580066D330 /* Vendor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Vendor.h; path = Models/Vendor.h; sourceTree = "<group>"; };
@@ -87,16 +88,30 @@
 		6643BC1F19407DA50066D330 /* Factory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Factory.m; path = Factory/Factory.m; sourceTree = "<group>"; };
 		6643BC21194084B90066D330 /* Bundles.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bundles.h; path = Models/Bundles.h; sourceTree = "<group>"; };
 		6643BC22194084B90066D330 /* Bundles.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Bundles.m; path = Models/Bundles.m; sourceTree = "<group>"; };
-		6643BC2419409A4B0066D330 /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoVC.h; path = ViewControllers/InfoVC.h; sourceTree = "<group>"; };
-		6643BC2519409A4B0066D330 /* InfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoVC.m; path = ViewControllers/InfoVC.m; sourceTree = "<group>"; };
 		664911D71941AE0800CFA99D /* NSString+Size.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Size.h"; path = "Helpers/NSString+Size.h"; sourceTree = "<group>"; };
 		664911D81941AE0800CFA99D /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Size.m"; path = "Helpers/NSString+Size.m"; sourceTree = "<group>"; };
-		664911DA1941E33C00CFA99D /* DetailGoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailGoodsVC.h; path = ViewControllers/DetailGoodsVC.h; sourceTree = "<group>"; };
-		664911DB1941E33C00CFA99D /* DetailGoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailGoodsVC.m; path = ViewControllers/DetailGoodsVC.m; sourceTree = "<group>"; };
 		664911DD1941FAAF00CFA99D /* MasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterVC.h; path = ViewControllers/MasterVC.h; sourceTree = "<group>"; };
 		664911DE1941FAAF00CFA99D /* MasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterVC.m; path = ViewControllers/MasterVC.m; sourceTree = "<group>"; };
 		664911E01942040F00CFA99D /* UIButton+Buy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIButton+Buy.h"; path = "Helpers/UIButton+Buy.h"; sourceTree = "<group>"; };
 		664911E11942040F00CFA99D /* UIButton+Buy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Buy.m"; path = "Helpers/UIButton+Buy.m"; sourceTree = "<group>"; };
+		668F84081945DFD0004C8DFE /* AccessoriesOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoriesOrderView.h; path = ViewControllers/OrderDetailVC/AccessoriesOrderView.h; sourceTree = "<group>"; };
+		668F84091945DFD0004C8DFE /* AccessoriesOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoriesOrderView.m; path = ViewControllers/OrderDetailVC/AccessoriesOrderView.m; sourceTree = "<group>"; };
+		66EDEAA419458DB900DB9DA8 /* onBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = onBuyView.h; path = ViewControllers/onBuyView.h; sourceTree = "<group>"; };
+		66EDEAA519458DB900DB9DA8 /* onBuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = onBuyView.m; path = ViewControllers/onBuyView.m; sourceTree = "<group>"; };
+		66EDEAAE1945CAD200DB9DA8 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ViewControllers/RootVC/TableViewCell.h; sourceTree = "<group>"; };
+		66EDEAAF1945CAD200DB9DA8 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ViewControllers/RootVC/TableViewCell.m; sourceTree = "<group>"; };
+		66EDEAB01945CAD200DB9DA8 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ViewControllers/RootVC/ViewController.h; sourceTree = "<group>"; };
+		66EDEAB11945CAD200DB9DA8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ViewControllers/RootVC/ViewController.m; sourceTree = "<group>"; };
+		66EDEAB51945CB2E00DB9DA8 /* DetailGoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailGoodsVC.h; path = ViewControllers/DetailGoods/DetailGoodsVC.h; sourceTree = "<group>"; };
+		66EDEAB61945CB2E00DB9DA8 /* DetailGoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailGoodsVC.m; path = ViewControllers/DetailGoods/DetailGoodsVC.m; sourceTree = "<group>"; };
+		66EDEAB91945CB4B00DB9DA8 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderCell.h; path = ViewControllers/OrderVC/OrderCell.h; sourceTree = "<group>"; };
+		66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderCell.m; path = ViewControllers/OrderVC/OrderCell.m; sourceTree = "<group>"; };
+		66EDEABB1945CB4B00DB9DA8 /* OrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderVC.h; path = ViewControllers/OrderVC/OrderVC.h; sourceTree = "<group>"; };
+		66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderVC.m; path = ViewControllers/OrderVC/OrderVC.m; sourceTree = "<group>"; };
+		66EDEAC01945CB6100DB9DA8 /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoVC.h; path = ViewControllers/InfoVC/InfoVC.h; sourceTree = "<group>"; };
+		66EDEAC11945CB6100DB9DA8 /* InfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoVC.m; path = ViewControllers/InfoVC/InfoVC.m; sourceTree = "<group>"; };
+		66EDEAC41945CBB800DB9DA8 /* OrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderDetailVC.h; path = ViewControllers/OrderDetailVC/OrderDetailVC.h; sourceTree = "<group>"; };
+		66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderDetailVC.m; path = ViewControllers/OrderDetailVC/OrderDetailVC.m; sourceTree = "<group>"; };
 		BC2958C20ED84050A6FD4DBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C34A13AB244E24AEC265C2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,14 +233,13 @@
 			children = (
 				664911DD1941FAAF00CFA99D /* MasterVC.h */,
 				664911DE1941FAAF00CFA99D /* MasterVC.m */,
-				6643BC0319406F6D0066D330 /* ViewController.h */,
-				6643BC0419406F6D0066D330 /* ViewController.m */,
-				6643BC2419409A4B0066D330 /* InfoVC.h */,
-				6643BC2519409A4B0066D330 /* InfoVC.m */,
-				6643BC0119406F6D0066D330 /* TableViewCell.h */,
-				6643BC0219406F6D0066D330 /* TableViewCell.m */,
-				664911DA1941E33C00CFA99D /* DetailGoodsVC.h */,
-				664911DB1941E33C00CFA99D /* DetailGoodsVC.m */,
+				66EDEAAD1945CAA000DB9DA8 /* RootVC */,
+				66EDEABF1945CB5300DB9DA8 /* InfoVC */,
+				66EDEAB41945CB1D00DB9DA8 /* DetailGoodsVC */,
+				66EDEAB81945CB3B00DB9DA8 /* OrderVC */,
+				66EDEAC31945CB9300DB9DA8 /* OrderDetailVC */,
+				66EDEAA419458DB900DB9DA8 /* onBuyView.h */,
+				66EDEAA519458DB900DB9DA8 /* onBuyView.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -268,6 +282,57 @@
 				664911E11942040F00CFA99D /* UIButton+Buy.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		66EDEAAD1945CAA000DB9DA8 /* RootVC */ = {
+			isa = PBXGroup;
+			children = (
+				66EDEAAE1945CAD200DB9DA8 /* TableViewCell.h */,
+				66EDEAAF1945CAD200DB9DA8 /* TableViewCell.m */,
+				66EDEAB01945CAD200DB9DA8 /* ViewController.h */,
+				66EDEAB11945CAD200DB9DA8 /* ViewController.m */,
+			);
+			name = RootVC;
+			sourceTree = "<group>";
+		};
+		66EDEAB41945CB1D00DB9DA8 /* DetailGoodsVC */ = {
+			isa = PBXGroup;
+			children = (
+				66EDEAB51945CB2E00DB9DA8 /* DetailGoodsVC.h */,
+				66EDEAB61945CB2E00DB9DA8 /* DetailGoodsVC.m */,
+			);
+			name = DetailGoodsVC;
+			sourceTree = "<group>";
+		};
+		66EDEAB81945CB3B00DB9DA8 /* OrderVC */ = {
+			isa = PBXGroup;
+			children = (
+				66EDEAB91945CB4B00DB9DA8 /* OrderCell.h */,
+				66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */,
+				66EDEABB1945CB4B00DB9DA8 /* OrderVC.h */,
+				66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */,
+			);
+			name = OrderVC;
+			sourceTree = "<group>";
+		};
+		66EDEABF1945CB5300DB9DA8 /* InfoVC */ = {
+			isa = PBXGroup;
+			children = (
+				66EDEAC01945CB6100DB9DA8 /* InfoVC.h */,
+				66EDEAC11945CB6100DB9DA8 /* InfoVC.m */,
+			);
+			name = InfoVC;
+			sourceTree = "<group>";
+		};
+		66EDEAC31945CB9300DB9DA8 /* OrderDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				66EDEAC41945CBB800DB9DA8 /* OrderDetailVC.h */,
+				66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */,
+				668F84081945DFD0004C8DFE /* AccessoriesOrderView.h */,
+				668F84091945DFD0004C8DFE /* AccessoriesOrderView.m */,
+			);
+			name = OrderDetailVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,20 +467,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66EDEABD1945CB4B00DB9DA8 /* OrderCell.m in Sources */,
 				6643BBD6194061490066D330 /* AppDelegate.m in Sources */,
-				6643BC0519406F6D0066D330 /* TableViewCell.m in Sources */,
-				6643BC0619406F6D0066D330 /* ViewController.m in Sources */,
 				6643BC1719407C050066D330 /* Product.m in Sources */,
-				664911DC1941E33C00CFA99D /* DetailGoodsVC.m in Sources */,
 				664911D91941AE0800CFA99D /* NSString+Size.m in Sources */,
 				6643BBD2194061490066D330 /* main.m in Sources */,
-				6643BC2619409A4B0066D330 /* InfoVC.m in Sources */,
+				66EDEABE1945CB4B00DB9DA8 /* OrderVC.m in Sources */,
 				6643BC09194073420066D330 /* Managers.m in Sources */,
 				6643BC1419407B5C0066D330 /* Categories.m in Sources */,
+				66EDEAC21945CB6100DB9DA8 /* InfoVC.m in Sources */,
 				664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */,
 				6643BC0E194078580066D330 /* Vendor.m in Sources */,
+				66EDEAB71945CB2E00DB9DA8 /* DetailGoodsVC.m in Sources */,
+				66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */,
+				66EDEAB21945CAD200DB9DA8 /* TableViewCell.m in Sources */,
 				6643BC2019407DA50066D330 /* Factory.m in Sources */,
+				66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */,
+				668F840A1945DFD0004C8DFE /* AccessoriesOrderView.m in Sources */,
 				6643BC23194084B90066D330 /* Bundles.m in Sources */,
+				66EDEAA619458DB900DB9DA8 /* onBuyView.m in Sources */,
 				664911E21942040F00CFA99D /* UIButton+Buy.m in Sources */,
 				6643BC11194079550066D330 /* Price.m in Sources */,
 				6643BC1A19407CF60066D330 /* Image.m in Sources */,

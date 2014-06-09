@@ -14,10 +14,10 @@
 #import "HMSegmentedControl.h"
 #import "DetailGoodsVC.h"
 #import "UIButton+Buy.h"
+#import "onBuyView.h"
 
-@interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate>
+@interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate, onBuyViewDelegate>
 {
-    AppDelegate* appDelegate;
     WYPopoverController *wyPopoverController;
     InfoVC* popover;
     
@@ -148,8 +148,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    appDelegate = [[UIApplication sharedApplication] delegate];
-    
+    _onBuy.delegate = self;
     [self initTopView];
 
     [appDelegate.managers getBundles:^(Bundles* bundles) {
@@ -197,7 +196,7 @@
     
     Product* product = [dataArray objectAtIndex:indexPath.row];
     cell.title.text = product.title;
-    cell.price.text = [NSString stringWithFormat:@"%d %@",product.price.cents, product.price.currency];
+    cell.price.text = [NSString stringWithFormat:@"%d %@",product.price.cents/100, product.price.currency];
     [cell.logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@""]];
     
     cell.indexPath = indexPath;
@@ -304,7 +303,8 @@
             sum += productArr.price.cents;
         }
     }
-    [_onBuy isAllowed:sum > 2000 ? YES : NO];
+    [_onBuy isAllowed:sum > 50 ? YES : NO];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -315,8 +315,9 @@
     }
 }
 
-- (IBAction)onBuy:(id)sender {
-    
+-(void)onBuyAction
+{
+    [self performSegueWithIdentifier:@"segBuy" sender:self];
 }
 
 @end

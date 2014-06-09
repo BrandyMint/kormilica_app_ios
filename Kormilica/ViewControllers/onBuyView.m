@@ -1,27 +1,36 @@
 //
-//  UIButton+Buy.m
+//  onBuyView.m
 //  Kormilica
 //
-//  Created by Viktor Bespalov on 06/06/14.
+//  Created by Viktor Bespalov on 09/06/14.
 //  Copyright (c) 2014 Brandymint. All rights reserved.
 //
 
-#import "UIButton+Buy.h"
+#import "onBuyView.h"
 
-@implementation UIButton (Buy)
+@implementation onBuyView
+
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
 
 -(void)isAllowed:(BOOL)allowed
 {
-    self.enabled = allowed;
+    self.userInteractionEnabled = allowed;
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
     view.userInteractionEnabled = YES;
     [self addSubview:view];
     if (allowed) {
         view.backgroundColor = COLOR_BLUE_;
         UILabel* deliveryPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                               0,
-                                                                               100,
-                                                                               CGRectGetHeight(view.frame))];
+                                                                                0,
+                                                                                100,
+                                                                                CGRectGetHeight(view.frame))];
         deliveryPriceLabel.font = [UIFont systemFontOfSize:14];
         deliveryPriceLabel.textColor = [UIColor whiteColor];
         deliveryPriceLabel.textAlignment = NSTextAlignmentCenter;
@@ -35,9 +44,9 @@
         [view addSubview:line];
         
         UILabel* checkoutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(line.frame),
-                                                                                0,
-                                                                                CGRectGetWidth(view.frame) - CGRectGetMinX(line.frame),
-                                                                                CGRectGetHeight(view.frame))];
+                                                                           0,
+                                                                           CGRectGetWidth(view.frame) - CGRectGetMinX(line.frame),
+                                                                           CGRectGetHeight(view.frame))];
         checkoutLabel.font = [UIFont systemFontOfSize:16];
         checkoutLabel.textColor = [UIColor whiteColor];
         checkoutLabel.textAlignment = NSTextAlignmentCenter;
@@ -54,9 +63,9 @@
         view.backgroundColor = COLOR_GRAY;
         
         UILabel* buttomSelectLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                              0,
-                                                                              CGRectGetWidth(view.frame),
-                                                                              CGRectGetHeight(view.frame)/2)];
+                                                                               0,
+                                                                               CGRectGetWidth(view.frame),
+                                                                               CGRectGetHeight(view.frame)/2)];
         buttomSelectLabel.font = [UIFont systemFontOfSize:14];
         buttomSelectLabel.textColor = [UIColor blackColor];
         buttomSelectLabel.textAlignment = NSTextAlignmentCenter;
@@ -65,9 +74,9 @@
         [view addSubview: buttomSelectLabel];
         
         UILabel* buttomDeliveryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                                CGRectGetHeight(view.frame)/2,
-                                                                                CGRectGetWidth(view.frame),
-                                                                                CGRectGetHeight(view.frame)/2)];
+                                                                                 CGRectGetHeight(view.frame)/2,
+                                                                                 CGRectGetWidth(view.frame),
+                                                                                 CGRectGetHeight(view.frame)/2)];
         buttomDeliveryLabel.font = [UIFont systemFontOfSize:14];
         buttomDeliveryLabel.textColor = COLOR_ORANGE;
         buttomDeliveryLabel.textAlignment = NSTextAlignmentCenter;
@@ -81,5 +90,18 @@
     }
 }
 
-@end
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [_delegate onBuyAction];
+}
 
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect
+{
+    // Drawing code
+}
+*/
+
+@end

@@ -11,7 +11,6 @@
 
 @interface DetailGoodsVC () <IQActionSheetPickerDelegate>
 {
-    AppDelegate* appDelegate;
     Product* product;
 }
 @end
@@ -31,7 +30,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    appDelegate = [[UIApplication sharedApplication] delegate];
     
     for (Product* product_ in appDelegate.bundles.products) {
         if (product_.idProduct == _idProduct) {
