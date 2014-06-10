@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		663E0773194250470079A1EC /* ConvertTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 663E0772194250470079A1EC /* ConvertTime.m */; };
 		6643BBC6194061490066D330 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC5194061490066D330 /* Foundation.framework */; };
 		6643BBC8194061490066D330 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC7194061490066D330 /* CoreGraphics.framework */; };
 		6643BBCA194061490066D330 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC9194061490066D330 /* UIKit.framework */; };
@@ -33,6 +32,7 @@
 		664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DE1941FAAF00CFA99D /* MasterVC.m */; };
 		664911E21942040F00CFA99D /* UIButton+Buy.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911E11942040F00CFA99D /* UIButton+Buy.m */; };
 		668F840A1945DFD0004C8DFE /* AccessoriesOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668F84091945DFD0004C8DFE /* AccessoriesOrderView.m */; };
+		66EC27CD1946E19600A2990C /* ConvertTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27CC1946E19600A2990C /* ConvertTime.m */; };
 		66EDEAA619458DB900DB9DA8 /* onBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAA519458DB900DB9DA8 /* onBuyView.m */; };
 		66EDEAB21945CAD200DB9DA8 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAAF1945CAD200DB9DA8 /* TableViewCell.m */; };
 		66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAB11945CAD200DB9DA8 /* ViewController.m */; };
@@ -55,8 +55,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		663E0771194250470079A1EC /* ConvertTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConvertTime.h; path = Helpers/ConvertTime.h; sourceTree = "<group>"; };
-		663E0772194250470079A1EC /* ConvertTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConvertTime.m; path = Helpers/ConvertTime.m; sourceTree = "<group>"; };
 		6643BBC2194061490066D330 /* Kormilica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kormilica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6643BBC5194061490066D330 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6643BBC7194061490066D330 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -99,6 +97,8 @@
 		664911E11942040F00CFA99D /* UIButton+Buy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIButton+Buy.m"; path = "Helpers/UIButton+Buy.m"; sourceTree = "<group>"; };
 		668F84081945DFD0004C8DFE /* AccessoriesOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoriesOrderView.h; path = ViewControllers/OrderDetailVC/AccessoriesOrderView.h; sourceTree = "<group>"; };
 		668F84091945DFD0004C8DFE /* AccessoriesOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoriesOrderView.m; path = ViewControllers/OrderDetailVC/AccessoriesOrderView.m; sourceTree = "<group>"; };
+		66EC27CB1946E19600A2990C /* ConvertTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConvertTime.h; path = Helpers/ConvertTime.h; sourceTree = "<group>"; };
+		66EC27CC1946E19600A2990C /* ConvertTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConvertTime.m; path = Helpers/ConvertTime.m; sourceTree = "<group>"; };
 		66EDEAA419458DB900DB9DA8 /* onBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = onBuyView.h; path = ViewControllers/onBuyView.h; sourceTree = "<group>"; };
 		66EDEAA519458DB900DB9DA8 /* onBuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = onBuyView.m; path = ViewControllers/onBuyView.m; sourceTree = "<group>"; };
 		66EDEAAE1945CAD200DB9DA8 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ViewControllers/RootVC/TableViewCell.h; sourceTree = "<group>"; };
@@ -283,8 +283,8 @@
 				664911D81941AE0800CFA99D /* NSString+Size.m */,
 				664911E01942040F00CFA99D /* UIButton+Buy.h */,
 				664911E11942040F00CFA99D /* UIButton+Buy.m */,
-				663E0771194250470079A1EC /* ConvertTime.h */,
-				663E0772194250470079A1EC /* ConvertTime.m */,
+				66EC27CB1946E19600A2990C /* ConvertTime.h */,
+				66EC27CC1946E19600A2990C /* ConvertTime.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -479,12 +479,9 @@
 				6643BBD2194061490066D330 /* main.m in Sources */,
 				66EDEABE1945CB4B00DB9DA8 /* OrderVC.m in Sources */,
 				6643BC09194073420066D330 /* Managers.m in Sources */,
+				66EC27CD1946E19600A2990C /* ConvertTime.m in Sources */,
 				6643BC1419407B5C0066D330 /* Categories.m in Sources */,
-<<<<<<< HEAD
 				66EDEAC21945CB6100DB9DA8 /* InfoVC.m in Sources */,
-=======
-				663E0773194250470079A1EC /* ConvertTime.m in Sources */,
->>>>>>> 742a2c23fc572ebc6107e3440ad75963234f0caa
 				664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */,
 				6643BC0E194078580066D330 /* Vendor.m in Sources */,
 				66EDEAB71945CB2E00DB9DA8 /* DetailGoodsVC.m in Sources */,
