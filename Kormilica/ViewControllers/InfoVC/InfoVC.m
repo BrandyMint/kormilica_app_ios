@@ -7,6 +7,7 @@
 //
 
 #import "InfoVC.h"
+#import "MapVC.h"
 #import "NSString-HTML.h"
 
 @interface InfoVC ()

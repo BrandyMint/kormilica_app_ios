@@ -6,6 +6,7 @@ PODS:
   - ISO8601DateFormatter (0.7)
   - NSString-HTML (0.0.1)
   - SHSPhoneComponent (1.5.1)
+  - SVPulsingAnnotationView (0.3.0)
   - WYPopoverController (0.1.9)
 
 DEPENDENCIES:
@@ -16,6 +17,7 @@ DEPENDENCIES:
   - ISO8601DateFormatter
   - NSString-HTML (from `https://raw.githubusercontent.com/bespalown/NSString-HTML/master/NSString-HTML.podspec`)
   - SHSPhoneComponent (< 2.0)
+  - SVPulsingAnnotationView
   - WYPopoverController (~> 0.1.7)
 
 EXTERNAL SOURCES:
@@ -32,6 +34,7 @@ SPEC CHECKSUMS:
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
   NSString-HTML: af40d58077c60e69642ab7c176da406207a7efa8
   SHSPhoneComponent: 17116649f4d291161e8a82ffe240c4d3b38c8934
+  SVPulsingAnnotationView: 92364bec02160f481d1b603afc904183d385c3e6
   WYPopoverController: bd2d174880af8a3eb45db28c542c8e550f537d34
 
 COCOAPODS: 0.33.1

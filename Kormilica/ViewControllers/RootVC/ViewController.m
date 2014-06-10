@@ -15,6 +15,8 @@
 #import "DetailGoodsVC.h"
 #import "onBuyView.h"
 
+#import "MapVC.h"
+
 @interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate, onBuyViewDelegate>
 {
     WYPopoverController *wyPopoverController;
@@ -48,6 +50,13 @@
     [infoButton addTarget:self action:@selector(onInfo) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *modalButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
     [self.navigationItem setLeftBarButtonItem:modalButton animated:YES];
+    
+    UIBarButtonItem* map = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStyleBordered target:self action:@selector(openMap)];
+    [self.navigationItem setRightBarButtonItem:map];
+}
+
+-(void)openMap {
+    [self performSegueWithIdentifier:@"segMap" sender:self];
 }
 
 -(void)initScrollViewContent

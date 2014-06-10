@@ -34,6 +34,8 @@
 		66EC27CD1946E19600A2990C /* ConvertTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27CC1946E19600A2990C /* ConvertTime.m */; };
 		66EC27D01946EFAB00A2990C /* FeedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27CF1946EFAB00A2990C /* FeedBackView.m */; };
 		66EC27D41946FC1300A2990C /* DetailImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27D31946FC1300A2990C /* DetailImageVC.m */; };
+		66EC27D81947145400A2990C /* MapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27D71947145400A2990C /* MapVC.m */; };
+		66EC27DB194714CD00A2990C /* SVAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27DA194714CD00A2990C /* SVAnnotation.m */; };
 		66EDEAA619458DB900DB9DA8 /* onBuyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAA519458DB900DB9DA8 /* onBuyView.m */; };
 		66EDEAB21945CAD200DB9DA8 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAAF1945CAD200DB9DA8 /* TableViewCell.m */; };
 		66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAB11945CAD200DB9DA8 /* ViewController.m */; };
@@ -102,6 +104,10 @@
 		66EC27CF1946EFAB00A2990C /* FeedBackView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedBackView.m; path = ViewControllers/OrderVC/FeedBackView.m; sourceTree = "<group>"; };
 		66EC27D21946FC1300A2990C /* DetailImageVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailImageVC.h; path = ViewControllers/DetailImage/DetailImageVC.h; sourceTree = "<group>"; };
 		66EC27D31946FC1300A2990C /* DetailImageVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailImageVC.m; path = ViewControllers/DetailImage/DetailImageVC.m; sourceTree = "<group>"; };
+		66EC27D61947145400A2990C /* MapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapVC.h; path = ViewControllers/MapVC/MapVC.h; sourceTree = "<group>"; };
+		66EC27D71947145400A2990C /* MapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapVC.m; path = ViewControllers/MapVC/MapVC.m; sourceTree = "<group>"; };
+		66EC27D9194714CD00A2990C /* SVAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVAnnotation.h; sourceTree = "<group>"; };
+		66EC27DA194714CD00A2990C /* SVAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVAnnotation.m; sourceTree = "<group>"; };
 		66EDEAA419458DB900DB9DA8 /* onBuyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = onBuyView.h; path = ViewControllers/onBuyView.h; sourceTree = "<group>"; };
 		66EDEAA519458DB900DB9DA8 /* onBuyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = onBuyView.m; path = ViewControllers/onBuyView.m; sourceTree = "<group>"; };
 		66EDEAAE1945CAD200DB9DA8 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ViewControllers/RootVC/TableViewCell.h; sourceTree = "<group>"; };
@@ -245,6 +251,7 @@
 				66EDEABF1945CB5300DB9DA8 /* InfoVC */,
 				66EDEAC31945CB9300DB9DA8 /* OrderDetailVC */,
 				66EC27D11946FBF600A2990C /* DetailImage */,
+				66EC27D51947143A00A2990C /* MapVC */,
 				66EDEAA419458DB900DB9DA8 /* onBuyView.h */,
 				66EDEAA519458DB900DB9DA8 /* onBuyView.m */,
 			);
@@ -287,6 +294,8 @@
 				664911D81941AE0800CFA99D /* NSString+Size.m */,
 				66EC27CB1946E19600A2990C /* ConvertTime.h */,
 				66EC27CC1946E19600A2990C /* ConvertTime.m */,
+				66EC27D9194714CD00A2990C /* SVAnnotation.h */,
+				66EC27DA194714CD00A2990C /* SVAnnotation.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -298,6 +307,15 @@
 				66EC27D31946FC1300A2990C /* DetailImageVC.m */,
 			);
 			name = DetailImage;
+			sourceTree = "<group>";
+		};
+		66EC27D51947143A00A2990C /* MapVC */ = {
+			isa = PBXGroup;
+			children = (
+				66EC27D61947145400A2990C /* MapVC.h */,
+				66EC27D71947145400A2990C /* MapVC.m */,
+			);
+			name = MapVC;
 			sourceTree = "<group>";
 		};
 		66EDEAAD1945CAA000DB9DA8 /* RootVC */ = {
@@ -504,11 +522,13 @@
 				6643BC2019407DA50066D330 /* Factory.m in Sources */,
 				66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */,
 				66EC27D01946EFAB00A2990C /* FeedBackView.m in Sources */,
+				66EC27DB194714CD00A2990C /* SVAnnotation.m in Sources */,
 				668F840A1945DFD0004C8DFE /* DeliveryOrderView.m in Sources */,
 				6643BC23194084B90066D330 /* Bundles.m in Sources */,
 				66EDEAA619458DB900DB9DA8 /* onBuyView.m in Sources */,
 				6643BC11194079550066D330 /* Price.m in Sources */,
 				6643BC1A19407CF60066D330 /* Image.m in Sources */,
+				66EC27D81947145400A2990C /* MapVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
