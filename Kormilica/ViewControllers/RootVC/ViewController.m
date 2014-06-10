@@ -13,7 +13,6 @@
 #import "NSString-HTML.h"
 #import "HMSegmentedControl.h"
 #import "DetailGoodsVC.h"
-#import "UIButton+Buy.h"
 #import "onBuyView.h"
 
 @interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate, onBuyViewDelegate>
@@ -296,15 +295,7 @@
 
 -(void)calculateAmount
 {
-    NSInteger sum = 0;
-    for (int i = 0; i < appDelegate.bundles.products.count; i++) {
-        Product* productArr = [appDelegate.bundles.products objectAtIndex:i];
-        if (productArr.count != 0) {
-            sum += productArr.price.cents;
-        }
-    }
-    [_onBuy isAllowed:sum > 50 ? YES : NO];
-    
+    [_onBuy isAllowed:[self getPriceOrder] > 500 ? YES : NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

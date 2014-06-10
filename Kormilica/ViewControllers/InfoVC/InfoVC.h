@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MasterVC.h"
+
 @class InfoVCD;
 @protocol InfoVCDelegete
 @optional
 -(void)hidePopover;
 @end
 
-@interface InfoVC : UIViewController
+@interface InfoVC : MasterVC
 @property (assign) id<InfoVCDelegete> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *header;
 @property (weak, nonatomic) IBOutlet UITextView *descriptions;

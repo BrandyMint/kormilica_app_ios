@@ -1,17 +1,18 @@
 //
-//  AccessoriesOrderView.m
+//  DeliveryOrderView.m
 //  Kormilica
 //
 //  Created by Viktor Bespalov on 09/06/14.
 //  Copyright (c) 2014 Brandymint. All rights reserved.
 //
 
-#import "AccessoriesOrderView.h"
+#import "DeliveryOrderView.h"
 
-@implementation AccessoriesOrderView
+@implementation DeliveryOrderView
 {
     UIActivityIndicatorView *activityIndicator;
     UILabel* label;
+    BOOL isDeliverACtion;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -48,6 +49,7 @@
             label.text = @"Доставить заказ";
             label.textColor = [UIColor whiteColor];
             label.backgroundColor = COLOR_GREEN_;
+            isDeliverACtion = YES;
             self.userInteractionEnabled = YES;
             break;
         case sending:
@@ -55,7 +57,14 @@
             label.textColor = [UIColor blackColor];
             label.backgroundColor = [UIColor whiteColor];
             [activityIndicator startAnimating];
-            [self performSelector:@selector(orderSending) withObject:nil afterDelay:5];
+            [self performSelector:@selector(orderSending) withObject:nil afterDelay:2];
+            break;
+        case backToShop:
+            isDeliverACtion = NO;
+            self.userInteractionEnabled = YES;
+            label.text = @"Вернуться в магазин";
+            label.textColor = [UIColor whiteColor];
+            label.backgroundColor = COLOR_BLUE_;
             break;
         default:
             break;
@@ -65,12 +74,20 @@
 -(void)orderSending
 {
     [activityIndicator stopAnimating];
-    [_delegate onAccessoriesOrderSending];
+
+    [_delegate onDeliveryOrderSending];
+
+    //[_delegate onDeliveryOrderFailSending];
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [_delegate onAccessoriesOrderAction];
+    if (isDeliverACtion) {
+        [_delegate onDeliveryOrderAction];
+    }
+    else {
+        [_delegate onDeliveryOrderBackToShop];
+    }
 }
 
 /*

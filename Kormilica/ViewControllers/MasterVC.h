@@ -12,4 +12,9 @@
 {
     AppDelegate* appDelegate;
 }
+
+-(CGFloat)getPriceOrder;
+
+
+-(NSArray *)getOrderArray;
 @end

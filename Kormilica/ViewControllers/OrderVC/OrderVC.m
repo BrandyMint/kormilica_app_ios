@@ -56,6 +56,7 @@
     labelAllSum.layer.borderWidth = 1;
     [_allSumView addSubview:labelAllSum];
     
+    
     _onOrderView.backgroundColor = [UIColor clearColor];
     UILabel* labelOrderView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_onOrderView.frame), CGRectGetHeight(_onOrderView.frame))];
     labelOrderView.font = [UIFont systemFontOfSize:18];
@@ -129,35 +130,6 @@
     Product* product = [orderArray objectAtIndex:indexPath.row];
     selectedProductID = product.idProduct;
     [self performSegueWithIdentifier:@"segEditProduct" sender:self];
-}
-
--(NSArray *)getOrderArray
-{
-    NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:appDelegate.bundles.products];
-    
-    NSMutableArray* result = [NSMutableArray new];
-    for (int i = 0; i < arr.count; i++) {
-        Product* product = [arr objectAtIndex:i];
-        
-        if (product.count != 0) {
-            [result addObject:product];
-        }
-    }
-    return result;
-}
-
--(CGFloat)getPriceOrder
-{
-    NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:appDelegate.bundles.products];
-    
-    CGFloat sum = 0;
-    for (int i = 0; i < arr.count; i++) {
-        Product* product = [arr objectAtIndex:i];
-        if (product.count != 0) {
-            sum += product.count * product.price.cents/100;
-        }
-    }
-    return sum;
 }
 
  #pragma mark - Navigation

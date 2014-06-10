@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "MasterVC.h"
+#import "onBuyView.h"
 
 @interface DetailGoodsVC : MasterVC
 
 //public
 @property (nonatomic, assign) NSInteger idProduct;
+
+@property (weak, nonatomic) IBOutlet onBuyView *onBuy;
 
 @property (weak, nonatomic) IBOutlet UIImageView *logo;
 @property (weak, nonatomic) IBOutlet UILabel *titleProduct;

@@ -18,4 +18,6 @@
 @property (nonatomic, strong) Managers* managers;
 @property (nonatomic, strong) ConvertTime* convertTime;
 
+@property (nonatomic, assign) BOOL succesOrFailOrder;
+
 @end

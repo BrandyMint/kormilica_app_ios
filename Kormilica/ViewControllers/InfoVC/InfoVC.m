@@ -10,9 +10,7 @@
 #import "NSString-HTML.h"
 
 @interface InfoVC ()
-{
-    AppDelegate* appDelegate;
-}
+
 @end
 
 @implementation InfoVC
@@ -32,7 +30,6 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = COLOR_ALPHA;
     
-    appDelegate = [[UIApplication sharedApplication] delegate];
     UIColor* white = [UIColor whiteColor];
     UIFont* font = [UIFont systemFontOfSize:14];
     

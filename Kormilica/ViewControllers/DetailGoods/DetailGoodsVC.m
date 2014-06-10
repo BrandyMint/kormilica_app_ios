@@ -8,8 +8,9 @@
 
 #import "DetailGoodsVC.h"
 #import "IQActionSheetPicker.h"
+#import "DetailImageVC.h"
 
-@interface DetailGoodsVC () <IQActionSheetPickerDelegate>
+@interface DetailGoodsVC () <IQActionSheetPickerDelegate, onBuyViewDelegate>
 {
     Product* product;
 }
@@ -30,13 +31,32 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    _onBuy.delegate = self;
     
     for (Product* product_ in appDelegate.bundles.products) {
         if (product_.idProduct == _idProduct) {
             product = product_;
         }
     }
+    UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDetailImage)];
+    [_logo addGestureRecognizer:tap];
+    _logo.userInteractionEnabled = YES;
     [self initData];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self updateOnBuy];
+}
+
+-(void)updateOnBuy
+{
+    [_onBuy isAllowed:[self getPriceOrder] > 500 ? YES : NO];
+}
+
+-(void)onDetailImage
+{
+    [self performSegueWithIdentifier:@"segDetailImage" sender:self];
 }
 
 -(void)initData
@@ -86,17 +106,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 - (IBAction)onOrder:(id)sender {
     IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
     [picker setTag:1];
@@ -125,6 +134,7 @@
         [self setCountProduct:[[indexes firstObject] integerValue] idProduct:_idProduct];
     }
     [self initData];
+    [self updateOnBuy];
 }
 
 -(void)setCountProduct:(NSInteger)count idProduct:(NSInteger )idProduct
@@ -138,6 +148,27 @@
         }
     }
     appDelegate.bundles.products = arr;
+}
+
+-(void)onBuyAction
+{
+    [self performSegueWithIdentifier:@"segBuy" sender:self];
+}
+
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"segDetailImage"]) {
+        DetailImageVC* destination = [segue destinationViewController];
+        destination.imageUrl = product.image.mobile_url;
+    }
+    if ([segue.identifier isEqualToString:@"segBuy"]) {
+        
+    }
 }
 
 @end
