@@ -64,6 +64,7 @@
         }
     }
     appDelegate.bundles.vendor.delivery_price.cents = sum;
+    
     return sum;
 }
 
@@ -80,6 +81,20 @@
         }
     }
     return result;
+}
+
+-(void)setCountProduct:(NSInteger)count idProduct:(NSInteger )idProduct
+{
+    NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:appDelegate.bundles.products];
+    for (int i = 0; i < arr.count; i++) {
+        Product* productArr = [arr objectAtIndex:i];
+        if (productArr.idProduct == idProduct) {
+            productArr.count = count;
+            [arr replaceObjectAtIndex:i withObject:productArr];
+        }
+    }
+    appDelegate.bundles.products = arr;
+    
 }
 
 @end

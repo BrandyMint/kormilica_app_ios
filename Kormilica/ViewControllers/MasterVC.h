@@ -14,7 +14,7 @@
 }
 
 -(CGFloat)getPriceOrder;
-
-
 -(NSArray *)getOrderArray;
+-(void)setCountProduct:(NSInteger)count idProduct:(NSInteger )idProduct;
+
 @end

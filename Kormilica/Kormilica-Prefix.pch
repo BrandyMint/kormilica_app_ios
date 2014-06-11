@@ -16,5 +16,4 @@
     #import "DefaultSettings.h"
     #import "AppDelegate.h"
     #import "NSString+Size.h"
-    #import "UIImageView+AFNetworking.h"
 #endif

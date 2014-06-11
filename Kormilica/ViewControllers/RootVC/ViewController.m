@@ -14,7 +14,7 @@
 #import "HMSegmentedControl.h"
 #import "DetailGoodsVC.h"
 #import "onBuyView.h"
-
+#import "UIImageView+AFNetworking.h"
 #import "MapVC.h"
 
 @interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate, onBuyViewDelegate>
@@ -283,16 +283,7 @@
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath
 {
     Product* product = [dataArray objectAtIndex:indexPath.row];
-    
-    NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:appDelegate.bundles.products];
-    for (int i = 0; i < arr.count; i++) {
-        Product* productArr = [arr objectAtIndex:i];
-        if (product.idProduct == productArr.idProduct && product.idCategory == productArr.idCategory) {
-            productArr.count = 1;
-            [arr replaceObjectAtIndex:i withObject:productArr];
-        }
-    }
-    appDelegate.bundles.products = arr;
+    [self setCountProduct:1 idProduct:product.idProduct];
     
     [self initDataArrayWithCategoriesID:selectedIDCategory];
     [self calculateAmount];

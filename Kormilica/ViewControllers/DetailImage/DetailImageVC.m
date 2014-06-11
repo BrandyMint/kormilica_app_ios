@@ -7,6 +7,7 @@
 //
 
 #import "DetailImageVC.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DetailImageVC ()
 

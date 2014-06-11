@@ -9,6 +9,7 @@
 #import "DetailGoodsVC.h"
 #import "IQActionSheetPicker.h"
 #import "DetailImageVC.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DetailGoodsVC () <IQActionSheetPickerDelegate, onBuyViewDelegate>
 {
@@ -135,19 +136,6 @@
     }
     [self initData];
     [self updateOnBuy];
-}
-
--(void)setCountProduct:(NSInteger)count idProduct:(NSInteger )idProduct
-{
-    NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:appDelegate.bundles.products];
-    for (int i = 0; i < arr.count; i++) {
-        Product* productArr = [arr objectAtIndex:i];
-        if (productArr.idProduct == idProduct) {
-            productArr.count = count;
-            [arr replaceObjectAtIndex:i withObject:productArr];
-        }
-    }
-    appDelegate.bundles.products = arr;
 }
 
 -(void)onBuyAction
