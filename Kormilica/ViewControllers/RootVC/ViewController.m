@@ -158,9 +158,8 @@
     [super viewDidLoad];
     _onBuy.delegate = self;
     [self initTopView];
-
-    [appDelegate.managers getBundles:^(Bundles* bundles) {
-        
+    
+    [appDelegate.managers getLocalBundles:^(Bundles* bundles) {
         appDelegate.bundles = bundles;
         
         [self initText];
@@ -169,9 +168,6 @@
         Product* product = [bundles.products firstObject];
         selectedIDCategory = product.idCategory;
         [self initDataArrayWithCategoriesID:selectedIDCategory];
-    } failBlock:^(NSException * exception) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:exception.name message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
     }];
 }
 

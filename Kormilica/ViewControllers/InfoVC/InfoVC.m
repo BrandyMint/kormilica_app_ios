@@ -91,12 +91,15 @@
 }
 
 - (IBAction)onUpdate:(id)sender {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [appDelegate.managers getBundles:^(Bundles* bundles) {
         appDelegate.bundles = bundles;
         [self updateText];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     } failBlock:^(NSException * exception) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:exception.name message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
 }
 

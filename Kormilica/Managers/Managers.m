@@ -23,6 +23,7 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
          {
+             
              Bundles* bundles = [EKMapper objectFromExternalRepresentation:JSON withMapping:[Factory bundlesMapping]];
              block(bundles);
          }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)
@@ -35,6 +36,23 @@
          }];
     [operation start];
 
+}
+
+-(void)getLocalBundles:(void (^) (Bundles* bundles))block
+{
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"DefaultData" ofType:@"json"];
+    // Retrieve local JSON file called DefaultData.json
+
+    NSError *error = nil; // This so that we can access the error if something goes wrong
+    NSData *JSONData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedIfSafe error:&error];
+    // Load the file into an NSData object called JSONData
+    
+    NSError* errorDictinary;
+    NSDictionary* JSON = [NSJSONSerialization JSONObjectWithData:JSONData options:kNilOptions error:&errorDictinary];
+    
+    Bundles* bundles = [EKMapper objectFromExternalRepresentation:JSON withMapping:[Factory bundlesMapping]];
+    
+    block(bundles);
 }
 
 @end

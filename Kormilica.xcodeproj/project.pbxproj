@@ -44,6 +44,7 @@
 		66EDEABE1945CB4B00DB9DA8 /* OrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */; };
 		66EDEAC21945CB6100DB9DA8 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC11945CB6100DB9DA8 /* InfoVC.m */; };
 		66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */; };
+		66FC794519483E740038D415 /* DefaultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 66FC794419483E740038D415 /* DefaultData.json */; };
 		FF483C3D983C44C1875D9126 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2958C20ED84050A6FD4DBF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,7 @@
 		66EDEAC11945CB6100DB9DA8 /* InfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoVC.m; path = ViewControllers/InfoVC/InfoVC.m; sourceTree = "<group>"; };
 		66EDEAC41945CBB800DB9DA8 /* OrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderDetailVC.h; path = ViewControllers/OrderDetailVC/OrderDetailVC.h; sourceTree = "<group>"; };
 		66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderDetailVC.m; path = ViewControllers/OrderDetailVC/OrderDetailVC.m; sourceTree = "<group>"; };
+		66FC794419483E740038D415 /* DefaultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultData.json; sourceTree = "<group>"; };
 		BC2958C20ED84050A6FD4DBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C34A13AB244E24AEC265C2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -194,6 +196,7 @@
 				664911D61941ADE500CFA99D /* Helpers */,
 				6643BBD4194061490066D330 /* AppDelegate.h */,
 				6643BBD5194061490066D330 /* AppDelegate.m */,
+				66FC794419483E740038D415 /* DefaultData.json */,
 				6643BBD7194061490066D330 /* Main.storyboard */,
 				6643BBDD194061490066D330 /* Images.xcassets */,
 				6643BC0019406F600066D330 /* ViewControllers */,
@@ -450,6 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6643BBDE194061490066D330 /* Images.xcassets in Resources */,
+				66FC794519483E740038D415 /* DefaultData.json in Resources */,
 				6643BBD0194061490066D330 /* InfoPlist.strings in Resources */,
 				6643BBD9194061490066D330 /* Main.storyboard in Resources */,
 			);

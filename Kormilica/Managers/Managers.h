@@ -13,5 +13,6 @@
 
 //Пакет данных по вендору
 - (void) getBundles:(void (^) (Bundles* bundles)) block  failBlock:(void (^) (NSException *exception)) blockException;
+-(void)getLocalBundles:(void (^) (Bundles* bundles))block;
 
 @end
