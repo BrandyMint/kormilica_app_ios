@@ -46,7 +46,7 @@
 
 + (EKObjectMapping*) priceMapping;
 {
-    return [EKObjectMapping mappingForClass:[Price class] withBlock:^(EKObjectMapping *mapping) {
+    return [EKObjectMapping mappingForClass:[Money class] withBlock:^(EKObjectMapping *mapping) {
         [mapping mapFieldsFromArray:@[@"cents",
                                       @"currency"]];
     }];

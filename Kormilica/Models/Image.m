@@ -10,4 +10,15 @@
 
 @implementation Image
 
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        _mobile_url = [decoder decodeObjectForKey:@"mobile_url"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:_mobile_url forKey:@"mobile_url"];
+}
+
 @end

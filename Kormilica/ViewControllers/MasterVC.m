@@ -54,6 +54,7 @@
 
 -(CGFloat)getPriceOrder
 {
+    /*
     NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:appDelegate.bundles.products];
     
     CGFloat sum = 0;
@@ -64,8 +65,8 @@
         }
     }
     appDelegate.bundles.vendor.delivery_price.cents = sum;
-    
-    return sum;
+    */
+    return 0;
 }
 
 -(NSArray *)getOrderArray
@@ -76,25 +77,25 @@
     for (int i = 0; i < arr.count; i++) {
         Product* product = [arr objectAtIndex:i];
         
-        if (product.count != 0) {
-            [result addObject:product];
-        }
+//        if (product.count != 0) {
+//            [result addObject:product];
+//        }
     }
     return result;
 }
 
 -(void)setCountProduct:(NSInteger)count idProduct:(NSInteger )idProduct
 {
+    
     NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:appDelegate.bundles.products];
     for (int i = 0; i < arr.count; i++) {
         Product* productArr = [arr objectAtIndex:i];
         if (productArr.idProduct == idProduct) {
-            productArr.count = count;
+            //productArr.count = count;
             [arr replaceObjectAtIndex:i withObject:productArr];
         }
     }
     appDelegate.bundles.products = arr;
-    
 }
 
 @end

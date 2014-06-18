@@ -109,11 +109,11 @@
     Product* product = [orderArray objectAtIndex:indexPath.row];
     cell.title.text = product.title;
     cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",product.price.cents/100];
-    [cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",product.count, product.price.cents/100 * product.count] forState:UIControlStateNormal];
+    //[cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",product.count, product.price.cents/100 * product.count] forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.indexPath = indexPath;
-    cell.count = product.count;
+    //cell.count = product.count;
     cell.delegate = self;
     
     return cell;

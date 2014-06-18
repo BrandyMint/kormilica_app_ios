@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "EasyMapping.h"
 #import "Vendor.h"
-#import "Price.h"
+#import "Money.h"
 #import "Categories.h"
 #import "Product.h"
 #import "Image.h"

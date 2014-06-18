@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Price.h"
+#import "Money.h"
 
 @interface Vendor : NSObject
 
@@ -26,8 +26,8 @@
 @property (nonatomic, strong) NSString* mobile_minimal_alert;
 @property (nonatomic, strong) NSString* currency;
 @property (nonatomic, assign) BOOL is_demo;
-@property (nonatomic, strong) Price* minimal_price;
-@property (nonatomic, strong) Price* delivery_price;
+@property (nonatomic, strong) Money* minimal_price;
+@property (nonatomic, strong) Money* delivery_price;
 
 @end
 

@@ -79,7 +79,7 @@
     _onOrder.layer.cornerRadius = 4;
     _onOrder.layer.borderWidth = 1;
     _onOrder.layer.masksToBounds = YES;
-    
+/*
     if (product.count == 0) {
         [_onOrder setTitle:@"Добавить заказ" forState:UIControlStateNormal];
         [_onOrder setBackgroundColor:[UIColor clearColor]];
@@ -92,7 +92,7 @@
         [_onOrder setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _onOrder.layer.borderColor = COLOR_GREEN_.CGColor;
     }
-    
+*/
     _descriptions.text = product.title;
     _descriptions.scrollEnabled = NO;
     _descriptions.editable = NO;

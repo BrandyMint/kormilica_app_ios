@@ -204,7 +204,7 @@
     [cell.logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@""]];
     
     cell.indexPath = indexPath;
-    cell.count = product.count;
+//    cell.count = product.count;
     cell.delegate = self;
     
     return cell;

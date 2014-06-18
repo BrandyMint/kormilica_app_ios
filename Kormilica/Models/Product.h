@@ -7,20 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Price.h"
+#import "Money.h"
 #import "Image.h"
 
 @interface Product : NSObject
-
-//my
-@property (nonatomic, assign) NSInteger count;
 
 @property (nonatomic, assign) NSInteger idProduct;
 @property (nonatomic, assign) NSInteger idCategory;
 @property (nonatomic, strong) NSString* title;
 @property (nonatomic, strong) NSString* updated_at;
 @property (nonatomic, assign) NSInteger position;
-@property (nonatomic, strong) Price* price;
+@property (nonatomic, strong) Money* price;
 @property (nonatomic, strong) Image* image;
 
 @end

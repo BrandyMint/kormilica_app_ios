@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Price : NSObject
+@interface Money : NSObject
 
 @property (nonatomic, assign) NSInteger cents;
 @property (nonatomic, strong) NSString* currency;
+
+-(id)initWithCents:(NSInteger )cents currency:(NSString *)currency;
+-(BOOL)isEqualToMoney:(Money *)money;
 
 @end
 
