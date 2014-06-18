@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "Order.h"
 #import "Cart.h"
+#import "CoreDataHelper.h"
 
 @interface OrderTest : XCTestCase
 {
@@ -16,6 +17,7 @@
     Product* product1;
     Money* price1;
     Order* order;
+    CoreDataHelper* coreDataHelper;
 }
 @end
 
@@ -25,6 +27,7 @@
 {
     [super setUp];
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    coreDataHelper = [CoreDataHelper new];
     cart = [Cart new];
     
     price1 = [[Money alloc] initWithCents:100 currency:@"RUB"];
@@ -33,23 +36,17 @@
     product1.price = price1;
     product1.idProduct = 1;
     
-    order = [Order new];
+    [cart addProduct:product1 count:1];
+    
+    order = [[Order alloc] initWithOrderItems:[cart getItems] total_price:[cart getTotalPrice]];
     order.address = @"город, улица, дом";
     order.telephone = @"+70000000000";
-    
-   
 }
 
 // Сформировать заказ из корзины. Order: items, total_price, address (город, улица, дом), telephon.
 -(void)testOrder
 {
-    [cart addProduct:product1 count:1];
-    
-    [order setItems:[cart getItems]];
-    
-    [order setTotal_price:[cart getTotalPrice]];
-    
-    XCTAssert(order.getTotal_price.cents == 100, @"Сумма всех товаров в заказе равно 100");
+    XCTAssert(order.total_price.cents == 100, @"Сумма всех товаров в заказе равно 100");
     XCTAssert(order.getItems.count == 1, @"Количество товаров в заказе 1");
 }
 
@@ -57,39 +54,29 @@
 -(void)testEditProduct
 {
     //создали заказ
-    
-    [cart addProduct:product1 count:1];
-    
-    [order setItems:[cart getItems]];
-    [order setTotal_price:[cart getTotalPrice]];
-
-    XCTAssert(order.getTotal_price.cents == 100, @"Сумма всех товаров в заказе равно 100");
-    XCTAssert(order.getItems.count == 1, @"Количество товаров в заказе 1");
-    
-    Item* item = [order.items firstObject];
+    OrderItem* item = [order.items firstObject];
     XCTAssertEqual(item.product.title, @"Пончик1", @"название продукта не должно меняться");
     XCTAssertTrue([item.product.price isEqualToMoney:price1], @"прайс не должен меняться");
     
+    [order saveOrder];
+    
     // доставешь из базы товар
     // меняешь у него цену
-    // проверяшь чо в заказе цена товара не изменилась
+    // проверяшь что в заказе цена товара не изменилась
+
+    Order* loadOrder = [order loadOrder];
     
-    //изменили название товара в заказе
-    Money* money = [[Money alloc] initWithCents:99 currency:@"USD"];
-    Product* product = [Product new];
-    product.title = @"Пончик1_1_1";
-    product.price = money;
-    product.idProduct = 1;
+    XCTAssert(loadOrder.total_price.cents == 100, @"Сумма всех товаров в заказе равно 100");
+    XCTAssert(loadOrder.getItems.count == 1, @"Количество товаров в заказе 1");
     
-    [cart addProduct:product count:1];
-    [order setItems:[cart getItems]];
+    OrderItem* orderItem = [loadOrder.items firstObject];
+    Product* orderProduct = orderItem.product;
+    orderProduct.title = @"sos";
+    orderProduct.price.cents = 99;
+    orderProduct.price.currency = @"USD";
     
-    XCTAssert(order.getTotal_price.cents == 100, @"Сумма всех товаров в заказе равно 100");
-    XCTAssert(order.getItems.count == 1, @"Количество товаров в заказе 1");
-    
-    Item* item1 = [order.items firstObject];
-    XCTAssertEqual(item1.product.title, @"Пончик1", @"название продукта не должно меняться");
-    XCTAssertTrue([item1.product.price isEqualToMoney:price1], @"прайс не должен меняться");
+    XCTAssertTrue([orderItem.product.title isEqualToString:@"Пончик1"], @"название продукта не должно меняться");
+    XCTAssertTrue([orderItem.product.price isEqualToMoney:price1], @"прайс не должен меняться");
 }
 
 - (void)tearDown
@@ -100,6 +87,7 @@
     product1 = nil;
     price1 = nil;
     order = nil;
+    coreDataHelper = nil;
 }
 
 @end

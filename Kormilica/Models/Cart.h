@@ -8,23 +8,25 @@
 
 #import <Foundation/Foundation.h>
 #import "Product.h"
-#import "Item.h"
+#import "OrderItem.h"
 #import "Money.h"
+#import "Vendor.h"
 
 @interface Cart : NSObject
 
 @property (nonatomic, readonly) NSArray* items;
+@property (nonatomic, assign) Vendor* vendor;
 
 -(NSArray *)getItems;
 -(NSInteger)getItemsCount;
 -(Money *)getTotalPrice;
+-(BOOL)isAllowedOrder;
 
 -(void)addProduct:(Product *)product count:(NSInteger )count;
 -(void)deleteProduct:(Product *)product;
-
 -(void)removeAllProduct;
 
 -(void)saveCart;
--(void)loadCart;
+-(Cart *)loadCart;
 
 @end

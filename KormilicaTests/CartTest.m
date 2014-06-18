@@ -119,7 +119,7 @@
     [cart addProduct:product1 count:12];
     XCTAssert(cart.items.count == 1, @"Добавился один товар");
     
-    Item *item = [cart.items firstObject];
+    OrderItem *item = [cart.items firstObject];
     XCTAssert(item.count == 12, @"Количество верное");
     XCTAssert(item.product.idProduct == product1.idProduct, @"Товар верный");
 }
@@ -142,16 +142,40 @@
     [cart addProduct:product1 count:1];
     [cart saveCart];
     
-    [cart loadCart];
+    Cart* loadCart = [cart loadCart];
     
-    XCTAssert(cart.getTotalPrice.cents == 100, @"Сумма всех товаров в сохраненной корзине равно 100");
-    XCTAssert(cart.getItemsCount == 1, @"Количество сохраненных товаров должно быть равно 1");
+    XCTAssert(loadCart.getTotalPrice.cents == 100, @"Сумма всех товаров в сохраненной корзине равно 100");
+    XCTAssert(loadCart.getItemsCount == 1, @"Количество сохраненных товаров должно быть равно 1");
+}
+
+-(void)testAllowedOrder
+{
+    Vendor* vendor = [[Vendor alloc] init];
+    Money* minimal_price = [[Money alloc] initWithCents:500 currency:@"RUB"];
+    vendor.minimal_price = minimal_price;
+    cart.vendor = vendor;
+    
+    XCTAssertFalse(cart.isAllowedOrder, @"оформление заказа невозможно пока сумма в корзине не превысит 500");
+    
+    [cart addProduct:product1 count:5];
+    XCTAssertTrue(cart.isAllowedOrder, @"оформление заказа невозможно пока сумма в корзине не превысит 500");
 }
 
 // Добавили в корзину товар
 // Изменили цену товара в базе
 // У корзины вызвали resetTotal
 // Общая стоимость корзины изменилась.
+-(void)testPriceChange
+{
+    [cart addProduct:product1 count:1];
+    
+    XCTAssert(cart.getTotalPrice.cents == 100, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
+    
+    Money* newPrice = [[Money alloc] initWithCents:50 currency:@"RUB"];
+    product1.price = newPrice;
+    
+    XCTAssert(cart.getTotalPrice.cents == 50, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
+}
 
 - (void)tearDown
 {

@@ -7,17 +7,34 @@
 //
 
 #import "Order.h"
+#import "CartItem.h"
 
 @implementation Order
 
--(void)setTotal_price:(Money *)money
-{
-    _total_price = money;
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        _items = [decoder decodeObjectForKey:@"items"];
+        _total_price = [decoder decodeObjectForKey:@"total_price"];
+        _address = [decoder decodeObjectForKey:@"address"];
+        _telephone = [decoder decodeObjectForKey:@"telephone"];
+    }
+    return self;
 }
 
--(Money *)getTotal_price
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:_items forKey:@"items"];
+    [encoder encodeObject:_total_price forKey:@"total_price"];
+    [encoder encodeObject:_address forKey:@"address"];
+    [encoder encodeObject:_telephone forKey:@"telephone"];
+}
+
+-(id)initWithOrderItems:(NSArray *)orderItems total_price:(Money *)total_price
 {
-    return _total_price;
+    if (self == [super init]) {
+        _total_price = total_price;
+        [self setItems:orderItems];
+    }
+    return self;
 }
 
 -(void)setItems:(NSArray *)items
@@ -29,14 +46,15 @@
     
     NSMutableArray* itemMutable = [[NSMutableArray alloc] initWithArray:_items];
     
-    for (Item* item in itemMutable) {
-        for (Item* itemNew in items) {
-            if (item.idProduct == itemNew.idProduct) {
+    for (OrderItem* orderItem in itemMutable) {
+        for (CartItem* cartItem in items) {
+            if (orderItem.product.idProduct == cartItem.idProduct) {
                 //не меняем продукт в заказе
             }
             else {
                 //добавил в заказ
-                [itemMutable addObject:itemNew];
+                //ищем продукт по id и добавляем Product в заказ
+                //[itemMutable addObject:cartItem];
             }
         }
     }
@@ -47,6 +65,21 @@
 -(NSArray *)getItems
 {
     return _items;
+}
+
+-(void)saveOrder
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"Order"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+-(Order *)loadOrder
+{
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Order"];
+    Order* loadOrder = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    return loadOrder;
 }
 
 @end

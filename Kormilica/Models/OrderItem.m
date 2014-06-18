@@ -6,27 +6,18 @@
 //  Copyright (c) 2014 Brandymint. All rights reserved.
 //
 
-#import "Item.h"
+#import "OrderItem.h"
 
-@implementation Item
+@implementation OrderItem
 
 -(id)initWithProduct:(Product *)product count:(NSInteger )count
 {
     if (self) {
         _product = product;
         _count = count;
-        _idProduct = product.idProduct;
     }
     return self;
 }
-
-/*
--(Product *)product
-{
-    // Лезетв базу и ищетпродуктпо idProduct
-    return nil;
-}
- */
 
 - (id)initWithCoder:(NSCoder *)decoder {
     if (self = [super init]) {

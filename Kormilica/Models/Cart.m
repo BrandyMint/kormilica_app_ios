@@ -11,6 +11,17 @@
 
 @implementation Cart
 
+- (id)initWithCoder:(NSCoder *)decoder {
+    if (self = [super init]) {
+        _items = [decoder decodeObjectForKey:@"items"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:_items forKey:@"items"];
+}
+
 -(NSArray *)getItems
 {
     if (_items.count == 0) {
@@ -28,7 +39,7 @@
 -(Money *)getTotalPrice
 {
     CGFloat sum = 0;
-    for (Item* item in _items) {
+    for (OrderItem* item in _items) {
         
         sum += item.count * item.product.price.cents;
     }
@@ -36,6 +47,15 @@
     Money* money = [[Money alloc]initWithCents:sum currency:@"RUB"];
     
     return money;
+}
+
+-(BOOL)isAllowedOrder
+{
+    Money* totalPrice = [self getTotalPrice];
+    if (totalPrice.cents >= _vendor.minimal_price.cents) {
+        return YES;
+    }
+    return NO;
 }
 
 -(void)addProduct:(Product *)product count:(NSInteger )count;
@@ -51,7 +71,7 @@
     //для продуктов, которые уже есть в корзине
     NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:_items];
     for (int i = 0; i < _items.count; i++) {
-        Item* items = [_items objectAtIndex:i];
+        OrderItem* items = [_items objectAtIndex:i];
         if (items.product.idProduct == product.idProduct) {
             items.count = count;
             if (count == 0) {
@@ -66,7 +86,7 @@
     }
     
     //если нет продукта с таким id, добавляем
-    Item* items = [[Item alloc] initWithProduct:product count:count];
+    OrderItem* items = [[OrderItem alloc] initWithProduct:product count:count];
     [arr addObject:items];
     
     _items = arr;
@@ -84,16 +104,17 @@
 
 -(void)saveCart
 {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:[self getItems]];
-    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"Items"];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
+    [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"Cart"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
--(void)loadCart
+-(Cart *)loadCart
 {
-    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Items"];
-    NSArray* array = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    _items = array;
+    NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:@"Cart"];
+    Cart* cart = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    //_items = array;
+    return cart;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Money.h"
-#import "Item.h"
+#import "OrderItem.h"
 
 @interface Order : NSObject
 
@@ -17,10 +17,11 @@
 @property (nonatomic, assign) NSString* address;
 @property (nonatomic, assign) NSString* telephone;
 
--(void)setTotal_price:(Money *)money;
--(Money *)getTotal_price;
+-(id)initWithOrderItems:(NSArray *)orderItems total_price:(Money *)total_price;
 
--(void)setItems:(NSArray *)items;
 -(NSArray *)getItems;
+
+-(void)saveOrder;
+-(Order *)loadOrder;
 
 @end

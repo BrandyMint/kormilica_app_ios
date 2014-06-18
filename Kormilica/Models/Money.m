@@ -16,7 +16,7 @@
     _currency = currency;
     return self;
 }
-/*
+
 -(void)setCents:(NSInteger)cents
 {
     if ( _cents == 0 || _cents == cents) {
@@ -30,7 +30,7 @@
         _currency = currency;
     }
 }
-*/
+
 -(BOOL)isEqualToMoney:(Money *)money
 {
     if (_cents == money.cents && [_currency isEqualToString:money.currency]) {
