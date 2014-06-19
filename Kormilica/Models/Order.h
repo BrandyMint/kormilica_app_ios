@@ -9,18 +9,18 @@
 #import <Foundation/Foundation.h>
 #import "Money.h"
 #import "OrderItem.h"
+#import "Address.h"
 
 @interface Order : NSObject
 
 @property (nonatomic, readonly) NSArray* items;
 @property (nonatomic, readonly) Money* total_price;
-@property (nonatomic, assign) NSString* address;
-@property (nonatomic, assign) NSString* telephone;
+@property (nonatomic, strong) Address* address;
 
--(id)initWithOrderItems:(NSArray *)orderItems total_price:(Money *)total_price;
+-(id)initWithCartItems:(NSArray *)cartItems total_price:(Money *)total_price fromProducts:(NSArray *)products;
+-(void)updateOrderWithCart:(Cart *)cart;
 
 -(NSArray *)getItems;
-
 -(void)saveOrder;
 -(Order *)loadOrder;
 

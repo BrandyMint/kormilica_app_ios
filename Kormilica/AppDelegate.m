@@ -21,6 +21,7 @@
     _managers = [Managers new];
     _bundles = [Bundles new];
     _convertTime = [ConvertTime new];
+    _cart = [Cart new];
     return YES;
 }
 							

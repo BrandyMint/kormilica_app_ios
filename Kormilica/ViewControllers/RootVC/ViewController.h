@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "MasterVC.h"
-#import "onBuyView.h"
+#import "BuyView.h"
 
 @interface ViewController : MasterVC
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet onBuyView *onBuy;
+@property (weak, nonatomic) IBOutlet BuyView *onBuy;
 
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;

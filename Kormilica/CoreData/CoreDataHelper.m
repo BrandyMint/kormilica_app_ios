@@ -16,8 +16,8 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
 
     OrderCD* orderCD = [NSEntityDescription insertNewObjectForEntityForName:@"OrderCD" inManagedObjectContext:managedObjectContext];
-    orderCD.telephone = order.telephone;
-    orderCD.address = order.address;
+    orderCD.telephone = order.address.phone;
+    orderCD.address = order.address.address;
     [orderCD addItems:(NSSet *)order.items];
 }
 

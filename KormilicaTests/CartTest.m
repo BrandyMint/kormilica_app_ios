@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Cart.h"
+#import "CartItem.h"
 
 @interface CartTest : XCTestCase
 {
@@ -29,13 +30,13 @@
     
     cart = [Cart new];
 
-    price1 = [[Money alloc] initWithCents:100 currency:@"RUB"];
+    price1 = [[Money alloc] initWithCents:10000 currency:@"RUB"];
     product1 = [Product new];
     product1.title = @"Пончик1";
     product1.price = price1;
     product1.idProduct = 1;
     
-    price2= [[Money alloc] initWithCents:200 currency:@"RUB"];
+    price2= [[Money alloc] initWithCents:20000 currency:@"RUB"];
     product2 = [Product new];
     product2.title = @"Пончик2";
     product2.price = price2;
@@ -44,24 +45,33 @@
 
 - (void)testTotalPriceIsZero
 {
-    XCTAssert(cart.getTotalPrice.cents == 0, @"Сумма товаров в пустой корзине должна быть равна нулю");
+    NSArray* products = [[NSArray alloc] initWithObjects: nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    
+    XCTAssert(money.cents == 0, @"Сумма товаров в пустой корзине должна быть равна нулю");
     XCTAssert(cart.getItemsCount == 0, @"Количество товаров должно быть равно нулю");
 }
 
 - (void)testAddOneProduct
 {
-    [cart addProduct:product1 count:1];
+    [cart addIdProduct:product1.idProduct count:1];
     
-    XCTAssert(cart.getTotalPrice.cents == 100, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    
+    XCTAssert(money.cents == 100, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
     XCTAssert(cart.getItemsCount == 1, @"Количество товаров должно быть равно 1");
 }
 
 - (void)testAddAnotherProduct
 {
-    [cart addProduct:product1 count:1];
-    [cart addProduct:product2 count:2];
+    [cart addIdProduct:product1.idProduct count:1];
+    [cart addIdProduct:product2.idProduct count:2];
     
-    XCTAssert(cart.getTotalPrice.cents == 500, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, product2, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    
+    XCTAssert(money.cents == 500, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
     XCTAssert(cart.getItemsCount == 2, @"Количество товаров должно быть равно 2");
 }
 
@@ -73,10 +83,12 @@
 // Если добавляем уже существующий товар, то увеличивается счетчик у существующего, а количество item-ов не меняется
 -(void)testEditCountProduct
 {
-    [cart addProduct:product1 count:1];
-    [cart addProduct:product1 count:3];
+    [cart addIdProduct:product1.idProduct count:1];
+    [cart addIdProduct:product1.idProduct count:3];
     
-    XCTAssert(cart.getTotalPrice.cents == 300, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    XCTAssert(money.cents == 300, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
     XCTAssert(cart.getItemsCount == 1, @"Количество товаров должно быть равно 1");
 }
 
@@ -84,19 +96,22 @@
 // Изменить количество товаров (product, count), Если count=0 то удалять
 -(void)testDeleteProductByZeroCount
 {
-    [cart addProduct:product2 count:1];
+    [cart addIdProduct:product2.idProduct count:1];
     
-    [cart addProduct:product1 count:12];
-    [cart addProduct:product1 count:0];
+    [cart addIdProduct:product1.idProduct count:12];
+    [cart addIdProduct:product1.idProduct count:0];
     
-    XCTAssert(cart.getTotalPrice.cents == 200, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, product2, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    
+    XCTAssert(money.cents == 200, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
     XCTAssert(cart.getItemsCount == 1, @"Количество товаров должно быть равно 1");
 }
 
 // Изменить количество товаров (product, count), Если count=0 то удалять
 -(void)testDeleteNotExistenProductByZeroCount
 {
-    [cart addProduct:product1 count:0];
+    [cart addIdProduct:product1.idProduct count:0];
     
     XCTAssert(cart.getItemsCount == 0, @"Количество товаров должно быть равно 0");
 }
@@ -105,10 +120,12 @@
 {
     [cart deleteProduct:product1];
 
-    [cart addProduct:product1 count:12];
+    [cart addIdProduct:product1.idProduct count:12];
     [cart deleteProduct:product1];
 
-    XCTAssert(cart.getTotalPrice.cents == 0, @"Сумма товаров остается нулевой");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    XCTAssert(money.cents == 0, @"Сумма товаров остается нулевой");
     XCTAssert(cart.getItemsCount == 0, @"Товаров в корзине нет");
 }
 
@@ -116,35 +133,39 @@
 -(void)testGetItems1 {
     XCTAssert(cart.items.count == 0, @"Изначально в корзине нет товаров");
     
-    [cart addProduct:product1 count:12];
+    [cart addIdProduct:product1.idProduct count:12];
     XCTAssert(cart.items.count == 1, @"Добавился один товар");
     
-    OrderItem *item = [cart.items firstObject];
-    XCTAssert(item.count == 12, @"Количество верное");
-    XCTAssert(item.product.idProduct == product1.idProduct, @"Товар верный");
+    CartItem *cartItem = [cart.items firstObject];
+    
+    XCTAssert(cartItem.count == 12, @"Количество верное");
+    XCTAssert(cartItem.idProduct == product1.idProduct, @"Товар верный");
 }
 
 // Очистить все товары
 -(void)testRemoveAllProduct
 {
-    [cart addProduct:product2 count:1];
-    [cart addProduct:product1 count:11];
+    [cart addIdProduct:product2.idProduct count:1];
+    [cart addIdProduct:product1.idProduct count:11];
     
     [cart removeAllProduct];
     
-    XCTAssert(cart.getTotalPrice.cents == 0, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    XCTAssert(money.cents == 0, @"Сумма товаров в пустой корзине должна быть равна ценам добавленных товара");
     XCTAssert(cart.getItemsCount == 0, @"Количество товаров должно быть равно 0");
 }
 
 // Сохранение и восстановление корзины
 -(void)testSaveAllProduct
 {
-    [cart addProduct:product1 count:1];
+    [cart addIdProduct:product1.idProduct count:1];
     [cart saveCart];
     
     Cart* loadCart = [cart loadCart];
-    
-    XCTAssert(loadCart.getTotalPrice.cents == 100, @"Сумма всех товаров в сохраненной корзине равно 100");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
+    XCTAssert(money.cents == 100, @"Сумма всех товаров в сохраненной корзине равно 100");
     XCTAssert(loadCart.getItemsCount == 1, @"Количество сохраненных товаров должно быть равно 1");
 }
 
@@ -155,10 +176,12 @@
     vendor.minimal_price = minimal_price;
     cart.vendor = vendor;
     
-    XCTAssertFalse(cart.isAllowedOrder, @"оформление заказа невозможно пока сумма в корзине не превысит 500");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, nil];
     
-    [cart addProduct:product1 count:5];
-    XCTAssertTrue(cart.isAllowedOrder, @"оформление заказа невозможно пока сумма в корзине не превысит 500");
+    XCTAssertFalse([cart isAllowedOrderFromProducts:nil], @"оформление заказа невозможно пока сумма в корзине не превысит 500");
+    
+    [cart addIdProduct:product1.idProduct count:5];
+    XCTAssertTrue([cart isAllowedOrderFromProducts:products], @"оформление заказа невозможно пока сумма в корзине не превысит 500");
 }
 
 // Добавили в корзину товар
@@ -167,14 +190,19 @@
 // Общая стоимость корзины изменилась.
 -(void)testPriceChange
 {
-    [cart addProduct:product1 count:1];
+    [cart addIdProduct:product1.idProduct count:1];
     
-    XCTAssert(cart.getTotalPrice.cents == 100, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
+    NSArray* products = [[NSArray alloc] initWithObjects:product1, nil];
+    Money* money = [cart getTotalPriceFromProducts:products];
     
-    Money* newPrice = [[Money alloc] initWithCents:50 currency:@"RUB"];
+    XCTAssert(money.cents == 100, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
+    
+    Money* newPrice = [[Money alloc] initWithCents:5000 currency:@"RUB"];
     product1.price = newPrice;
     
-    XCTAssert(cart.getTotalPrice.cents == 50, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
+    newPrice = [cart getTotalPriceFromProducts:products];
+    
+    XCTAssert(newPrice.cents == 50, @"Сумма товаров в пустой корзине должна быть равна цене добавленного товара");
 }
 
 - (void)tearDown

@@ -17,12 +17,13 @@
 @property (nonatomic, readonly) NSArray* items;
 @property (nonatomic, assign) Vendor* vendor;
 
+-(NSInteger )countProductInCartWithIdProduct:(NSInteger )idProduct;
 -(NSArray *)getItems;
 -(NSInteger)getItemsCount;
--(Money *)getTotalPrice;
--(BOOL)isAllowedOrder;
+-(Money *)getTotalPriceFromProducts:(NSArray *)products;
+-(BOOL)isAllowedOrderFromProducts:(NSArray *)products;
 
--(void)addProduct:(Product *)product count:(NSInteger )count;
+-(void)addIdProduct:(NSInteger )idProduct count:(NSInteger )count;
 -(void)deleteProduct:(Product *)product;
 -(void)removeAllProduct;
 

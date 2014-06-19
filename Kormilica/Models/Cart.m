@@ -8,6 +8,7 @@
 
 #import "Cart.h"
 #import "Product.h"
+#import "CartItem.h"
 
 @implementation Cart
 
@@ -36,29 +37,29 @@
     return _items.count;
 }
 
--(Money *)getTotalPrice
+-(Money *)getTotalPriceFromProducts:(NSArray *)products
 {
     CGFloat sum = 0;
-    for (OrderItem* item in _items) {
-        
-        sum += item.count * item.product.price.cents;
+    for (CartItem* cartItem in _items) {
+        Product* product = [cartItem productFromAllProducts:products];
+        sum += cartItem.count * product.price.cents;
     }
-
-    Money* money = [[Money alloc]initWithCents:sum currency:@"RUB"];
     
+    Money* money = [[Money alloc]initWithCents:sum/100 currency:@"RUB"];
     return money;
 }
 
--(BOOL)isAllowedOrder
+-(BOOL)isAllowedOrderFromProducts:(NSArray *)products
 {
-    Money* totalPrice = [self getTotalPrice];
-    if (totalPrice.cents >= _vendor.minimal_price.cents) {
+    Money* totalPrice = [self getTotalPriceFromProducts:products];
+    
+    if (totalPrice.cents >= _vendor.minimal_price.cents/100) {
         return YES;
     }
     return NO;
 }
 
--(void)addProduct:(Product *)product count:(NSInteger )count;
+-(void)addIdProduct:(NSInteger )idProduct count:(NSInteger )count;
 {
     
     if (_items.count == 0 && count == 0) {
@@ -71,8 +72,8 @@
     //для продуктов, которые уже есть в корзине
     NSMutableArray* arr = [[NSMutableArray alloc] initWithArray:_items];
     for (int i = 0; i < _items.count; i++) {
-        OrderItem* items = [_items objectAtIndex:i];
-        if (items.product.idProduct == product.idProduct) {
+        CartItem* items = [_items objectAtIndex:i];
+        if (items.idProduct == idProduct) {
             items.count = count;
             if (count == 0) {
                 [arr removeObjectAtIndex:i];
@@ -86,7 +87,7 @@
     }
     
     //если нет продукта с таким id, добавляем
-    OrderItem* items = [[OrderItem alloc] initWithProduct:product count:count];
+    CartItem* items = [[CartItem alloc] initWithIdProduct:idProduct count:count];
     [arr addObject:items];
     
     _items = arr;
@@ -94,12 +95,23 @@
 
 -(void)deleteProduct:(Product *)product
 {
-    [self addProduct:product count:0];
+    [self addIdProduct:product.idProduct count:0];
 }
 
 -(void)removeAllProduct{
     NSArray* emptyArray = [NSArray new];
     _items = emptyArray;
+}
+
+-(NSInteger)countProductInCartWithIdProduct:(NSInteger )idProduct
+{
+    for (CartItem* cartItem in _items)
+    {
+        if (idProduct == cartItem.idProduct) {
+            return cartItem.count;
+        }
+    }
+    return 0;
 }
 
 -(void)saveCart

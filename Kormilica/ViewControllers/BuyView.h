@@ -7,14 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-@class onBuyView;
+@class BuyView;
 @protocol onBuyViewDelegate
 @optional
 -(void)onBuyAction;
 
 @end
 
-@interface onBuyView : UIView
+@interface BuyView : UIView
 //public
 -(void)isAllowed:(BOOL)allowed;
 

@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "MasterVC.h"
+#import "Order.h"
 
 @interface OrderDetailVC : MasterVC
+
+//public
+@property (nonatomic, strong) Order* order;
 
 @end

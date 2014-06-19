@@ -21,9 +21,14 @@
     return self;
 }
 
--(Product *)product
+-(Product *)productFromAllProducts:(NSArray *)allProduct;
 {
     // Лезет в базу и ищет продукт по idProduct
+    for (Product* product in allProduct) {
+        if (_idProduct == product.idProduct) {
+            return product;
+        }
+    }
     return nil;
 }
 

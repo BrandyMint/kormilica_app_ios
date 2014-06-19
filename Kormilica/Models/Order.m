@@ -16,7 +16,6 @@
         _items = [decoder decodeObjectForKey:@"items"];
         _total_price = [decoder decodeObjectForKey:@"total_price"];
         _address = [decoder decodeObjectForKey:@"address"];
-        _telephone = [decoder decodeObjectForKey:@"telephone"];
     }
     return self;
 }
@@ -25,41 +24,31 @@
     [encoder encodeObject:_items forKey:@"items"];
     [encoder encodeObject:_total_price forKey:@"total_price"];
     [encoder encodeObject:_address forKey:@"address"];
-    [encoder encodeObject:_telephone forKey:@"telephone"];
 }
 
--(id)initWithOrderItems:(NSArray *)orderItems total_price:(Money *)total_price
+-(id)initWithCartItems:(NSArray *)cartItems total_price:(Money *)total_price fromProducts:(NSArray *)products
 {
     if (self == [super init]) {
+        Address* address = [Address new];
+        _address = address;
         _total_price = total_price;
-        [self setItems:orderItems];
+        [self setOrderItems:cartItems fromProducts:products];
     }
     return self;
 }
 
--(void)setItems:(NSArray *)items
+-(void)setOrderItems:(NSArray *)cartItems fromProducts:(NSArray *)products
 {
-    if (_items.count == 0) {
-        _items = items;
-        return;
-    }
-    
-    NSMutableArray* itemMutable = [[NSMutableArray alloc] initWithArray:_items];
-    
-    for (OrderItem* orderItem in itemMutable) {
-        for (CartItem* cartItem in items) {
-            if (orderItem.product.idProduct == cartItem.idProduct) {
-                //не меняем продукт в заказе
-            }
-            else {
-                //добавил в заказ
-                //ищем продукт по id и добавляем Product в заказ
-                //[itemMutable addObject:cartItem];
+    NSMutableArray* orderItemsArray = [[NSMutableArray alloc] init];
+    for (CartItem* cartItem in cartItems) {
+        for (Product* product in products) {
+            if (cartItem.idProduct == product.idProduct) {
+                OrderItem* orderItem = [[OrderItem alloc] initWithProduct:product count:cartItem.count];
+                [orderItemsArray addObject:orderItem];
             }
         }
     }
-    
-    _items = itemMutable;
+    _items = orderItemsArray;
 }
 
 -(NSArray *)getItems
@@ -67,12 +56,42 @@
     return _items;
 }
 
+-(void)updateOrderWithCart:(Cart *)cart;
+{
+    CGFloat sum = 0;
+    for (OrderItem* orderItem in _items) {
+        for (CartItem* cartItem in cart.items) {
+            orderItem.count = cartItem.count;
+            
+        }
+    }
+    
+    NSMutableArray* orderItemsArray = [[NSMutableArray alloc] initWithArray:_items];
+    for (int i = 0; i < orderItemsArray.count; i++) {
+        OrderItem* orderItem = [orderItemsArray objectAtIndex:i];
+        if  (cart.items.count == 0)
+        {
+            [orderItemsArray removeAllObjects];
+        }
+        
+        for (CartItem* cartItem in cart.items) {
+            if (orderItem.product.idProduct == cartItem.idProduct && orderItem.count != cartItem.count) {
+                orderItem.count = cartItem.count;
+                [orderItemsArray replaceObjectAtIndex:i withObject:orderItem];
+            }
+        }
+        sum += orderItem.count * orderItem.product.price.cents;
+    }
+    _items = orderItemsArray;
+    _total_price = [[Money alloc]initWithCents:sum/100 currency:@"RUB"];
+    
+}
+
 -(void)saveOrder
 {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self];
     [[NSUserDefaults standardUserDefaults] setObject:data forKey:@"Order"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    
 }
 
 -(Order *)loadOrder

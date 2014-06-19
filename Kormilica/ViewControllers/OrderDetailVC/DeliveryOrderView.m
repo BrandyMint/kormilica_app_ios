@@ -74,7 +74,7 @@
 -(void)orderSending
 {
     [activityIndicator stopAnimating];
-
+    
     [_delegate onDeliveryOrderSending];
 
     //[_delegate onDeliveryOrderFailSending];

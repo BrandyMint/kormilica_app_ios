@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Managers.h"
 #import "ConvertTime.h"
+#import "Cart.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) Bundles* bundles;
 @property (nonatomic, strong) Managers* managers;
 @property (nonatomic, strong) ConvertTime* convertTime;
+@property (nonatomic, strong) Cart* cart;
 
 @property (nonatomic, assign) BOOL succesOrFailOrder;
 

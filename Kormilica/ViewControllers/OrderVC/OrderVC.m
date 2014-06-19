@@ -10,12 +10,15 @@
 #import "OrderCell.h"
 #import "Product.h"
 #import "DetailGoodsVC.h"
+#import "OrderDetailVC.h"
+#import "Order.h"
 
 @interface OrderVC () <OrderCellDelegate>
 {
-    NSArray* orderArray;
     NSInteger selectedProductID;
     UILabel* labelAllSum;
+    
+    Order* order;
 }
 
 @end
@@ -33,10 +36,10 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    orderArray = [self getOrderArray];
+    [order updateOrderWithCart:appDelegate.cart];
     [_tableView reloadData];
     
-    labelAllSum.text = [NSString stringWithFormat:@"Итого: %.0f р.",[self getPriceOrder]];
+    labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", order.total_price.cents];
 }
 
 - (void)viewDidLoad
@@ -45,8 +48,10 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Ваш заказ";
     
-    orderArray = [self getOrderArray];
-    
+    order = [[Order alloc] initWithCartItems:[appDelegate.cart getItems]
+                                 total_price:[appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products]
+                                fromProducts:appDelegate.bundles.products];
+
     _allSumView.backgroundColor = [UIColor clearColor];
     labelAllSum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_allSumView.frame), CGRectGetHeight(_allSumView.frame))];
     labelAllSum.font = [UIFont systemFontOfSize:18];
@@ -89,7 +94,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return orderArray.count;
+    return order.items.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,14 +111,15 @@
         cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    Product* product = [orderArray objectAtIndex:indexPath.row];
-    cell.title.text = product.title;
-    cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",product.price.cents/100];
-    //[cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",product.count, product.price.cents/100 * product.count] forState:UIControlStateNormal];
+    OrderItem* orderItem = [order.items objectAtIndex:indexPath.row];
+    
+    cell.title.text = orderItem.product.title;
+    cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",orderItem.product.price.cents/100];
+    [cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",orderItem.count, orderItem.product.price.cents/100 * orderItem.count] forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.indexPath = indexPath;
-    //cell.count = product.count;
+    cell.count = orderItem.count;
     cell.delegate = self;
     
     return cell;
@@ -127,8 +133,8 @@
 
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath
 {
-    Product* product = [orderArray objectAtIndex:indexPath.row];
-    selectedProductID = product.idProduct;
+    OrderItem* orderItem = [order.items objectAtIndex:indexPath.row];
+    selectedProductID = orderItem.product.idProduct;
     [self performSegueWithIdentifier:@"segEditProduct" sender:self];
 }
 
@@ -141,7 +147,11 @@
          DetailGoodsVC* destination = [segue destinationViewController];
          destination.idProduct = selectedProductID;
      }
+     if ([segue.identifier isEqualToString:@"segOrder"]) {
+         OrderDetailVC* destination = [segue destinationViewController];
+         destination.order = order;
+     }
  }
- 
+
 
 @end

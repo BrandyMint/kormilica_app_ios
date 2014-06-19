@@ -15,10 +15,6 @@
 {
     CGFloat maxY;
     
-    NSString* phone;
-    NSString* city;
-    NSString* address;
-    
     DeliveryOrderView* deliveryOrderView;
 }
 @end
@@ -39,9 +35,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     maxY = IS_IOS7 ? 84 : 20;
-    
-    phone = address = @"";
-    city = @"Чебоксары";
 
     NSArray* keyArray = @[@"Телефон",
                           @"Город",
@@ -94,7 +87,7 @@
         
         if (tag == 2)
         {
-            textField.text = city;
+            textField.text = _order.address.city;
             textField.textColor = COLOR_SKY;
             textField.enabled = NO;
         }
@@ -119,21 +112,21 @@
     switch (textField.tag) {
         case 1:
             //телефон
-            phone = textField.text;
+            _order.address.phone = textField.text;
             break;
         case 2:
             //город
-            city = textField.text;
+            _order.address.city = textField.text;
             break;
         case 3:
             //адрес доставки
-            address = textField.text;
+            _order.address.address = textField.text;
             break;
         default:
             break;
     }
     
-    if (phone.length == 16 && address.length != 0) {
+    if (_order.address.phone.length == 16 && _order.address.address.length != 0) {
         [deliveryOrderView view:deliver];
     }
     else {
@@ -147,21 +140,21 @@
     switch (textField.tag) {
         case 1:
             //телефон
-            phone = textField.text;
+            _order.address.phone = textField.text;
             break;
         case 2:
             //город
-            city = textField.text;
+            _order.address.city = textField.text;
             break;
         case 3:
             //адрес доставки
-            address = textField.text;
+            _order.address.address = textField.text;
             break;
         default:
             break;
     }
     
-    if (phone.length == 16 && address.length != 0) {
+    if (_order.address.phone.length == 16 && _order.address.address.length != 0) {
         [deliveryOrderView view:deliver];
     }
     else {

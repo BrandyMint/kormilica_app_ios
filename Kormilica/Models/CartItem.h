@@ -13,8 +13,7 @@
 @property (nonatomic, assign) NSInteger count;
 @property (nonatomic, assign) NSInteger idProduct;
 
-//-(Product *)product;
-
+-(Product *)productFromAllProducts:(NSArray *)allProduct;
 -(id)initWithIdProduct:(NSInteger )idProduct count:(NSInteger )count;
 
 @end

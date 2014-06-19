@@ -95,6 +95,7 @@
     [appDelegate.managers getBundles:^(Bundles* bundles) {
         appDelegate.bundles = bundles;
         [self updateText];
+        appDelegate.cart.vendor = bundles.vendor;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     } failBlock:^(NSException * exception) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:exception.name message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];

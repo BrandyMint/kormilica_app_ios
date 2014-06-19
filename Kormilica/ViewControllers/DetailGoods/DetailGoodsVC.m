@@ -52,7 +52,7 @@
 
 -(void)updateOnBuy
 {
-    [_onBuy isAllowed:[self getPriceOrder] > 500 ? YES : NO];
+    [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
 }
 
 -(void)onDetailImage
@@ -70,7 +70,7 @@
     _titleProduct.font = font;
     _titleProduct.contentMode = UIViewContentModeTop;
     
-    _price.text = [NSString stringWithFormat:@"%d %@ /шт.",product.price.cents, product.price.currency];
+    _price.text = [NSString stringWithFormat:@"%d %@ /шт.",product.price.cents/100, product.price.currency];
     _price.textColor = [UIColor blackColor];
     _price.font = font;
     _price.contentMode = UIViewContentModeTop;
@@ -79,20 +79,20 @@
     _onOrder.layer.cornerRadius = 4;
     _onOrder.layer.borderWidth = 1;
     _onOrder.layer.masksToBounds = YES;
-/*
-    if (product.count == 0) {
+
+    if ([appDelegate.cart countProductInCartWithIdProduct:_idProduct] == 0) {
         [_onOrder setTitle:@"Добавить заказ" forState:UIControlStateNormal];
         [_onOrder setBackgroundColor:[UIColor clearColor]];
         [_onOrder setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
         _onOrder.layer.borderColor = COLOR_BLUE_.CGColor;
     }
     else {
-        [_onOrder setTitle:[NSString stringWithFormat:@"В заказе: %d шт.",product.count] forState:UIControlStateNormal];
+        [_onOrder setTitle:[NSString stringWithFormat:@"В заказе: %d шт.",[appDelegate.cart countProductInCartWithIdProduct:_idProduct]] forState:UIControlStateNormal];
         [_onOrder setBackgroundColor:COLOR_GREEN_];
         [_onOrder setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _onOrder.layer.borderColor = COLOR_GREEN_.CGColor;
     }
-*/
+
     _descriptions.text = product.title;
     _descriptions.scrollEnabled = NO;
     _descriptions.editable = NO;
@@ -128,11 +128,11 @@
 {
     if ([[indexes firstObject] integerValue] == 0) {
         //удаляем товар из заказа
-        [self setCountProduct:0 idProduct:_idProduct];
+        [appDelegate.cart addIdProduct:_idProduct count:0];
     }
     else {
         //меняем количество товаров для заказа
-        [self setCountProduct:[[indexes firstObject] integerValue] idProduct:_idProduct];
+        [appDelegate.cart addIdProduct:_idProduct count:[[indexes firstObject] integerValue]];
     }
     [self initData];
     [self updateOnBuy];

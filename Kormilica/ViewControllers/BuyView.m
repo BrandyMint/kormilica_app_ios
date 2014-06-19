@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Brandymint. All rights reserved.
 //
 
-#import "onBuyView.h"
+#import "BuyView.h"
 
-@implementation onBuyView
+@implementation BuyView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -56,7 +56,8 @@
         [view addSubview: checkoutLabel];
         
         AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-        deliveryPriceLabel.text = [NSString stringWithFormat:@"Итого \n %d %@",appDelegate.bundles.vendor.delivery_price.cents, appDelegate.bundles.vendor.delivery_price.currency];
+        Money* totalPrice = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
+        deliveryPriceLabel.text = [NSString stringWithFormat:@"Итого \n %d %@", totalPrice.cents, totalPrice.currency];
         checkoutLabel.text = @"Оформить заказ";
     }
     else {

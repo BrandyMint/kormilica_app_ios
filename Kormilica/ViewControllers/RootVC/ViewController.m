@@ -13,7 +13,7 @@
 #import "NSString-HTML.h"
 #import "HMSegmentedControl.h"
 #import "DetailGoodsVC.h"
-#import "onBuyView.h"
+#import "BuyView.h"
 #import "UIImageView+AFNetworking.h"
 #import "MapVC.h"
 
@@ -149,8 +149,8 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
     [self initDataArrayWithCategoriesID:selectedIDCategory];
-    [self calculateAmount];
 }
 
 - (void)viewDidLoad
@@ -168,6 +168,8 @@
         Product* product = [bundles.products firstObject];
         selectedIDCategory = product.idCategory;
         [self initDataArrayWithCategoriesID:selectedIDCategory];
+        
+        appDelegate.cart.vendor = bundles.vendor;
     }];
 }
 
@@ -204,9 +206,10 @@
     [cell.logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@""]];
     
     cell.indexPath = indexPath;
-//    cell.count = product.count;
+    //смотрим в корзину, если там есть такой же товар, то указываем количество
+    cell.count = [appDelegate.cart countProductInCartWithIdProduct:product.idProduct];
     cell.delegate = self;
-    
+
     return cell;
 }
 
@@ -238,7 +241,6 @@
                            permittedArrowDirections:WYPopoverArrowDirectionNone
                                            animated:YES
                                             options:WYPopoverAnimationOptionFadeWithScale];
-        
     }
     else
     {
@@ -277,21 +279,16 @@
     selectedIDProduct = product.idProduct;
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"segDetail" sender:self];
-    [self calculateAmount];
 }
 
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath
 {
     Product* product = [dataArray objectAtIndex:indexPath.row];
-    [self setCountProduct:1 idProduct:product.idProduct];
-    
+    [appDelegate.cart addIdProduct:product.idProduct count:1];
+     
     [self initDataArrayWithCategoriesID:selectedIDCategory];
-    [self calculateAmount];
-}
-
--(void)calculateAmount
-{
-    [_onBuy isAllowed:[self getPriceOrder] > 500 ? YES : NO];
+    
+    [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
