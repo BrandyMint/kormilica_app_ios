@@ -21,74 +21,44 @@
 
 -(void)isAllowed:(BOOL)allowed
 {
-    self.userInteractionEnabled = allowed;
+    //self.userInteractionEnabled = allowed;
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
-    view.userInteractionEnabled = YES;
     [self addSubview:view];
-    if (allowed) {
-        view.backgroundColor = COLOR_BLUE_;
-        UILabel* deliveryPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                                0,
-                                                                                100,
-                                                                                CGRectGetHeight(view.frame))];
-        deliveryPriceLabel.font = [UIFont systemFontOfSize:14];
-        deliveryPriceLabel.textColor = [UIColor whiteColor];
-        deliveryPriceLabel.textAlignment = NSTextAlignmentCenter;
-        deliveryPriceLabel.contentMode = UIViewContentModeCenter;
-        deliveryPriceLabel.backgroundColor = [UIColor clearColor];
-        deliveryPriceLabel.numberOfLines = 2;
-        [view addSubview: deliveryPriceLabel];
-        
-        UIView* line = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(deliveryPriceLabel.frame), 0, 1, CGRectGetHeight(view.frame))];
-        line.backgroundColor = COLOR_GRAY;
-        [view addSubview:line];
-        
-        UILabel* checkoutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(line.frame),
-                                                                           0,
-                                                                           CGRectGetWidth(view.frame) - CGRectGetMinX(line.frame),
-                                                                           CGRectGetHeight(view.frame))];
-        checkoutLabel.font = [UIFont systemFontOfSize:16];
-        checkoutLabel.textColor = [UIColor whiteColor];
-        checkoutLabel.textAlignment = NSTextAlignmentCenter;
-        checkoutLabel.contentMode = UIViewContentModeCenter;
-        checkoutLabel.backgroundColor = [UIColor clearColor];
-        checkoutLabel.numberOfLines = 1;
-        [view addSubview: checkoutLabel];
-        
-        AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-        Money* totalPrice = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
-        deliveryPriceLabel.text = [NSString stringWithFormat:@"Итого \n %d %@", totalPrice.cents, totalPrice.currency];
-        checkoutLabel.text = @"Оформить заказ";
-    }
-    else {
-        view.backgroundColor = COLOR_GRAY;
-        
-        UILabel* buttomSelectLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                               0,
-                                                                               CGRectGetWidth(view.frame),
-                                                                               CGRectGetHeight(view.frame)/2)];
-        buttomSelectLabel.font = [UIFont systemFontOfSize:14];
-        buttomSelectLabel.textColor = [UIColor blackColor];
-        buttomSelectLabel.textAlignment = NSTextAlignmentCenter;
-        buttomSelectLabel.contentMode = UIViewContentModeCenter;
-        buttomSelectLabel.backgroundColor = [UIColor clearColor];
-        [view addSubview: buttomSelectLabel];
-        
-        UILabel* buttomDeliveryLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
-                                                                                 CGRectGetHeight(view.frame)/2,
-                                                                                 CGRectGetWidth(view.frame),
-                                                                                 CGRectGetHeight(view.frame)/2)];
-        buttomDeliveryLabel.font = [UIFont systemFontOfSize:14];
-        buttomDeliveryLabel.textColor = COLOR_ORANGE;
-        buttomDeliveryLabel.textAlignment = NSTextAlignmentCenter;
-        buttomDeliveryLabel.contentMode = UIViewContentModeCenter;
-        buttomDeliveryLabel.backgroundColor = [UIColor clearColor];
-        [view addSubview: buttomDeliveryLabel];
-        
-        AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
-        buttomSelectLabel.text = appDelegate.bundles.vendor.mobile_footer;
-        buttomDeliveryLabel.text = appDelegate.bundles.vendor.mobile_delivery;
-    }
+
+    view.backgroundColor = allowed ? COLOR_BLUE_ : COLOR_GRAY;
+    
+    UILabel* deliveryPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
+                                                                            0,
+                                                                            100,
+                                                                            CGRectGetHeight(view.frame))];
+    deliveryPriceLabel.font = [UIFont systemFontOfSize:14];
+    deliveryPriceLabel.textColor = [UIColor whiteColor];
+    deliveryPriceLabel.textAlignment = NSTextAlignmentCenter;
+    deliveryPriceLabel.contentMode = UIViewContentModeCenter;
+    deliveryPriceLabel.backgroundColor = [UIColor clearColor];
+    deliveryPriceLabel.numberOfLines = 2;
+    [view addSubview: deliveryPriceLabel];
+    
+    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(deliveryPriceLabel.frame), 0, 1, CGRectGetHeight(view.frame))];
+    line.backgroundColor = COLOR_GRAY;
+    [view addSubview:line];
+    
+    UILabel* checkoutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(line.frame),
+                                                                       0,
+                                                                       CGRectGetWidth(view.frame) - CGRectGetMinX(line.frame),
+                                                                       CGRectGetHeight(view.frame))];
+    checkoutLabel.font = [UIFont systemFontOfSize:16];
+    checkoutLabel.textColor = [UIColor whiteColor];
+    checkoutLabel.textAlignment = NSTextAlignmentCenter;
+    checkoutLabel.contentMode = UIViewContentModeCenter;
+    checkoutLabel.backgroundColor = [UIColor clearColor];
+    checkoutLabel.numberOfLines = 1;
+    [view addSubview: checkoutLabel];
+    
+    AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    Money* totalPrice = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
+    deliveryPriceLabel.text = [NSString stringWithFormat:@"Итого \n %d %@", totalPrice.cents, totalPrice.currency];
+    checkoutLabel.text = @"Оформить заказ";
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

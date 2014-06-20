@@ -18,6 +18,7 @@
 {
     NSInteger selectedProductID;
     UILabel* labelAllSum;
+    UILabel* labelOrderView;
 }
 
 @end
@@ -38,6 +39,17 @@
     [_tableView reloadData];
     Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
     labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents];
+    [self checkOrder];
+}
+
+-(void)checkOrder
+{
+    BOOL isAllowed = [appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products];
+    labelOrderView.text = isAllowed ? @"Отправить заказ" :
+                [NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
+    labelAllSum.userInteractionEnabled  = _onOrderView.userInteractionEnabled = isAllowed;
+    labelOrderView.backgroundColor = isAllowed ? COLOR_BLUE_ : COLOR_GRAY;
+    labelOrderView.font = [UIFont systemFontOfSize:isAllowed ? 18 : 14];
 }
 
 - (void)viewDidLoad
@@ -56,21 +68,19 @@
     [_allSumView addSubview:labelAllSum];
     
     _onOrderView.backgroundColor = [UIColor clearColor];
-    UILabel* labelOrderView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_onOrderView.frame), CGRectGetHeight(_onOrderView.frame))];
-    labelOrderView.font = [UIFont systemFontOfSize:18];
+    labelOrderView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_onOrderView.frame), CGRectGetHeight(_onOrderView.frame))];
     labelOrderView.textColor = [UIColor whiteColor];
     labelOrderView.textAlignment = NSTextAlignmentCenter;
     labelOrderView.contentMode = UIViewContentModeCenter;
-    labelOrderView.backgroundColor = COLOR_BLUE_;
     labelOrderView.textAlignment = NSTextAlignmentCenter;
-    labelOrderView.numberOfLines = 1;
-    labelOrderView.text = @"Отправить заказ";
+    labelOrderView.numberOfLines = 2;
     _onOrderView.userInteractionEnabled = YES;
-    labelAllSum.userInteractionEnabled = YES;
     [_onOrderView addSubview:labelOrderView];
     
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onSendOrder:)];
     [_onOrderView addGestureRecognizer:tap];
+    
+    [self checkOrder];
 }
 
 - (void)onSendOrder:(UIGestureRecognizer *)gestureRecognizer {
