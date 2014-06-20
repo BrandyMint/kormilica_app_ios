@@ -23,4 +23,6 @@
 + (EKObjectMapping*) categoriesMapping;
 + (EKObjectMapping*) productMapping;
 
++ (EKObjectMapping*) priceMapping;
+
 @end

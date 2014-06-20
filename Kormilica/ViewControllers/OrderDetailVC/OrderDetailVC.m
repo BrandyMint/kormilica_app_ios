@@ -16,6 +16,7 @@
     CGFloat maxY;
     
     DeliveryOrderView* deliveryOrderView;
+    Address* address;
 }
 @end
 
@@ -35,6 +36,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     maxY = IS_IOS7 ? 84 : 20;
+    address = [Address new];
 
     NSArray* keyArray = @[@"Телефон",
                           @"Город",
@@ -87,7 +89,7 @@
         
         if (tag == 2)
         {
-            textField.text = _order.address.city;
+            textField.text = address.city;
             textField.textColor = COLOR_SKY;
             textField.enabled = NO;
         }
@@ -112,26 +114,39 @@
     switch (textField.tag) {
         case 1:
             //телефон
-            _order.address.phone = textField.text;
+            address.phone = textField.text;
             break;
         case 2:
             //город
-            _order.address.city = textField.text;
+            address.city = textField.text;
             break;
         case 3:
             //адрес доставки
-            _order.address.address = textField.text;
+            address.address = textField.text;
             break;
         default:
             break;
     }
-    
-    if (_order.address.phone.length == 16 && _order.address.address.length != 0) {
+    [self textFieldShouldReturn:textField];
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    if (address.phone.length == 16 && address.address.length != 0) {
         [deliveryOrderView view:deliver];
+        
+        Order* order = [[Order alloc] initWithCartItems:[appDelegate.cart getItems]
+                                            total_price:[appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products]
+                                           fromProducts:appDelegate.bundles.products
+                                                address:address];
+        deliveryOrderView.order = order;
+        
     }
     else {
         [deliveryOrderView view:fill];
     }
+    [self.view endEditing:YES];
+    return YES;
 }
 
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -140,22 +155,27 @@
     switch (textField.tag) {
         case 1:
             //телефон
-            _order.address.phone = textField.text;
+            address.phone = textField.text;
             break;
         case 2:
             //город
-            _order.address.city = textField.text;
+            address.city = textField.text;
             break;
         case 3:
             //адрес доставки
-            _order.address.address = textField.text;
+            address.address = textField.text;
             break;
         default:
             break;
     }
     
-    if (_order.address.phone.length == 16 && _order.address.address.length != 0) {
+    if (address.phone.length == 16 && address.address.length != 0) {
         [deliveryOrderView view:deliver];
+        Order* order = [[Order alloc] initWithCartItems:[appDelegate.cart getItems]
+                                            total_price:[appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products]
+                                           fromProducts:appDelegate.bundles.products
+                                                address:address];
+        deliveryOrderView.order = order;
     }
     else {
         [deliveryOrderView view:fill];
@@ -172,10 +192,11 @@
 
 -(void)onDeliveryOrderBackToShop
 {
+    [appDelegate.cart removeAllProduct];
     [self performSegueWithIdentifier:@"segRootMenu" sender:self];
 }
 
--(void)onDeliveryOrderSending
+-(void)onDeliveryOrderSending:(AnswerOrder *)answerOrder
 {
     UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 50)];
     error.textColor = [UIColor whiteColor];
@@ -184,7 +205,7 @@
     error.backgroundColor = COLOR_GREEN_;
     error.numberOfLines = 0;
     error.font = [UIFont systemFontOfSize:14];
-    error.text = @"Заказ принят! Номер заказа: ****\n Ожидаемое время доставки - 14:30";
+    error.text = [NSString stringWithFormat:@"%@\n %@",answerOrder.message.subject, answerOrder.message.text];
     [self.view addSubview:error];
     
     maxY = IS_IOS7 ? 84 + CGRectGetHeight(error.frame) : 20 + CGRectGetHeight(error.frame) ;
@@ -208,7 +229,8 @@
         
         maxY += 40;
     }
-    FeedBackView* feedBackView = [[FeedBackView alloc] initWithFrame:CGRectMake(0, maxY, CGRectGetWidth(self.view.frame), 90) telephoneNumber:@"+7 000 000 00 00"];
+    FeedBackView* feedBackView = [[FeedBackView alloc] initWithFrame:CGRectMake(0, maxY, CGRectGetWidth(self.view.frame), 90)
+                                                     telephoneNumber:appDelegate.bundles.vendor.phone];
     [self.view addSubview:feedBackView];
     
     CGRect frameDeliveryOrderView = deliveryOrderView.frame;
@@ -218,7 +240,7 @@
     [deliveryOrderView view:backToShop];
 }
 
--(void)onDeliveryOrderFailSending
+-(void)onDeliveryOrderFailSending:(NSException *)exception
 {
     UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 50)];
     error.textColor = [UIColor whiteColor];
@@ -227,7 +249,7 @@
     error.backgroundColor = COLOR_RED_;
     error.numberOfLines = 0;
     error.font = [UIFont systemFontOfSize:14];
-    error.text = @"Ваш заказ не принят:\n (причина отказа)";
+    error.text = exception.name;
     [self.view addSubview:error];
     
     maxY = IS_IOS7 ? 84 + CGRectGetHeight(error.frame) : 20 + CGRectGetHeight(error.frame) ;

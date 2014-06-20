@@ -9,6 +9,7 @@
 #import "Managers.h"
 #import "AFNetworking.h"
 #import "Factory.h"
+#import "AnswerOrderFactory.h"
 
 @implementation Managers
 
@@ -53,6 +54,36 @@
     Bundles* bundles = [EKMapper objectFromExternalRepresentation:JSON withMapping:[Factory bundlesMapping]];
     
     block(bundles);
+}
+
+-(void)postOrder:(Order *)order block:(void(^) (AnswerOrder* answerOrder))block failBlock:(void (^) (NSException *exception)) blockException
+{
+    NSString* urlString = ORDER_API;
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+    NSData* jsonData = [appDelegate.createOrderToJson getOrderDataWithOrder:order];
+
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
+    [request addValue:VENDOR_KEY forHTTPHeaderField:@"X-Vendor-Key"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"content-Type"];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:jsonData];
+    
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+         {
+             AnswerOrder* answerOrder = [EKMapper objectFromExternalRepresentation:JSON withMapping:[AnswerOrderFactory answerOrderMapping]];
+             block(answerOrder);
+         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)
+         {
+             NSInteger code = [[JSON objectForKey:@"code"] integerValue];
+             NSString* errorString = [JSON objectForKey:@"error"];
+             NSException *exception = [[NSException alloc] initWithName:errorString
+                                                                 reason:[NSString stringWithFormat:@"%d",code]
+                                                               userInfo:nil];
+             blockException(exception);
+         }];
+    [operation start];
 }
 
 @end

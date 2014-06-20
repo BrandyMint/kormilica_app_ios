@@ -26,10 +26,9 @@
     [encoder encodeObject:_address forKey:@"address"];
 }
 
--(id)initWithCartItems:(NSArray *)cartItems total_price:(Money *)total_price fromProducts:(NSArray *)products
+-(id)initWithCartItems:(NSArray *)cartItems total_price:(Money *)total_price fromProducts:(NSArray *)products address:(Address *)address
 {
     if (self == [super init]) {
-        Address* address = [Address new];
         _address = address;
         _total_price = total_price;
         [self setOrderItems:cartItems fromProducts:products];

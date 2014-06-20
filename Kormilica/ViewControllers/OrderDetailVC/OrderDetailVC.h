@@ -12,7 +12,4 @@
 
 @interface OrderDetailVC : MasterVC
 
-//public
-@property (nonatomic, strong) Order* order;
-
 @end

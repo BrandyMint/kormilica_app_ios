@@ -22,6 +22,7 @@
     _bundles = [Bundles new];
     _convertTime = [ConvertTime new];
     _cart = [Cart new];
+    _createOrderToJson = [CreateOrderToJson new];
     return YES;
 }
 							

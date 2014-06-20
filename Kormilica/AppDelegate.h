@@ -10,6 +10,7 @@
 #import "Managers.h"
 #import "ConvertTime.h"
 #import "Cart.h"
+#import "CreateOrderToJson.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) Managers* managers;
 @property (nonatomic, strong) ConvertTime* convertTime;
 @property (nonatomic, strong) Cart* cart;
+@property (nonatomic, strong) CreateOrderToJson* createOrderToJson;
 
 @property (nonatomic, assign) BOOL succesOrFailOrder;
 

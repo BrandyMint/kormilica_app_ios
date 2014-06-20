@@ -17,16 +17,18 @@ typedef enum
 @class DeliveryOrder;
 @protocol DeliveryOrderDelegate
 @optional
--(void)onDeliveryOrderSending;
--(void)onDeliveryOrderFailSending;
+-(void)onDeliveryOrderSending:(AnswerOrder* ) answerOrder;
+-(void)onDeliveryOrderFailSending:(NSException* )exception;
 -(void)onDeliveryOrderAction;
 -(void)onDeliveryOrderBackToShop;
 @end
 
 #import <UIKit/UIKit.h>
+#import "Order.h"
 
 @interface DeliveryOrderView : UIView
 @property (assign) id<DeliveryOrderDelegate> delegate;
+@property (nonatomic, strong) Order* order;
 
 -(void)view:(typeView)view;
 

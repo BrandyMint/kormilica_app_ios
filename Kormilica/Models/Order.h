@@ -15,10 +15,10 @@
 
 @property (nonatomic, readonly) NSArray* items;
 @property (nonatomic, readonly) Money* total_price;
-@property (nonatomic, strong) Address* address;
+@property (nonatomic, readonly) Address* address;
 
--(id)initWithCartItems:(NSArray *)cartItems total_price:(Money *)total_price fromProducts:(NSArray *)products;
--(void)updateOrderWithCart:(Cart *)cart;
+-(id)initWithCartItems:(NSArray *)cartItems total_price:(Money *)total_price fromProducts:(NSArray *)products address:(Address *)address;
+//-(void)updateOrderWithCart:(Cart *)cart;
 
 -(NSArray *)getItems;
 -(void)saveOrder;

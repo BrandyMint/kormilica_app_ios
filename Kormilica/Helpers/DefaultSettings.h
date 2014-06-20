@@ -7,6 +7,7 @@
 //
 
 #define BUNDLES_API @"http://api.kormilica.info:80/v1/bundles.json"
+#define ORDER_API @"http://api.kormilica.info:80/v1/orders.json"
 #define VENDOR_KEY @"467abe2e7d33e6455fe905e879fd36be"
 
 #define IS_WIDESCREEN ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )

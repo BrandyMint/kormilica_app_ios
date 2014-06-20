@@ -12,13 +12,12 @@
 #import "DetailGoodsVC.h"
 #import "OrderDetailVC.h"
 #import "Order.h"
+#import "CartItem.h"
 
 @interface OrderVC () <OrderCellDelegate>
 {
     NSInteger selectedProductID;
     UILabel* labelAllSum;
-    
-    Order* order;
 }
 
 @end
@@ -36,10 +35,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [order updateOrderWithCart:appDelegate.cart];
     [_tableView reloadData];
-    
-    labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", order.total_price.cents];
+    Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
+    labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents];
 }
 
 - (void)viewDidLoad
@@ -48,10 +46,6 @@
     // Do any additional setup after loading the view.
     self.navigationItem.title = @"Ваш заказ";
     
-    order = [[Order alloc] initWithCartItems:[appDelegate.cart getItems]
-                                 total_price:[appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products]
-                                fromProducts:appDelegate.bundles.products];
-
     _allSumView.backgroundColor = [UIColor clearColor];
     labelAllSum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_allSumView.frame), CGRectGetHeight(_allSumView.frame))];
     labelAllSum.font = [UIFont systemFontOfSize:18];
@@ -60,7 +54,6 @@
     labelAllSum.layer.borderColor = COLOR_GRAY.CGColor;
     labelAllSum.layer.borderWidth = 1;
     [_allSumView addSubview:labelAllSum];
-    
     
     _onOrderView.backgroundColor = [UIColor clearColor];
     UILabel* labelOrderView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_onOrderView.frame), CGRectGetHeight(_onOrderView.frame))];
@@ -94,7 +87,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return order.items.count;
+    return [appDelegate.cart getItemsCount];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -111,15 +104,16 @@
         cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    OrderItem* orderItem = [order.items objectAtIndex:indexPath.row];
+    CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:indexPath.row];
+    Product* product = [cartItem productFromAllProducts:appDelegate.bundles.products];
     
-    cell.title.text = orderItem.product.title;
-    cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",orderItem.product.price.cents/100];
-    [cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",orderItem.count, orderItem.product.price.cents/100 * orderItem.count] forState:UIControlStateNormal];
+    cell.title.text = product.title;
+    cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",product.price.cents/100];
+    [cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",cartItem.count, product.price.cents/100 * cartItem.count] forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.indexPath = indexPath;
-    cell.count = orderItem.count;
+    cell.count = cartItem.count;
     cell.delegate = self;
     
     return cell;
@@ -133,25 +127,24 @@
 
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath
 {
-    OrderItem* orderItem = [order.items objectAtIndex:indexPath.row];
-    selectedProductID = orderItem.product.idProduct;
+    CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:indexPath.row];
+    selectedProductID = cartItem.idProduct;
     [self performSegueWithIdentifier:@"segEditProduct" sender:self];
 }
 
- #pragma mark - Navigation
+#pragma mark - Navigation
  
- // In a storyboard-based application, you will often want to do a little preparation before navigation
- - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
- {
-     if ([segue.identifier isEqualToString:@"segEditProduct"]) {
-         DetailGoodsVC* destination = [segue destinationViewController];
-         destination.idProduct = selectedProductID;
-     }
-     if ([segue.identifier isEqualToString:@"segOrder"]) {
-         OrderDetailVC* destination = [segue destinationViewController];
-         destination.order = order;
-     }
- }
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"segEditProduct"]) {
+        DetailGoodsVC* destination = [segue destinationViewController];
+        destination.idProduct = selectedProductID;
+    }
+    if ([segue.identifier isEqualToString:@"segOrder"]) {
+        //OrderDetailVC* destination = [segue destinationViewController];
+    }
+}
 
 
 @end
