@@ -96,6 +96,11 @@ TextViewDescriptionProduct {
     font-name: @secondaryFontName;
     font-size: 16;
 }
+ButtonLastUpdate {
+    font-name: @secondaryFontName;
+    font-size: 14;
+    font-color: @primaryFontColor;
+}
 
 Label {
     font-name: @secondaryFontName;

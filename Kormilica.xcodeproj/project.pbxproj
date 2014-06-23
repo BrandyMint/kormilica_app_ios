@@ -61,7 +61,7 @@
 		66EDEAB71945CB2E00DB9DA8 /* DetailGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAB61945CB2E00DB9DA8 /* DetailGoodsVC.m */; };
 		66EDEABD1945CB4B00DB9DA8 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */; };
 		66EDEABE1945CB4B00DB9DA8 /* OrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */; };
-		66EDEAC21945CB6100DB9DA8 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC11945CB6100DB9DA8 /* InfoVC.m */; };
+		66EDEAC21945CB6100DB9DA8 /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC11945CB6100DB9DA8 /* AboutVC.m */; };
 		66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */; };
 		66F2258D1948477F00D657A1 /* CartTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2258C1948477F00D657A1 /* CartTest.m */; };
 		66F225931948770600D657A1 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F225921948770600D657A1 /* Cart.m */; };
@@ -174,8 +174,8 @@
 		66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderCell.m; path = ViewControllers/OrderVC/OrderCell.m; sourceTree = "<group>"; };
 		66EDEABB1945CB4B00DB9DA8 /* OrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderVC.h; path = ViewControllers/OrderVC/OrderVC.h; sourceTree = "<group>"; };
 		66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderVC.m; path = ViewControllers/OrderVC/OrderVC.m; sourceTree = "<group>"; };
-		66EDEAC01945CB6100DB9DA8 /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoVC.h; path = ViewControllers/InfoVC/InfoVC.h; sourceTree = "<group>"; };
-		66EDEAC11945CB6100DB9DA8 /* InfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoVC.m; path = ViewControllers/InfoVC/InfoVC.m; sourceTree = "<group>"; };
+		66EDEAC01945CB6100DB9DA8 /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutVC.h; path = ViewControllers/InfoVC/AboutVC.h; sourceTree = "<group>"; };
+		66EDEAC11945CB6100DB9DA8 /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutVC.m; path = ViewControllers/InfoVC/AboutVC.m; sourceTree = "<group>"; };
 		66EDEAC41945CBB800DB9DA8 /* OrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderDetailVC.h; path = ViewControllers/OrderDetailVC/OrderDetailVC.h; sourceTree = "<group>"; };
 		66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderDetailVC.m; path = ViewControllers/OrderDetailVC/OrderDetailVC.m; sourceTree = "<group>"; };
 		66F2258C1948477F00D657A1 /* CartTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTest.m; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 				66EDEAB81945CB3B00DB9DA8 /* OrderVC */,
 				66EDEAC31945CB9300DB9DA8 /* OrderDetailVC */,
 				66EC27D11946FBF600A2990C /* DetailImage */,
-				66EDEABF1945CB5300DB9DA8 /* InfoVC */,
+				66EDEABF1945CB5300DB9DA8 /* AboutVC */,
 				66EC27D51947143A00A2990C /* MapVC */,
 				66EDEAA419458DB900DB9DA8 /* BuyView.h */,
 				66EDEAA519458DB900DB9DA8 /* BuyView.m */,
@@ -452,13 +452,13 @@
 			name = OrderVC;
 			sourceTree = "<group>";
 		};
-		66EDEABF1945CB5300DB9DA8 /* InfoVC */ = {
+		66EDEABF1945CB5300DB9DA8 /* AboutVC */ = {
 			isa = PBXGroup;
 			children = (
-				66EDEAC01945CB6100DB9DA8 /* InfoVC.h */,
-				66EDEAC11945CB6100DB9DA8 /* InfoVC.m */,
+				66EDEAC01945CB6100DB9DA8 /* AboutVC.h */,
+				66EDEAC11945CB6100DB9DA8 /* AboutVC.m */,
 			);
-			name = InfoVC;
+			name = AboutVC;
 			sourceTree = "<group>";
 		};
 		66EDEAC31945CB9300DB9DA8 /* OrderDetailVC */ = {
@@ -625,7 +625,7 @@
 				66AAB8A019517A1300B7A458 /* ProductCD.m in Sources */,
 				66EC27CD1946E19600A2990C /* ConvertTime.m in Sources */,
 				6643BC1419407B5C0066D330 /* Categories.m in Sources */,
-				66EDEAC21945CB6100DB9DA8 /* InfoVC.m in Sources */,
+				66EDEAC21945CB6100DB9DA8 /* AboutVC.m in Sources */,
 				66D4685D194EC38600678B9B /* OrderItem.m in Sources */,
 				664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */,
 				6643BC0E194078580066D330 /* Vendor.m in Sources */,

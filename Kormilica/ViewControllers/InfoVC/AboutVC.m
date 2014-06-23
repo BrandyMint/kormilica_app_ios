@@ -6,15 +6,19 @@
 //  Copyright (c) 2014 Brandymint. All rights reserved.
 //
 
-#import "InfoVC.h"
+#import "AboutVC.h"
 #import "MapVC.h"
 #import "NSString-HTML.h"
+#import "UITextView+NUI.h"
+#import "UIButton+NUI.h"
+#import "UILabel+NUI.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface InfoVC ()
+@interface AboutVC ()
 
 @end
 
-@implementation InfoVC
+@implementation AboutVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,32 +33,29 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = COLOR_ALPHA;
+    [_header setNuiClass:@"Label:TitleProductCell"];
     
-    UIColor* white = [UIColor whiteColor];
-    UIFont* font = [UIFont systemFontOfSize:14];
-    
-    _header.textColor = white;
-    _header.font = [UIFont systemFontOfSize:16];
-    _header.textAlignment = NSTextAlignmentCenter;
-    
-    _descriptions.textColor = white;
-    _descriptions.backgroundColor = [UIColor clearColor];
-    _descriptions.font = font;
     _descriptions.editable = NO;
+    [_descriptions setNuiClass:@"TextViewDescriptionProduct"];
     
-    _city.textColor = white;
-    _city.font = font;
     _city.textAlignment = NSTextAlignmentCenter;
     
-    _onUpdate.backgroundColor = [UIColor clearColor];
-    [_onUpdate.titleLabel setFont:font];
-    [_onUpdate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_onCall setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
+    [_onAddress setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
+    [_shippingPayment setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
+    [_onUpdate setNuiClass:@"ButtonLastUpdate"];
     
-    _onHide.backgroundColor = COLOR_ORANGE;
-    [_onHide setTitle:@"Ok" forState:UIControlStateNormal];
-    [_onHide.titleLabel setFont:font];
-    [_onHide setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_shippingPayment setTitle:@"Доставка и оплата" forState:UIControlStateNormal];
+    
+    _subHeader.text = @"описание компании";
+    _address.text = @"Крылова, 7";
+    [_onAddress setTitle:@"на карте" forState:UIControlStateNormal];
+    
+    [_phone setNuiClass:@"Label:Telephone"];
+    _phone.text = @"+7 919 651 04 56";
+    [_onCall setTitle:@"позвонить" forState:UIControlStateNormal];
+    
+    [_logo setImageWithURL:[NSURL URLWithString:appDelegate.bundles.vendor.mobile_logo_url] placeholderImage:[UIImage imageNamed:@""]];
     
     [self updateText];
 }
@@ -87,7 +88,7 @@
 */
 
 - (IBAction)onHide:(id)sender {
-    [_delegate hidePopover];
+
 }
 
 - (IBAction)onUpdate:(id)sender {
@@ -102,6 +103,19 @@
         [alert show];
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }];
+}
+
+- (IBAction)onCall:(id)sender {
+    UIDevice *device = [UIDevice currentDevice];
+    if ([[device model] isEqualToString:@"iPhone"] ) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",@"+79196510456"]]];
+    } else {
+        UIAlertView *notPermitted=[[UIAlertView alloc] initWithTitle:nil message:@"Устройство не поддерживает эту функцию." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [notPermitted show];
+    }
+}
+- (IBAction)onAddress:(id)sender {
+    [self performSegueWithIdentifier:@"segMap" sender:self];
 }
 
 @end

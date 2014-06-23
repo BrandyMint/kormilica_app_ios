@@ -8,8 +8,7 @@
 
 #import "ViewController.h"
 #import "TableViewCell.h"
-#import "WYPopoverController.h"
-#import "InfoVC.h"
+#import "AboutVC.h"
 #import "NSString-HTML.h"
 #import "HMSegmentedControl.h"
 #import "DetailGoodsVC.h"
@@ -19,10 +18,9 @@
 
 #import "UIButton+NUI.h"
 
-@interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate, onBuyViewDelegate>
+@interface ViewController () <TableViewCellDelegate, onBuyViewDelegate>
 {
-    WYPopoverController *wyPopoverController;
-    InfoVC* popover;
+    AboutVC* popover;
     
     NSArray* dataArray;
     NSInteger selectedIDCategory;
@@ -52,13 +50,6 @@
     [infoButton addTarget:self action:@selector(onInfo) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *modalButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
     [self.navigationItem setLeftBarButtonItem:modalButton animated:YES];
-    
-    UIBarButtonItem* map = [[UIBarButtonItem alloc] initWithTitle:@"Map" style:UIBarButtonItemStyleBordered target:self action:@selector(openMap)];
-    [self.navigationItem setRightBarButtonItem:map];
-}
-
--(void)openMap {
-    [self performSegueWithIdentifier:@"segMap" sender:self];
 }
 
 -(void)initScrollViewContent
@@ -213,51 +204,7 @@
 
 - (void)onInfo
 {
-    if (wyPopoverController == nil)
-    {
-        WYPopoverBackgroundView* appearance = [WYPopoverBackgroundView appearance];
-        [appearance setTintColor:COLOR_ALPHA];
-        
-        popover = [self.storyboard instantiateViewControllerWithIdentifier:@"InfoID"];
-        popover.delegate = self;
-        wyPopoverController = [[WYPopoverController alloc] initWithContentViewController:popover];
-        wyPopoverController.delegate = (id)self;
-        wyPopoverController.popoverLayoutMargins = UIEdgeInsetsMake(0, 0, 0, 0);
-        wyPopoverController.wantsDefaultContentAppearance = NO;
-        
-        [wyPopoverController presentPopoverFromRect:CGRectMake(0, 0, 0, 0)
-                                             inView:self.view
-                           permittedArrowDirections:WYPopoverArrowDirectionNone
-                                           animated:YES
-                                            options:WYPopoverAnimationOptionFadeWithScale];
-    }
-    else
-    {
-        [self popoverControllerDidDismissPopover:wyPopoverController];
-    }
-}
-
-#pragma mark WYPopoverControllerDelegate
-- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller
-{
-    return YES;
-}
-
-- (void)popoverControllerDidDismissPopover:(WYPopoverController *)controller
-{
-    if (controller == wyPopoverController)
-    {
-        [self hidePopover];
-    }
-}
-
--(void)hidePopover
-{
-    [wyPopoverController dismissPopoverAnimated:YES];
-    wyPopoverController.delegate = nil;
-    wyPopoverController = nil;
-    popover.delegate = nil;
-    popover = nil;
+    [self performSegueWithIdentifier:@"segAbout" sender:self];
 }
 
 #pragma mark TableViewCell Delegate

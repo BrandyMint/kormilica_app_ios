@@ -26,9 +26,9 @@
         <attribute name="updated_at" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="CartCD" positionX="-5220" positionY="-4393" width="128" height="73"/>
-        <element name="OrderItemCD" positionX="-5355" positionY="-4230" width="128" height="73"/>
-        <element name="OrderCD" positionX="-5481" positionY="-4396" width="128" height="118"/>
-        <element name="ProductCD" positionX="-5535" positionY="-4248" width="128" height="163"/>
+        <element name="CartCD" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="OrderCD" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="OrderItemCD" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="ProductCD" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>
