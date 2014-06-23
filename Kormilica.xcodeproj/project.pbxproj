@@ -43,6 +43,7 @@
 		66AAB8A619517A1400B7A458 /* OrderCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AAB8A519517A1400B7A458 /* OrderCD.m */; };
 		66AAB8A919517A1400B7A458 /* CartCD.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AAB8A819517A1400B7A458 /* CartCD.m */; };
 		66AAB8AC19517E5E00B7A458 /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AAB8AB19517E5E00B7A458 /* CoreDataHelper.m */; };
+		66BEBD04195801BD00BFCC42 /* Kormilica.NUI.nss in Resources */ = {isa = PBXBuildFile; fileRef = 66BEBD03195801BD00BFCC42 /* Kormilica.NUI.nss */; };
 		66D4685D194EC38600678B9B /* OrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D4685C194EC38600678B9B /* OrderItem.m */; };
 		66D4685F194F04DF00678B9B /* MoneyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D4685E194F04DF00678B9B /* MoneyTest.m */; };
 		66D46861194F0FF400678B9B /* Array.plist in Resources */ = {isa = PBXBuildFile; fileRef = 66D46860194F0FF400678B9B /* Array.plist */; };
@@ -141,6 +142,7 @@
 		66AAB8A819517A1400B7A458 /* CartCD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartCD.m; path = Kormilica/CoreData/CartCD.m; sourceTree = "<group>"; };
 		66AAB8AA19517E5E00B7A458 /* CoreDataHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoreDataHelper.h; path = Kormilica/CoreData/CoreDataHelper.h; sourceTree = "<group>"; };
 		66AAB8AB19517E5E00B7A458 /* CoreDataHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoreDataHelper.m; path = Kormilica/CoreData/CoreDataHelper.m; sourceTree = "<group>"; };
+		66BEBD03195801BD00BFCC42 /* Kormilica.NUI.nss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Kormilica.NUI.nss; sourceTree = "<group>"; };
 		66D4685B194EC38600678B9B /* OrderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderItem.h; path = Models/OrderItem.h; sourceTree = "<group>"; };
 		66D4685C194EC38600678B9B /* OrderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderItem.m; path = Models/OrderItem.m; sourceTree = "<group>"; };
 		66D4685E194F04DF00678B9B /* MoneyTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyTest.m; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 				66EC27CC1946E19600A2990C /* ConvertTime.m */,
 				66EC27D9194714CD00A2990C /* SVAnnotation.h */,
 				66EC27DA194714CD00A2990C /* SVAnnotation.m */,
+				66BEBD03195801BD00BFCC42 /* Kormilica.NUI.nss */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -553,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6643BBDE194061490066D330 /* Images.xcassets in Resources */,
+				66BEBD04195801BD00BFCC42 /* Kormilica.NUI.nss in Resources */,
 				66D46861194F0FF400678B9B /* Array.plist in Resources */,
 				66FC794519483E740038D415 /* DefaultData.json in Resources */,
 				6643BBD0194061490066D330 /* InfoPlist.strings in Resources */,

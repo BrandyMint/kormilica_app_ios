@@ -7,6 +7,8 @@
 //
 
 #import "FeedBackView.h"
+#import "UILabel+NUI.h"
+#import "UIButton+NUI.h"
 
 @implementation FeedBackView
 {
@@ -31,6 +33,7 @@
         label.textColor = [UIColor blackColor];
         label.text = @"Связяться с нами";
         label.backgroundColor = [UIColor clearColor];
+        [label setNuiClass:@"Label"];
         [self addSubview:label];
         
         UILabel* telephone = [[UILabel alloc] initWithFrame:CGRectMake(0, 50, 200, 30)];
@@ -40,6 +43,7 @@
         telephone.contentMode = UIViewContentModeCenter;
         telephone.text = telephoneNumber;
         telephone.backgroundColor = [UIColor clearColor];
+        [telephone setNuiClass:@"Label:Telephone"];
         [self addSubview:telephone];
         
         UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -53,6 +57,7 @@
         [button setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
         button.layer.borderColor = COLOR_BLUE_.CGColor;
         [button addTarget:self action:@selector(onCall) forControlEvents:UIControlEventTouchUpInside];
+        [button setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
         [self addSubview:button];
     }
     return self;

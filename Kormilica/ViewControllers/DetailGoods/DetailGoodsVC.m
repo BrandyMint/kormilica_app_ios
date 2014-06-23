@@ -10,6 +10,9 @@
 #import "IQActionSheetPicker.h"
 #import "DetailImageVC.h"
 #import "UIImageView+AFNetworking.h"
+#import "UIButton+NUI.h"
+#import "UILabel+NUI.h"
+#import "UITextView+NUI.h"
 
 @interface DetailGoodsVC () <IQActionSheetPickerDelegate, onBuyViewDelegate>
 {
@@ -63,17 +66,14 @@
 -(void)initData
 {
     [_logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:nil];
-    UIFont* font = [UIFont systemFontOfSize:14];
     
     _titleProduct.text = product.title;
-    _titleProduct.textColor = [UIColor blackColor];
-    _titleProduct.font = font;
     _titleProduct.contentMode = UIViewContentModeTop;
+    [_titleProduct setNuiClass: @"Label:TitleProductCell"];
     
     _price.text = [NSString stringWithFormat:@"%d %@ /шт.",product.price.cents/100, product.price.currency];
-    _price.textColor = [UIColor blackColor];
-    _price.font = font;
     _price.contentMode = UIViewContentModeTop;
+    [_price setNuiClass: @"Label:PriceProductCell"];
     
     [_onOrder.titleLabel setFont:[UIFont systemFontOfSize:18]];
     _onOrder.layer.cornerRadius = 4;
@@ -82,23 +82,18 @@
 
     if ([appDelegate.cart countProductInCartWithIdProduct:_idProduct] == 0) {
         [_onOrder setTitle:@"Добавить заказ" forState:UIControlStateNormal];
-        [_onOrder setBackgroundColor:[UIColor clearColor]];
-        [_onOrder setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
-        _onOrder.layer.borderColor = COLOR_BLUE_.CGColor;
+        [NUIRenderer renderButton:_onOrder withClass:@"ButtonAddToCart:ButtonAddToCartUnSelected"];
     }
     else {
         [_onOrder setTitle:[NSString stringWithFormat:@"В заказе: %d шт.",[appDelegate.cart countProductInCartWithIdProduct:_idProduct]] forState:UIControlStateNormal];
-        [_onOrder setBackgroundColor:COLOR_GREEN_];
-        [_onOrder setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _onOrder.layer.borderColor = COLOR_GREEN_.CGColor;
+        [NUIRenderer renderButton:_onOrder withClass:@"ButtonAddToCart:ButtonAddToCartSelected"];
     }
 
     _descriptions.text = product.title;
     _descriptions.scrollEnabled = NO;
     _descriptions.editable = NO;
-    _descriptions.textColor = [UIColor blackColor];
-    _descriptions.font = font;
     _descriptions.contentMode = UIViewContentModeTop;
+    [_descriptions setNuiClass:@"TextViewDescriptionProduct"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -111,14 +106,14 @@
     IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
     [picker setTag:1];
     picker.backgroundColor = COLOR_GRAY;
-    
+
     NSMutableArray* arr = [NSMutableArray new];
     [arr addObject:@"Удалить из заказа"];
     for (int i = 1; i < 26; i++) {
         [arr addObject:[NSString stringWithFormat:@"%d",i]];
     }
-    
     [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
+    [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:_idProduct]]]];
     [picker showInView:self.view];
 }
 

@@ -8,3 +8,4 @@ pod 'IQActionSheetPickerView', :podspec =>'https://raw.github.com/bespalown/IQAc
 pod 'SHSPhoneComponent', '< 2.0'
 pod 'ISO8601DateFormatter'
 pod 'SVPulsingAnnotationView'
+pod 'NUI'

@@ -7,6 +7,8 @@
 //
 
 #import "OrderCell.h"
+#import "UILabel+NUI.h"
+#import "UIButton+NUI.h"
 
 @implementation OrderCell
 
@@ -33,20 +35,8 @@
 
 -(void)layoutSubviews
 {
-    _title.textColor = [UIColor blackColor];
-    _title.font = [UIFont systemFontOfSize:14];
     _title.numberOfLines = 2;
-    
-    _sum.textColor = [UIColor blackColor];
-    [_sum setFont:[UIFont systemFontOfSize:14]];
-
     [_onOrderAmount.titleLabel setFont:[UIFont systemFontOfSize:14]];
-    _onOrderAmount.layer.cornerRadius = 4;
-    _onOrderAmount.layer.borderWidth = 1;
-    _onOrderAmount.layer.masksToBounds = YES;
-    [_onOrderAmount setBackgroundColor:COLOR_GREEN_];
-    [_onOrderAmount setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    _onOrderAmount.layer.borderColor = COLOR_GREEN_.CGColor;
 }
 
 - (IBAction)onOrderAmount:(id)sender {

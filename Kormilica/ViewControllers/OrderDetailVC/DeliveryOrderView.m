@@ -7,6 +7,7 @@
 //
 
 #import "DeliveryOrderView.h"
+#import "UILabel+NUI.h"
 
 @implementation DeliveryOrderView
 {
@@ -21,8 +22,6 @@
     if (self) {
         // Initialization code
         label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
-        label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:14];
         [self addSubview:label];
         
         activityIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
@@ -41,29 +40,25 @@
         case fill:
             //fill
             label.text = @"Впишите телефон и адрес для доставки";
-            label.textColor = [UIColor blackColor];
-            label.backgroundColor = COLOR_GRAY;
+            [NUIRenderer renderLabel:label withClass:@"Label:OrderFill"];
             break;
         case deliver:
             //deliver
             label.text = @"Доставить заказ";
-            label.textColor = [UIColor whiteColor];
-            label.backgroundColor = COLOR_GREEN_;
+            [NUIRenderer renderLabel:label withClass:@"Label:OrderDeliver"];
             isDeliverAction = YES;
             self.userInteractionEnabled = YES;
             break;
         case sending:
             label.text = @"Отправляем заказ";
-            label.textColor = [UIColor blackColor];
-            label.backgroundColor = [UIColor whiteColor];
+            [NUIRenderer renderLabel:label withClass:@"Label:OrderSending"];
             [activityIndicator startAnimating];
             break;
         case backToShop:
             isDeliverAction = NO;
             self.userInteractionEnabled = YES;
             label.text = @"Вернуться в магазин";
-            label.textColor = [UIColor whiteColor];
-            label.backgroundColor = COLOR_BLUE_;
+            [NUIRenderer renderLabel:label withClass:@"Label:OrderReturn"];
             break;
         default:
             break;
@@ -73,7 +68,7 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     if (isDeliverAction) {
-        //отправляемм заказ
+        //отправляем заказ
         
         AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate.managers postOrder:_order block:^(AnswerOrder* answerOrder){

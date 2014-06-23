@@ -10,6 +10,7 @@
 #import "SHSPhoneLibrary.h"
 #import "DeliveryOrderView.h"
 #import "FeedBackView.h"
+#import "UILabel+NUI.h"
 
 @interface OrderDetailVC () <UITextFieldDelegate, DeliveryOrderDelegate, UIAlertViewDelegate>
 {
@@ -199,12 +200,8 @@
 -(void)onDeliveryOrderSending:(AnswerOrder *)answerOrder
 {
     UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 50)];
-    error.textColor = [UIColor whiteColor];
-    error.textAlignment = NSTextAlignmentCenter;
-    error.contentMode = UIViewContentModeCenter;
-    error.backgroundColor = COLOR_GREEN_;
+    [error setNuiClass:@"Label:OrderSending"];
     error.numberOfLines = 0;
-    error.font = [UIFont systemFontOfSize:14];
     error.text = [NSString stringWithFormat:@"%@\n %@",answerOrder.message.subject, answerOrder.message.text];
     [self.view addSubview:error];
     
@@ -243,12 +240,8 @@
 -(void)onDeliveryOrderFailSending:(NSException *)exception
 {
     UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 50)];
-    error.textColor = [UIColor whiteColor];
-    error.textAlignment = NSTextAlignmentCenter;
-    error.contentMode = UIViewContentModeCenter;
-    error.backgroundColor = COLOR_RED_;
+    [error setNuiClass:@"Label:OrderFailSending"];
     error.numberOfLines = 0;
-    error.font = [UIFont systemFontOfSize:14];
     error.text = exception.name;
     [self.view addSubview:error];
     

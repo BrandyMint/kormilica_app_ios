@@ -7,6 +7,7 @@
 //
 
 #import "BuyView.h"
+#import "UIView+NUI.h"
 
 @implementation BuyView
 
@@ -21,11 +22,9 @@
 
 -(void)isAllowed:(BOOL)allowed
 {
-    //self.userInteractionEnabled = allowed;
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame))];
     [self addSubview:view];
-
-    view.backgroundColor = allowed ? COLOR_BLUE_ : COLOR_GRAY;
+    [NUIRenderer renderView:view withClass:allowed ? @"OrderAllowed" : @"OrderNotAllowed"];
     
     UILabel* deliveryPriceLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,
                                                                             0,
@@ -39,13 +38,19 @@
     deliveryPriceLabel.numberOfLines = 2;
     [view addSubview: deliveryPriceLabel];
     
-    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(deliveryPriceLabel.frame), 0, 1, CGRectGetHeight(view.frame))];
-    line.backgroundColor = COLOR_GRAY;
-    [view addSubview:line];
+    UIView* verticalLine = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(deliveryPriceLabel.frame), 0, 1, CGRectGetHeight(view.frame))];
+    verticalLine.backgroundColor = [UIColor blackColor];
+    [NUIRenderer renderView:verticalLine withClass:!allowed ? @"OrderAllowed" : @"OrderNotAllowed"];
+    [view addSubview:verticalLine];
     
-    UILabel* checkoutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(line.frame),
+    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 1)];
+    topLine.backgroundColor = [UIColor blackColor];
+    [NUIRenderer renderView:topLine withClass:!allowed ? @"OrderAllowed" : @"OrderNotAllowed"];
+    [view addSubview:topLine];
+    
+    UILabel* checkoutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(verticalLine.frame),
                                                                        0,
-                                                                       CGRectGetWidth(view.frame) - CGRectGetMinX(line.frame),
+                                                                       CGRectGetWidth(view.frame) - CGRectGetMinX(verticalLine.frame),
                                                                        CGRectGetHeight(view.frame))];
     checkoutLabel.font = [UIFont systemFontOfSize:16];
     checkoutLabel.textColor = [UIColor whiteColor];

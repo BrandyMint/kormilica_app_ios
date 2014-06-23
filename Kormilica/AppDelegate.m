@@ -23,6 +23,8 @@
     _convertTime = [ConvertTime new];
     _cart = [Cart new];
     _createOrderToJson = [CreateOrderToJson new];
+    
+    [NUISettings initWithStylesheet:@"Kormilica.NUI"];
     return YES;
 }
 							

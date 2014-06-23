@@ -17,6 +17,8 @@
 #import "UIImageView+AFNetworking.h"
 #import "MapVC.h"
 
+#import "UIButton+NUI.h"
+
 @interface ViewController () <WYPopoverControllerDelegate, InfoVCDelegete, TableViewCellDelegate, onBuyViewDelegate>
 {
     WYPopoverController *wyPopoverController;
@@ -61,36 +63,27 @@
 
 -(void)initScrollViewContent
 {
-    UIFont* font = [UIFont systemFontOfSize:16];
     CGFloat weightButtons = 0;
     
     for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
         NSString* title = [[appDelegate.bundles.categories objectAtIndex:i] name];
-        //CGSize size = [title sizeText:title width:1 font:font];
-        
+
         UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
         [button setFrame:CGRectMake(100*i, 0, 100, 40)];
-        [button setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
         [button setTitle:title forState:UIControlStateNormal];
-        [button.titleLabel setFont:font];
         [button setTag:i+1];
         [button addTarget:self action:@selector(slideAction:) forControlEvents:UIControlEventTouchUpInside];
-        button.layer.borderColor = COLOR_SKY.CGColor;
-        button.layer.borderWidth = 0;
-        button.layer.cornerRadius = 8;
-        button.layer.masksToBounds = YES;
+        [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategoryNoSelected"];
         [_scrollView addSubview:button];
         
         if (i == 0) {
-            button.layer.borderWidth = 1;
-            [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-            [button setBackgroundColor:COLOR_BLUE_];
+            [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategorySelected"];
         }
         
         weightButtons += CGRectGetWidth(button.frame);
     }
     
-    _scrollView.backgroundColor = COLOR_GRAY;
+    //_scrollView.backgroundColor = COLOR_GRAY;
     _scrollView.contentSize = CGSizeMake(weightButtons, CGRectGetHeight(_scrollView.frame));
     _scrollView.showsHorizontalScrollIndicator = NO;
 }
@@ -99,14 +92,11 @@
 {
     for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
         UIButton* button = (UIButton *)[self.view viewWithTag:i+1];
-        button.layer.borderWidth = 0;
-        [button setTitleColor:COLOR_BLUE_ forState:UIControlStateNormal];
-        [button setBackgroundColor:[UIColor clearColor]];
+        [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategoryNoSelected"];
     }
     UIButton* button = (UIButton *)sender;
     button.layer.borderWidth = 1;
-    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [button setBackgroundColor:COLOR_BLUE_];
+    [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategorySelected"];
     
     Categories* categories = [appDelegate.bundles.categories objectAtIndex:button.tag - 1];
     [self initDataArrayWithCategoriesID:categories.idCategories];
@@ -209,7 +199,6 @@
     //смотрим в корзину, если там есть такой же товар, то указываем количество
     cell.count = [appDelegate.cart countProductInCartWithIdProduct:product.idProduct];
     cell.delegate = self;
-
     return cell;
 }
 

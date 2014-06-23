@@ -13,6 +13,7 @@
 #import "OrderDetailVC.h"
 #import "Order.h"
 #import "CartItem.h"
+#import "UILabel+NUI.h"
 
 @interface OrderVC () <OrderCellDelegate>
 {
@@ -48,7 +49,14 @@
     labelOrderView.text = isAllowed ? @"Отправить заказ" :
                 [NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
     labelAllSum.userInteractionEnabled  = _onOrderView.userInteractionEnabled = isAllowed;
-    labelOrderView.backgroundColor = isAllowed ? COLOR_BLUE_ : COLOR_GRAY;
+
+    [labelAllSum setNuiClass:@"Label:TitleProductCell:AllSum"];
+    if (isAllowed) {
+        [NUIRenderer renderView:labelOrderView withClass:@"OrderAllowed"];
+    }
+    else {
+        [NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
+    }
     labelOrderView.font = [UIFont systemFontOfSize:isAllowed ? 18 : 14];
 }
 
@@ -60,11 +68,15 @@
     
     _allSumView.backgroundColor = [UIColor clearColor];
     labelAllSum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_allSumView.frame), CGRectGetHeight(_allSumView.frame))];
+    /*
     labelAllSum.font = [UIFont systemFontOfSize:18];
     labelAllSum.textColor = [UIColor blackColor];
     labelAllSum.textAlignment = NSTextAlignmentCenter;
     labelAllSum.layer.borderColor = COLOR_GRAY.CGColor;
     labelAllSum.layer.borderWidth = 1;
+     */
+    
+    [labelAllSum setNuiClass:@"Label:TitleProductCell:AllSum"];
     [_allSumView addSubview:labelAllSum];
     
     _onOrderView.backgroundColor = [UIColor clearColor];
