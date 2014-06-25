@@ -8,6 +8,7 @@
 
 #import "BuyView.h"
 #import "UIView+NUI.h"
+#import "UILabel+NUI.h"
 
 @implementation BuyView
 
@@ -36,17 +37,18 @@
     deliveryPriceLabel.contentMode = UIViewContentModeCenter;
     deliveryPriceLabel.backgroundColor = [UIColor clearColor];
     deliveryPriceLabel.numberOfLines = 2;
+    [deliveryPriceLabel setNuiClass:@"Label:WhiteText"];
     [view addSubview: deliveryPriceLabel];
     
     UIView* verticalLine = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(deliveryPriceLabel.frame), 0, 1, CGRectGetHeight(view.frame))];
-    verticalLine.backgroundColor = [UIColor blackColor];
-    [NUIRenderer renderView:verticalLine withClass:!allowed ? @"OrderAllowed" : @"OrderNotAllowed"];
-    [view addSubview:verticalLine];
+    //verticalLine.backgroundColor = [UIColor blackColor];
+    //[NUIRenderer renderView:verticalLine withClass:!allowed ? @"OrderAllowed" : @"OrderNotAllowed"];
+    //[view addSubview:verticalLine];
     
-    UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 1)];
-    topLine.backgroundColor = [UIColor blackColor];
-    [NUIRenderer renderView:topLine withClass:!allowed ? @"OrderAllowed" : @"OrderNotAllowed"];
-    [view addSubview:topLine];
+    //UIView* topLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.frame), 1)];
+    //topLine.backgroundColor = [UIColor blackColor];
+    //[NUIRenderer renderView:topLine withClass:!allowed ? @"OrderAllowed" : @"OrderNotAllowed"];
+    //[view addSubview:topLine];
     
     UILabel* checkoutLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(verticalLine.frame),
                                                                        0,
@@ -58,6 +60,7 @@
     checkoutLabel.contentMode = UIViewContentModeCenter;
     checkoutLabel.backgroundColor = [UIColor clearColor];
     checkoutLabel.numberOfLines = 1;
+    [checkoutLabel setNuiClass:@"Label:WhiteText"];
     [view addSubview: checkoutLabel];
     
     AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];

@@ -71,7 +71,6 @@
         [phoneTextField.formatter setDefaultOutputPattern:@"+7 ### ### ## ##"];
         phoneTextField.formatter.showFormatOnlyIfTextExist = NO;
         [phoneTextField setFormattedText:@""];
-        phoneTextField.font = [UIFont systemFontOfSize:14];
         phoneTextField.delegate = self;
         phoneTextField.tag = 1;
         [self.view addSubview:phoneTextField];
@@ -82,7 +81,6 @@
     else {
         UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(140, CGRectGetMinY(keyLabel.frame), 170, keyLabel.frame.size.height)];
         textField.text = @"";
-        textField.font = [UIFont systemFontOfSize:15];
         textField.tag = tag;
         textField.delegate = self;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -91,7 +89,6 @@
         if (tag == 2)
         {
             textField.text = address.city;
-            textField.textColor = COLOR_SKY;
             textField.enabled = NO;
         }
     }
@@ -101,13 +98,18 @@
     line.tag = tag + 20;
     [self.view addSubview:line];
     
-        maxY += 40;
+    maxY += 40;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [NUIRenderer renderTextField:textField withClass:@"TextField:TextFieldActive"];
 }
 
 -(void)textFieldDidEndEditing:(UITextField *)textField
@@ -133,6 +135,7 @@
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
+    [NUIRenderer renderTextField:textField withClass:@"TextField:TextFieldActive"];
     if (address.phone.length == 16 && address.address.length != 0) {
         [deliveryOrderView view:deliver];
         

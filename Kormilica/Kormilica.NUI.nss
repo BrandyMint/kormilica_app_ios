@@ -21,20 +21,11 @@
 @priceFontColor: red;
 
 Table {
-    separator-color: @primaryTableColor;
+    separator-color: #d1d3d4;
 }
 
 TableCellView {
     background-color: @primaryTableCellColor;
-}
-
-BarButton {
-    background-color: #9ED5F5;
-    corner-radius: 7;
-    font-name: @secondaryFontNameBold;
-    font-color: @navFontColor;
-    font-size: 13;
-    text-shadow-color: clear;
 }
 ButtonOrderCell{
     background-color: white;
@@ -50,26 +41,30 @@ ButtonInOrder {
     font-color: #7ac943;
 }
 ButtonInNotOrder {
-    border-color: @primaryTableColor;
-    font-color: @primaryTableColor;
+    border-color: #007aff;
+    font-color: #007aff;
+}
+ButtonDelivery {
+    border-color: black;
+    font-color: black;
 }
 
 ButtonCategory {
     corner-radius: 5;
-    font-name: @secondaryFontName;
-    font-size: 14;
+    font-name: @primaryFontName;
+    font-size: 16;
     text-align: center;
     text-auto-fit: false;
     border-width: 2;
-    border-color: white;
+    border-color: #f8f8f8;
 }
 ButtonCategorySelected {
-    background-color: @primaryTableColor;
+    background-color: #007aff;
     font-color: white;
 }
 ButtonCategoryNoSelected {
-    background-color: white;
-    font-color: @primaryFontColor;
+    background-color: #f8f8f8;
+    font-color: #007aff;
 }
 
 ButtonAddToCart {
@@ -87,14 +82,14 @@ ButtonAddToCartSelected {
 
 ButtonAddToCartUnSelected {
     background-color: white;
-    font-color: @primaryTableColor;
+    font-color: #007aff;
     border-width: 1;
-    border-color: @primaryTableColor;
+    border-color: #007aff;
 }
 TextViewDescriptionProduct {
     font-color: @primaryFontColor;
-    font-name: @secondaryFontName;
-    font-size: 16;
+    font-name: @primaryFontName;
+    font-size: 14;
 }
 ButtonLastUpdate {
     font-name: @secondaryFontName;
@@ -108,12 +103,21 @@ Label {
     font-color: @primaryFontColor;
     text-auto-fit: false;
 }
+NameCompany {
+    font-name: @primaryFontName;
+    font-size: 18;
+    font-color: black;
+}
+WhiteText {
+    font-name: @primaryFontName;
+    font-size: 16;
+    font-color: white;
+}
 TitleProductCell {
     font-size: 16;
 }
 PriceProductCell {
-    font-color: @priceFontColor;
-    font-size: 18;
+    font-size: 16;
 }
 AllSum {
     text-align: center;
@@ -121,27 +125,34 @@ AllSum {
     border-width: 1;
 }
 OrderFill {
+    font-name: @primaryFontName;
     text-align: center;
-    font-color: black;
-    background-color: @primaryFontColor;
+    font-color: #6c6d6d;
+    background-color: #d1d3d4;
 }
 OrderDeliver {
+    font-name: @primaryFontName;
     text-align: center;
     font-color: white;
     background-color: #7ac943;
 }
 OrderSending {
+    font-name: @primaryFontName;
     text-align: center;
     font-color: black;
     background-color: white;
 }
 OrderReturn {
+    font-name: @primaryFontName;
     text-align: center;
     font-color: white;
-    background-color: @primaryTableColor;
+    background-color: #007aff;
 }
 Telephone {
     font-size: 20;
+}
+OrderInfo {
+    font-size: 10;
 }
 OrderSending {
     font-color: white;
@@ -155,34 +166,46 @@ OrderFailSending {
 NavigationBar {
     font-name: @secondaryFontName;
     font-size: 20;
-    font-color: @navFontColor;
+    font-color: black;
     text-shadow-color: clear;
-    background-color-top: #54B4EB;
-    background-color-bottom: #2FA4E7;
 }
 TabBar {
     background-color: #FFFFFF;
 }
 TabBarItem {
     font-name: @secondaryFontName;
-    font-color: @primaryFontColor;
+    font-color: red;
     font-size: 18;
     text-offset: 0,-11;
 }
-
+BarButton {
+    #background-color: #9ED5F5;
+    #corner-radius: 7;
+    #font-name: @secondaryFontNameBold;
+    #font-color: @navFontColor;
+    #font-size: 13;
+    #text-shadow-color: clear;
+}
 TextField {
-    font-name: @inputFontName;
-    font-size: 14;
+    font-name: @primaryFontName;
+    font-size: 16;
+    font-color: #d1d3d4;
     border-style: none;
     vertical-align: center;
 }
+TextFieldActive {
+    font-color: black;
+}
+TextFieldCity {
+    font-color: 007aff;
+}
 
 ScrollView {
-    background-color: white;
+    background-color: #f8f8f8;
 }
 OrderAllowed {
-    background-color: @primaryTableColor;
+    background-color: #007aff;
 }
 OrderNotAllowed {
-    background-color: #e6e7e8;
+    background-color: #d1d3d4;
 }

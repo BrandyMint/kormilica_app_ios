@@ -33,7 +33,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [_header setNuiClass:@"Label:TitleProductCell"];
+    [_header setNuiClass:@"Label:NameCompany"];
     
     _descriptions.editable = NO;
     [_descriptions setNuiClass:@"TextViewDescriptionProduct"];

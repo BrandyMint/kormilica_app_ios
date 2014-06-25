@@ -39,7 +39,7 @@
 {
     [_tableView reloadData];
     Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
-    labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents];
+    labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents < 500 ? money.cents + 100 : money.cents];
     [self checkOrder];
 }
 
@@ -50,6 +50,7 @@
                 [NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
     labelAllSum.userInteractionEnabled  = _onOrderView.userInteractionEnabled = isAllowed;
 
+    [labelOrderView setNuiClass:@"Label:WhiteText"];
     [labelAllSum setNuiClass:@"Label:TitleProductCell:AllSum"];
     if (isAllowed) {
         [NUIRenderer renderView:labelOrderView withClass:@"OrderAllowed"];
@@ -57,7 +58,6 @@
     else {
         [NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
     }
-    labelOrderView.font = [UIFont systemFontOfSize:isAllowed ? 18 : 14];
 }
 
 - (void)viewDidLoad
@@ -143,6 +143,37 @@
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath {
 
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
+    return money.cents < 500 ? 70 : 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_tableView.frame), 70)];
+    
+    UILabel* delivery = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+    delivery.text = @"Доставка";
+    [delivery setNuiClass:@"Label:TitleProductCell"];
+    delivery.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:delivery];
+    
+    UILabel* description = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(delivery.frame) + 20, 300, 20)];
+    description.text = @"Бесплатная доставка при заказе на сумму от 500 р.";
+    [description setNuiClass:@"Label:OrderInfo"];
+    description.textAlignment = NSTextAlignmentCenter;
+    [view addSubview:description];
+    
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setFrame:CGRectMake(200, 10, 100, 30)];
+    [button setTitle:@"100 руб" forState:UIControlStateNormal];
+    [button setNuiClass:@"ButtonOrderCell:ButtonDelivery"];
+    [view addSubview:button];
+    
+    return view;
 }
 
 #pragma mark OrderCellDelegate

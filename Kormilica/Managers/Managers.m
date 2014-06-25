@@ -86,4 +86,38 @@
     [operation start];
 }
 
+-(void)downloadCSS
+{
+    NSString* urlString = @"https://gist.githubusercontent.com/bespalown/d06bbcb690ab41e9751d/raw/dcc40cbaac18d235322e350f84dc93e53b7929f5/Kormilica.NUI.nss";
+    
+    NSURL  *url = [NSURL URLWithString:urlString];
+    //NSData *urlData = [NSData dataWithContentsOfURL:url];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSString* responseString = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+        
+        //сохранили в документы
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0]; // Get documents directory
+        NSError *error;
+        [responseString writeToFile:[documentsDirectory stringByAppendingPathComponent:@"Style.nss"]
+                         atomically:YES encoding:NSUTF8StringEncoding error:&error];
+        
+        //прочли из документов
+        NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        NSString* foofile = [documentsPath stringByAppendingPathComponent:@"Style.nss"];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        
+    }];
+    
+    [operation start];
+    
+}
+
 @end

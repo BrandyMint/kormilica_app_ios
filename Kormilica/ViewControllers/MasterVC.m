@@ -28,6 +28,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"Назад" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    [[self navigationItem] setBackBarButtonItem: newBackButton];
 }
 
 - (void)didReceiveMemoryWarning
