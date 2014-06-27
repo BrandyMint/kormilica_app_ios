@@ -11,6 +11,8 @@
 #import "DeliveryOrderView.h"
 #import "FeedBackView.h"
 #import "UILabel+NUI.h"
+#import "UITextField+NUI.h"
+#import "UIView+NUI.h"
 
 @interface OrderDetailVC () <UITextFieldDelegate, DeliveryOrderDelegate, UIAlertViewDelegate>
 {
@@ -80,7 +82,7 @@
     }
     else {
         UITextField* textField = [[UITextField alloc] initWithFrame:CGRectMake(140, CGRectGetMinY(keyLabel.frame), 170, keyLabel.frame.size.height)];
-        textField.text = @"";
+        textField.placeholder = @"улица, дом, квартира";
         textField.tag = tag;
         textField.delegate = self;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -90,15 +92,17 @@
         {
             textField.text = address.city;
             textField.enabled = NO;
+            [textField setNuiClass:@"TextField:TextFieldCity"];
+            
         }
     }
     
-    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(keyLabel.frame) + 5, self.view.frame.size.width - 20, 1)];
-    line.backgroundColor = COLOR_GRAY;
+    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(keyLabel.frame) + 10, self.view.frame.size.width, 4)];
+    [line setNuiClass:@"BottomView"];
     line.tag = tag + 20;
     [self.view addSubview:line];
     
-    maxY += 40;
+    maxY += 50;
 }
 
 - (void)didReceiveMemoryWarning
@@ -202,8 +206,8 @@
 
 -(void)onDeliveryOrderSending:(AnswerOrder *)answerOrder
 {
-    UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 50)];
-    [error setNuiClass:@"Label:OrderSending"];
+    UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 100)];
+    [error setNuiClass:@"Label:OrderSend"];
     error.numberOfLines = 0;
     error.text = [NSString stringWithFormat:@"%@\n %@",answerOrder.message.subject, answerOrder.message.text];
     [self.view addSubview:error];
@@ -223,9 +227,7 @@
         label.frame = frameLabel;
         
         UIView* view = (UIView *)[self.view viewWithTag:i+20];
-        CGRect frameView = view.frame;
-        frameView.origin.y = CGRectGetMaxY(label.frame) + 5;
-        view.frame = frameView;
+        view.frame = CGRectZero;
         
         maxY += 40;
     }
@@ -242,8 +244,8 @@
 
 -(void)onDeliveryOrderFailSending:(NSException *)exception
 {
-    UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 50)];
-    [error setNuiClass:@"Label:OrderFailSending"];
+    UILabel* error = [[UILabel alloc] initWithFrame:CGRectMake(0, IS_IOS7 ? 64 : 0, CGRectGetWidth(self.view.frame), 100)];
+    [error setNuiClass:@"Label:OrderFailSend"];
     error.numberOfLines = 0;
     error.text = exception.name;
     [self.view addSubview:error];

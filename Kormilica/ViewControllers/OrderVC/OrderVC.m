@@ -14,6 +14,7 @@
 #import "Order.h"
 #import "CartItem.h"
 #import "UILabel+NUI.h"
+#import "UIView+NUI.h"
 
 @interface OrderVC () <OrderCellDelegate>
 {
@@ -46,12 +47,17 @@
 -(void)checkOrder
 {
     BOOL isAllowed = [appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products];
-    labelOrderView.text = isAllowed ? @"Отправить заказ" :
-                [NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
+    labelOrderView.text = isAllowed ? @"Оформить заказ" :
+                                        @"Минимальная сумма заказа - 500 руб.";
+                //[NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
     labelAllSum.userInteractionEnabled  = _onOrderView.userInteractionEnabled = isAllowed;
-
+    labelAllSum.textAlignment = NSTextAlignmentCenter;
+    
+    UIView* labelAllSumTopView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(labelAllSum.frame), 1)];
+    [labelAllSumTopView setNuiClass:@"BottomView"];
+    [labelAllSum addSubview:labelAllSumTopView];
+    
     [labelOrderView setNuiClass:@"Label:WhiteText"];
-    [labelAllSum setNuiClass:@"Label:TitleProductCell:AllSum"];
     if (isAllowed) {
         [NUIRenderer renderView:labelOrderView withClass:@"OrderAllowed"];
     }
@@ -68,15 +74,7 @@
     
     _allSumView.backgroundColor = [UIColor clearColor];
     labelAllSum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_allSumView.frame), CGRectGetHeight(_allSumView.frame))];
-    /*
-    labelAllSum.font = [UIFont systemFontOfSize:18];
-    labelAllSum.textColor = [UIColor blackColor];
-    labelAllSum.textAlignment = NSTextAlignmentCenter;
-    labelAllSum.layer.borderColor = COLOR_GRAY.CGColor;
-    labelAllSum.layer.borderWidth = 1;
-     */
-    
-    [labelAllSum setNuiClass:@"Label:TitleProductCell:AllSum"];
+    [labelAllSum setNuiClass:@"Label:AllSum"];
     [_allSumView addSubview:labelAllSum];
     
     _onOrderView.backgroundColor = [UIColor clearColor];
@@ -114,7 +112,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 80;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -148,30 +146,36 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
-    return money.cents < 500 ? 70 : 0;
+    return money.cents < 500 ? 80 : 60;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_tableView.frame), 70)];
+    Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
     
-    UILabel* delivery = [[UILabel alloc] initWithFrame:CGRectMake(10, 10, 100, 20)];
+    UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_tableView.frame), money.cents < 500 ? 80 : 60)];
+    
+    UILabel* delivery = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 100, 30)];
     delivery.text = @"Доставка";
     [delivery setNuiClass:@"Label:TitleProductCell"];
     delivery.textAlignment = NSTextAlignmentCenter;
     [view addSubview:delivery];
     
-    UILabel* description = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(delivery.frame) + 20, 300, 20)];
-    description.text = @"Бесплатная доставка при заказе на сумму от 500 р.";
+    UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
+    [button setFrame:CGRectMake(215, 15, 90, 30)];
+    [button setTitle:money.cents < 500 ? @"100 руб" : @"Бесплатно" forState:UIControlStateNormal];
+    [button setNuiClass:@"ButtonOrderCell:ButtonDelivery"];
+    [view addSubview:button];
+    
+    UILabel* description = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(delivery.frame) + 5, 300, 20)];
+    description.text = money.cents < 500 ? @"Бесплатная доставка при заказе на сумму от 500 р." : @"";
     [description setNuiClass:@"Label:OrderInfo"];
     description.textAlignment = NSTextAlignmentCenter;
     [view addSubview:description];
     
-    UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
-    [button setFrame:CGRectMake(200, 10, 100, 30)];
-    [button setTitle:@"100 руб" forState:UIControlStateNormal];
-    [button setNuiClass:@"ButtonOrderCell:ButtonDelivery"];
-    [view addSubview:button];
+    UIView* bottomView = [[UIView alloc] initWithFrame:CGRectMake(15, CGRectGetHeight(view.frame)-1, CGRectGetWidth(view.frame), 1)];
+    [bottomView setNuiClass:@"BottomView"];
+    [view addSubview:bottomView];
     
     return view;
 }

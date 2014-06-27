@@ -8,6 +8,7 @@
 
 #import "TableViewCell.h"
 #import "UIButton+NUI.h"
+#import "UILabel+NUI.h"
 
 @implementation TableViewCell
 
@@ -34,6 +35,9 @@
 
 -(void)layoutSubviews
 {
+    [_title setNuiClass:@"Label:TitleProductCell"];
+    [_price setNuiClass:@"Label:PriceProductCell"];
+    
     if (_count == 0) {
         [_onOrder setTitle:@"в заказ" forState:UIControlStateNormal];
         [NUIRenderer renderButton:_onOrder withClass:@"ButtonOrderCell:ButtonInNotOrder"];

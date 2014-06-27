@@ -82,11 +82,11 @@
 
     if ([appDelegate.cart countProductInCartWithIdProduct:_idProduct] == 0) {
         [_onOrder setTitle:@"Добавить заказ" forState:UIControlStateNormal];
-        [NUIRenderer renderButton:_onOrder withClass:@"ButtonAddToCart:ButtonAddToCartUnSelected"];
+        [NUIRenderer renderButton:_onOrder withClass:@"ButtonAddToCart:ButtonAddToCartUnSelected:Detailed"];
     }
     else {
         [_onOrder setTitle:[NSString stringWithFormat:@"В заказе: %d шт.",[appDelegate.cart countProductInCartWithIdProduct:_idProduct]] forState:UIControlStateNormal];
-        [NUIRenderer renderButton:_onOrder withClass:@"ButtonAddToCart:ButtonAddToCartSelected"];
+        [NUIRenderer renderButton:_onOrder withClass:@"ButtonAddToCart:ButtonAddToCartSelected:Detailed"];
     }
 
     _descriptions.text = product.title;

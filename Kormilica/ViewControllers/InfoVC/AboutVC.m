@@ -8,11 +8,12 @@
 
 #import "AboutVC.h"
 #import "MapVC.h"
+#import "UIImageView+AFNetworking.h"
 #import "NSString-HTML.h"
-#import "UITextView+NUI.h"
 #import "UIButton+NUI.h"
 #import "UILabel+NUI.h"
-#import "UIImageView+AFNetworking.h"
+#import "UITextView+NUI.h"
+#import "UIView+NUI.h"
 
 @interface AboutVC ()
 
@@ -42,13 +43,14 @@
     
     [_onCall setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
     [_onAddress setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
-    [_shippingPayment setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
+    [_shippingPayment setNuiClass:@"OrderFill"];
     [_onUpdate setNuiClass:@"ButtonLastUpdate"];
     
     [_shippingPayment setTitle:@"Доставка и оплата" forState:UIControlStateNormal];
     
     _subHeader.text = @"описание компании";
     _address.text = @"Крылова, 7";
+    [_address setNuiClass:@"Label:AllSum"];
     [_onAddress setTitle:@"на карте" forState:UIControlStateNormal];
     
     [_phone setNuiClass:@"Label:Telephone"];
@@ -56,6 +58,10 @@
     [_onCall setTitle:@"позвонить" forState:UIControlStateNormal];
     
     [_logo setImageWithURL:[NSURL URLWithString:appDelegate.bundles.vendor.mobile_logo_url] placeholderImage:[UIImage imageNamed:@""]];
+    
+    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_phone.frame) + 7, CGRectGetWidth(self.view.frame), 1)];
+    [line setNuiClass:@"BottomView"];
+    [self.view addSubview:line];
     
     [self updateText];
 }

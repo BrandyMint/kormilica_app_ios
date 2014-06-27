@@ -1,4 +1,4 @@
-@primaryFontName: ArialRoundedMTBold;
+
 @secondaryFontName: ArialRoundedMTBold;
 @secondaryFontNameBold: ArialRoundedMTBold;
 @secondaryFontNameStrong: ArialRoundedMTBold;
@@ -16,6 +16,8 @@
 @primaryBorderColor: #EEEEEE;
 @primaryBorderWidth: 1;
 
+@primaryFontName: HelveticaNeue-Medium;
+
 @primaryTableColor: #9ED5F5;
 @primaryTableCellColor: white;
 @priceFontColor: red;
@@ -31,7 +33,7 @@ ButtonOrderCell{
     background-color: white;
     border-width: 1;
     corner-radius: 5;
-    font-name: @secondaryFontName;
+    font-name: HelveticaNeue-Light;
     font-size: 14;
     text-align: center;
     text-auto-fit: false;
@@ -50,12 +52,11 @@ ButtonDelivery {
 }
 
 ButtonCategory {
-    corner-radius: 5;
-    font-name: @primaryFontName;
-    font-size: 16;
+    font-name: HelveticaNeue-Light;
+    font-size: 17;
     text-align: center;
     text-auto-fit: false;
-    border-width: 2;
+    border-width: 3;
     border-color: #f8f8f8;
 }
 ButtonCategorySelected {
@@ -86,21 +87,25 @@ ButtonAddToCartUnSelected {
     border-width: 1;
     border-color: #007aff;
 }
+Detailed {
+    font-name: HelveticaNeue-Light;
+    font-size: 17;
+}
 TextViewDescriptionProduct {
-    font-color: @primaryFontColor;
-    font-name: @primaryFontName;
+    font-color: black;
+    font-name: HelveticaNeue-Light;
     font-size: 14;
 }
 ButtonLastUpdate {
-    font-name: @secondaryFontName;
+    font-name: HelveticaNeue-Light;
     font-size: 14;
-    font-color: @primaryFontColor;
+    font-color: black;
 }
 
 Label {
-    font-name: @secondaryFontName;
+    font-name: HelveticaNeue-Light;
     font-size: 14;
-    font-color: @primaryFontColor;
+    font-color: black;
     text-auto-fit: false;
 }
 NameCompany {
@@ -109,41 +114,38 @@ NameCompany {
     font-color: black;
 }
 WhiteText {
-    font-name: @primaryFontName;
-    font-size: 16;
+    font-size: 17;
     font-color: white;
 }
 TitleProductCell {
-    font-size: 16;
+    font-size: 14;
 }
 PriceProductCell {
-    font-size: 16;
+    font-size: 14;
 }
 AllSum {
-    text-align: center;
-    border-color: @primaryFontColor;
-    border-width: 1;
+    font-size: 17;
 }
 OrderFill {
-    font-name: @primaryFontName;
+    font-size: 17;
     text-align: center;
     font-color: #6c6d6d;
     background-color: #d1d3d4;
 }
 OrderDeliver {
-    font-name: @primaryFontName;
+    font-size: 17;
     text-align: center;
     font-color: white;
     background-color: #7ac943;
 }
 OrderSending {
-    font-name: @primaryFontName;
+    font-size: 17;
     text-align: center;
     font-color: black;
     background-color: white;
 }
 OrderReturn {
-    font-name: @primaryFontName;
+    font-size: 17;
     text-align: center;
     font-color: white;
     background-color: #007aff;
@@ -151,21 +153,26 @@ OrderReturn {
 Telephone {
     font-size: 20;
 }
+
 OrderInfo {
-    font-size: 10;
+    font-size: 12;
 }
-OrderSending {
+OrderSend {
+    font-size: 16;
+    text-align: center;
     font-color: white;
     background-color: #7ac943;
 }
-OrderFailSending {
+OrderFailSend {
+    font-size: 16;
+    text-align: center;
     font-color: white;
     background-color: red;
 }
 
 NavigationBar {
-    font-name: @secondaryFontName;
-    font-size: 20;
+    font-name: HelveticaNeue-Medium;
+    font-size: 18;
     font-color: black;
     text-shadow-color: clear;
 }
@@ -173,33 +180,40 @@ TabBar {
     background-color: #FFFFFF;
 }
 TabBarItem {
-    font-name: @secondaryFontName;
+    font-name: @primaryFontName;
     font-color: red;
     font-size: 18;
     text-offset: 0,-11;
 }
 BarButton {
-    #background-color: #9ED5F5;
-    #corner-radius: 7;
-    #font-name: @secondaryFontNameBold;
-    #font-color: @navFontColor;
-    #font-size: 13;
-    #text-shadow-color: clear;
+    font-name: HelveticaNeue-Light;
+    font-color: #007aff;
+    font-size: 17;
+}
+
+BarButtonBack
+{
+    font-color: #007aff;
+    font-name: HelveticaNeue-Light;
+    font-size: 17;
 }
 TextField {
-    font-name: @primaryFontName;
+    font-name: HelveticaNeue-Light;
     font-size: 16;
     font-color: #d1d3d4;
     border-style: none;
     vertical-align: center;
 }
 TextFieldActive {
+    font-size: 16;
     font-color: black;
 }
 TextFieldCity {
-    font-color: 007aff;
+    font-color: #007aff;
 }
-
+BottomView{
+    background-color: #d1d3d4;
+}
 ScrollView {
     background-color: #f8f8f8;
 }

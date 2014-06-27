@@ -31,7 +31,6 @@
                                                                             0,
                                                                             100,
                                                                             CGRectGetHeight(view.frame))];
-    deliveryPriceLabel.font = [UIFont systemFontOfSize:14];
     deliveryPriceLabel.textColor = [UIColor whiteColor];
     deliveryPriceLabel.textAlignment = NSTextAlignmentCenter;
     deliveryPriceLabel.contentMode = UIViewContentModeCenter;
@@ -54,7 +53,6 @@
                                                                        0,
                                                                        CGRectGetWidth(view.frame) - CGRectGetMinX(verticalLine.frame),
                                                                        CGRectGetHeight(view.frame))];
-    checkoutLabel.font = [UIFont systemFontOfSize:16];
     checkoutLabel.textColor = [UIColor whiteColor];
     checkoutLabel.textAlignment = NSTextAlignmentCenter;
     checkoutLabel.contentMode = UIViewContentModeCenter;

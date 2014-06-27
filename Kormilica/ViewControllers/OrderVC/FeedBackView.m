@@ -47,7 +47,7 @@
         [self addSubview:telephone];
         
         UIButton* button = [UIButton buttonWithType:UIButtonTypeSystem];
-        [button setFrame:CGRectMake(200, 50, 100, 30)];
+        [button setFrame:CGRectMake(205, 50, 90, 30)];
         [button.titleLabel setFont:[UIFont systemFontOfSize:14]];
         button.layer.cornerRadius = 4;
         button.layer.borderWidth = 1;
