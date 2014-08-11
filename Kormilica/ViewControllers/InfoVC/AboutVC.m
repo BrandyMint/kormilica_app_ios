@@ -72,7 +72,8 @@
     
     _header.text = appDelegate.bundles.vendor.mobile_subject;
     _descriptions.text = [appDelegate.bundles.vendor.mobile_description kv_stripHTMLCharacterEntities];
-    _city.text = appDelegate.bundles.vendor.city;
+    _city.text = appDelegate.bundles.vendor.city.name;
+    
     [_onUpdate setTitle:[NSString stringWithFormat:@"Последнее обновление от %@", date] forState:UIControlStateNormal];
 }
 
@@ -98,9 +99,11 @@
 }
 
 - (IBAction)onUpdate:(id)sender {
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [appDelegate.managers getBundles:^(Bundles* bundles) {
         appDelegate.bundles = bundles;
+        
         [self updateText];
         appDelegate.cart.vendor = bundles.vendor;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

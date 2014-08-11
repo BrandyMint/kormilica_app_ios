@@ -24,7 +24,6 @@
     
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
          {
-             
              Bundles* bundles = [EKMapper objectFromExternalRepresentation:JSON withMapping:[Factory bundlesMapping]];
              block(bundles);
          }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)

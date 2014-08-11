@@ -50,6 +50,7 @@
 		66D46864194F24AE00678B9B /* Order.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D46863194F24AE00678B9B /* Order.m */; };
 		66D46866194F325200678B9B /* OrderTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66D46865194F325200678B9B /* OrderTest.m */; };
 		66E262F41952F805003926BE /* Address.m in Sources */ = {isa = PBXBuildFile; fileRef = 66E262F31952F805003926BE /* Address.m */; };
+		66EAEDF819992F72000C3370 /* City.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EAEDF719992F72000C3370 /* City.m */; };
 		66EC27CD1946E19600A2990C /* ConvertTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27CC1946E19600A2990C /* ConvertTime.m */; };
 		66EC27D01946EFAB00A2990C /* FeedBackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27CF1946EFAB00A2990C /* FeedBackView.m */; };
 		66EC27D41946FC1300A2990C /* DetailImageVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EC27D31946FC1300A2990C /* DetailImageVC.m */; };
@@ -152,6 +153,8 @@
 		66D46865194F325200678B9B /* OrderTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderTest.m; sourceTree = "<group>"; };
 		66E262F21952F805003926BE /* Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Address.h; path = Models/Address.h; sourceTree = "<group>"; };
 		66E262F31952F805003926BE /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Address.m; path = Models/Address.m; sourceTree = "<group>"; };
+		66EAEDF619992F72000C3370 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = Models/City.h; sourceTree = "<group>"; };
+		66EAEDF719992F72000C3370 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = Models/City.m; sourceTree = "<group>"; };
 		66EC27CB1946E19600A2990C /* ConvertTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConvertTime.h; path = Helpers/ConvertTime.h; sourceTree = "<group>"; };
 		66EC27CC1946E19600A2990C /* ConvertTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConvertTime.m; path = Helpers/ConvertTime.m; sourceTree = "<group>"; };
 		66EC27CE1946EFAB00A2990C /* FeedBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedBackView.h; path = ViewControllers/OrderVC/FeedBackView.h; sourceTree = "<group>"; };
@@ -353,6 +356,8 @@
 				669CCFF319542BF00025E5A1 /* AnswerOrder.m */,
 				669CCFF519542C980025E5A1 /* Message.h */,
 				669CCFF619542C980025E5A1 /* Message.m */,
+				66EAEDF619992F72000C3370 /* City.h */,
+				66EAEDF719992F72000C3370 /* City.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -638,6 +643,7 @@
 				6643BC2019407DA50066D330 /* Factory.m in Sources */,
 				66AAB883195174FC00B7A458 /* Model.xcdatamodeld in Sources */,
 				66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */,
+				66EAEDF819992F72000C3370 /* City.m in Sources */,
 				66EC27D01946EFAB00A2990C /* FeedBackView.m in Sources */,
 				66AAB87F1951723E00B7A458 /* CartItem.m in Sources */,
 				66EC27DB194714CD00A2990C /* SVAnnotation.m in Sources */,

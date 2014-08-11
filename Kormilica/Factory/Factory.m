@@ -26,7 +26,6 @@
         [mapping mapFieldsFromArray:@[@"key",
                                       @"name",
                                       @"phone",
-                                      @"city",
                                       @"updated_at",
                                       @"mobile_logo_url",
                                       @"mobile_title",
@@ -39,8 +38,21 @@
                                       @"currency",
                                       @"is_demo",
                                       ]];
+        [mapping hasOneMapping:[self cityMapping] forKey:@"city"];
         [mapping hasOneMapping:[self priceMapping] forKey:@"minimal_price"];
         [mapping hasOneMapping:[self priceMapping] forKey:@"delivery_price"];
+    }];
+}
+
++ (EKObjectMapping*) cityMapping;
+{
+    return [EKObjectMapping mappingForClass:[City class] withBlock:^(EKObjectMapping *mapping) {
+        [mapping mapFieldsFromArray:@[@"created_at",
+                                      @"latitude",
+                                      @"longitude",
+                                      @"name",
+                                      @"updated_at"]];
+        [mapping mapFieldsFromDictionary:@{@"id" : @"idCity"}];
     }];
 }
 
