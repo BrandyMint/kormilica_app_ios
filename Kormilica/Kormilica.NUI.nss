@@ -185,13 +185,12 @@ TabBarItem {
     font-size: 18;
     text-offset: 0,-11;
 }
-BarButton {
+BarButtonIos7 {
     font-name: HelveticaNeue-Light;
     font-color: #007aff;
     font-size: 17;
 }
-
-BarButtonBack
+BarButtonBackIos7
 {
     font-color: #007aff;
     font-name: HelveticaNeue-Light;

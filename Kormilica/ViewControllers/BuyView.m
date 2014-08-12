@@ -70,6 +70,19 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [_delegate onBuyAction];
+
+}
+
+-(void)userInteractionEnabled:(BOOL)enabled
+{
+    if (!enabled) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil
+                                                        message:@"Ваша корзина пуста, выберите товар для заказа"
+                                                       delegate:self
+                                              cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    self.superview.userInteractionEnabled = enabled;
 }
 
 /*

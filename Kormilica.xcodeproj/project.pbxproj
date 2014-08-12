@@ -119,6 +119,8 @@
 		664911D81941AE0800CFA99D /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Size.m"; path = "Helpers/NSString+Size.m"; sourceTree = "<group>"; };
 		664911DD1941FAAF00CFA99D /* MasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterVC.h; path = ViewControllers/MasterVC.h; sourceTree = "<group>"; };
 		664911DE1941FAAF00CFA99D /* MasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterVC.m; path = ViewControllers/MasterVC.m; sourceTree = "<group>"; };
+		665BF4881999D88F0016EFAB /* RUBSR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RUBSR.otf; sourceTree = "<group>"; };
+		665BF4891999D9270016EFAB /* rouble.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rouble.otf; sourceTree = "<group>"; };
 		668F84081945DFD0004C8DFE /* DeliveryOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeliveryOrderView.h; path = ViewControllers/OrderDetailVC/DeliveryOrderView.h; sourceTree = "<group>"; };
 		668F84091945DFD0004C8DFE /* DeliveryOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeliveryOrderView.m; path = ViewControllers/OrderDetailVC/DeliveryOrderView.m; sourceTree = "<group>"; };
 		669CCFF219542BF00025E5A1 /* AnswerOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerOrder.h; path = Models/AnswerOrder.h; sourceTree = "<group>"; };
@@ -155,6 +157,8 @@
 		66E262F31952F805003926BE /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Address.m; path = Models/Address.m; sourceTree = "<group>"; };
 		66EAEDF619992F72000C3370 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = Models/City.h; sourceTree = "<group>"; };
 		66EAEDF719992F72000C3370 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = Models/City.m; sourceTree = "<group>"; };
+		66EAEDF91999558A000C3370 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
+		66EAEDFA19995808000C3370 /* Rublsign.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rublsign.otf; sourceTree = "<group>"; };
 		66EC27CB1946E19600A2990C /* ConvertTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConvertTime.h; path = Helpers/ConvertTime.h; sourceTree = "<group>"; };
 		66EC27CC1946E19600A2990C /* ConvertTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConvertTime.m; path = Helpers/ConvertTime.m; sourceTree = "<group>"; };
 		66EC27CE1946EFAB00A2990C /* FeedBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedBackView.h; path = ViewControllers/OrderVC/FeedBackView.h; sourceTree = "<group>"; };
@@ -258,6 +262,10 @@
 				664911D61941ADE500CFA99D /* Helpers */,
 				6643BBD4194061490066D330 /* AppDelegate.h */,
 				6643BBD5194061490066D330 /* AppDelegate.m */,
+				66EAEDF91999558A000C3370 /* FontAwesome.otf */,
+				665BF4891999D9270016EFAB /* rouble.otf */,
+				66EAEDFA19995808000C3370 /* Rublsign.otf */,
+				665BF4881999D88F0016EFAB /* RUBSR.otf */,
 				66FC794419483E740038D415 /* DefaultData.json */,
 				6643BBD7194061490066D330 /* Main.storyboard */,
 				6643BBDD194061490066D330 /* Images.xcassets */,

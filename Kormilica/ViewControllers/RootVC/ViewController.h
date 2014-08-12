@@ -15,7 +15,6 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet BuyView *onBuy;
 
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @end

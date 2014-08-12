@@ -10,6 +10,7 @@ PODS:
   - NUIParse (1.2.1)
   - SHSPhoneComponent (1.5.1)
   - SVPulsingAnnotationView (0.3.0)
+  - TTTAttributedLabel (1.10.1)
   - WYPopoverController (0.1.9)
 
 DEPENDENCIES:
@@ -22,6 +23,7 @@ DEPENDENCIES:
   - NUI
   - SHSPhoneComponent (< 2.0)
   - SVPulsingAnnotationView
+  - TTTAttributedLabel
   - WYPopoverController (~> 0.1.7)
 
 EXTERNAL SOURCES:
@@ -41,6 +43,7 @@ SPEC CHECKSUMS:
   NUIParse: f29eb240cfc9848b216c827884f37ae64abd19e4
   SHSPhoneComponent: 17116649f4d291161e8a82ffe240c4d3b38c8934
   SVPulsingAnnotationView: 92364bec02160f481d1b603afc904183d385c3e6
+  TTTAttributedLabel: 94bb04f1e005616002dd2cee0262a0082e533627
   WYPopoverController: bd2d174880af8a3eb45db28c542c8e550f537d34
 
 COCOAPODS: 0.33.1

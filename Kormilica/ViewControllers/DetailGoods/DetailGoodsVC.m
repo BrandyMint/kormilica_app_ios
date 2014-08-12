@@ -14,6 +14,7 @@
 #import "UILabel+NUI.h"
 #import "UITextView+NUI.h"
 
+
 @interface DetailGoodsVC () <IQActionSheetPickerDelegate, onBuyViewDelegate>
 {
     Product* product;
@@ -103,18 +104,26 @@
 }
 
 - (IBAction)onOrder:(id)sender {
-    IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
-    [picker setTag:1];
-    picker.backgroundColor = COLOR_GRAY;
-
-    NSMutableArray* arr = [NSMutableArray new];
-    [arr addObject:@"Удалить из заказа"];
-    for (int i = 1; i < 26; i++) {
-        [arr addObject:[NSString stringWithFormat:@"%d",i]];
+    NSUInteger countProducts = [appDelegate.cart countProductInCartWithIdProduct:_idProduct];
+    if (countProducts == 0) {
+        [appDelegate.cart addIdProduct:_idProduct count:1];
+        [self initData];
+        [self updateOnBuy];
     }
-    [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
-    [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:_idProduct]]]];
-    [picker showInView:self.view];
+    else {
+        IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+        [picker setTag:1];
+        picker.backgroundColor = COLOR_GRAY;
+        
+        NSMutableArray* arr = [NSMutableArray new];
+        [arr addObject:@"Удалить из заказа"];
+        for (int i = 1; i < 26; i++) {
+            [arr addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+        [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
+        [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:_idProduct]]]];
+        [picker showInView:self.view];
+    }
 }
 
 #pragma mark IQActionSheetPickerDelegate

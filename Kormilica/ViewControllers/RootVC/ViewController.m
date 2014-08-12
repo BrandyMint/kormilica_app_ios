@@ -131,6 +131,7 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
+    _onBuy.userInteractionEnabled = [appDelegate.cart getItemsCount] > 0 ? YES : NO;
     [self initDataArrayWithCategoriesID:selectedIDCategory];
 }
 
@@ -138,6 +139,7 @@
 {
     [super viewDidLoad];
     _onBuy.delegate = self;
+    _onBuy.userInteractionEnabled = NO;
     [self initTopView];
     
     [appDelegate.managers getLocalBundles:^(Bundles* bundles) {
@@ -225,6 +227,7 @@
     [self initDataArrayWithCategoriesID:selectedIDCategory];
     
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
+    _onBuy.userInteractionEnabled = [appDelegate.cart getItemsCount] > 0 ? YES : NO;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
