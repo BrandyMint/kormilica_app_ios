@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+vendor_key=$1
+
+if [ -z "$vendor_key" ]; then
+  echo "Укажите vendor_key в качестве параметра"
+  exit 2
+fi
+
+wget -O Kormilica/DefaultData.json "http://api.aydamarket.ru/v1/bundles.json?vendor_key=$vendor_key"
