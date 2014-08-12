@@ -47,6 +47,7 @@
     [_onUpdate setNuiClass:@"ButtonLastUpdate"];
     
     [_shippingPayment setTitle:@"Доставка и оплата" forState:UIControlStateNormal];
+    [_shippingPayment setNuiClass:@"Label:AllSum"];
     
     _subHeader.text = @"описание компании";
     _address.text = @"Крылова, 7";
