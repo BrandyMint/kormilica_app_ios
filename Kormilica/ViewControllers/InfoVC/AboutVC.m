@@ -72,7 +72,7 @@
     
     _header.text = appDelegate.bundles.vendor.mobile_subject;
     _descriptions.text = [appDelegate.bundles.vendor.mobile_description kv_stripHTMLCharacterEntities];
-    _city.text = appDelegate.bundles.vendor.city.name;
+    _city.text = appDelegate.bundles.vendor.city;
     
     [_onUpdate setTitle:[NSString stringWithFormat:@"Последнее обновление от %@", date] forState:UIControlStateNormal];
 }

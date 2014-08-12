@@ -24,6 +24,7 @@
 {
     return [EKObjectMapping mappingForClass:[Vendor class] withBlock:^(EKObjectMapping *mapping) {
         [mapping mapFieldsFromArray:@[@"key",
+                                      @"city",
                                       @"name",
                                       @"phone",
                                       @"updated_at",
@@ -38,7 +39,7 @@
                                       @"currency",
                                       @"is_demo",
                                       ]];
-        [mapping hasOneMapping:[self cityMapping] forKey:@"city"];
+        //[mapping hasOneMapping:[self cityMapping] forKey:@"city"];
         [mapping hasOneMapping:[self priceMapping] forKey:@"minimal_price"];
         [mapping hasOneMapping:[self priceMapping] forKey:@"delivery_price"];
     }];

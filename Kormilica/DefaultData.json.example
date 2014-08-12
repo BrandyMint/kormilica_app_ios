@@ -3,15 +3,8 @@
         "key": "467abe2e7d33e6455fe905e879fd36be",
         "name": "Демо Пончики",
         "phone": "+7 (905) 198-11-71",
-        "city": {
-            "id": 1,
-            "name": "Чебоксары",
-            "created_at": "2014-07-24T11:17:13.756+04:00",
-            "updated_at": "2014-08-04T14:33:08.856+04:00",
-            "latitude": 56.1322,
-            "longitude": 47.2519
-        },
-        "updated_at": "2014-08-11T12:20:06.091+04:00",
+        "updated_at": "2014-08-12T17:22:16.449+04:00",
+        "city": "Чебоксары",
         "mobile_logo_url": "http://aydamarket.ru/uploads/vendor/mobile_logo/2/mob_logo.png",
         "mobile_title": "Кормилица<br>демо",
         "mobile_subject": "Кормилица-доставка (демо)",

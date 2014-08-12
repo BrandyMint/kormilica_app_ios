@@ -15,7 +15,7 @@
 @property (nonatomic, strong) NSString* key;
 @property (nonatomic, strong) NSString* name;
 @property (nonatomic, strong) NSString* phone;
-@property (nonatomic, strong) City* city;
+@property (nonatomic, strong) NSString* city;
 @property (nonatomic, strong) NSString* updated_at;
 @property (nonatomic, strong) NSString* mobile_logo_url;
 @property (nonatomic, strong) NSString* mobile_title;
