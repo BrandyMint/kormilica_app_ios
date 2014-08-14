@@ -16,10 +16,12 @@
 #import "UILabel+NUI.h"
 #import "UIView+NUI.h"
 #import "NSString+Currency.h"
+#import "IQActionSheetPicker.h"
 
-@interface OrderVC () <OrderCellDelegate>
+@interface OrderVC () <OrderCellDelegate, IQActionSheetPickerDelegate>
 {
     NSInteger selectedProductID;
+    NSIndexPath* selectedIndexPath;
     UILabel* labelAllSum;
     UILabel* labelOrderView;
 }
@@ -40,13 +42,20 @@
 -(void)viewWillAppear:(BOOL)animated
 {
     [_tableView reloadData];
+        //labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents < 500 ? money.cents + 100 : money.cents];
+    [self checkOrder];
+    [self updateBottom];
+}
+
+-(void)updateBottom
+{
     Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
     
     NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Итого: "];
-    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",money.cents < 500 ? money.cents + 100 : money.cents] fromCurrency:money.currency]];
+    
+    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",money.cents < appDelegate.bundles.vendor.minimal_price.cents/100 ? money.cents + 100 : money.cents] fromCurrency:money.currency]];
     labelAllSum.attributedText = attrString;
-    //labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents < 500 ? money.cents + 100 : money.cents];
-    [self checkOrder];
+
 }
 
 -(void)checkOrder
@@ -69,7 +78,7 @@
     else {
         [NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
         NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Минимальная сумма заказа - "];
-        [attrString appendAttributedString:[@"500" fromCurrency:@"RUB"]];
+        [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",appDelegate.bundles.vendor.minimal_price.cents/100] fromCurrency:@"RUB"]];
         labelOrderView.attributedText = attrString;
     }
 }
@@ -159,7 +168,9 @@
 }
 
 - (void)tableView: (UITableView *)tableView didSelectRowAtIndexPath: (NSIndexPath *)indexPath {
-
+    CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:indexPath.row];
+    selectedProductID = cartItem.idProduct;
+    [self performSegueWithIdentifier:@"segEditProduct" sender:self];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -184,7 +195,7 @@
                                              initWithAttributedString:[@"100" fromCurrency:@"RUB"]];
     
     UILabel* deliveryPrice = [[UILabel alloc] initWithFrame:CGRectMake(205, 15, 100, 30)];
-    if (money.cents < 500) {
+    if (money.cents < appDelegate.bundles.vendor.minimal_price.cents/100) {
         deliveryPrice.attributedText = attrString;
     }
     else {
@@ -228,11 +239,58 @@
 {
     CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:indexPath.row];
     selectedProductID = cartItem.idProduct;
-    [self performSegueWithIdentifier:@"segEditProduct" sender:self];
+    selectedIndexPath = indexPath;
+    //[self performSegueWithIdentifier:@"segEditProduct" sender:self];
+    
+    IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    picker.backgroundColor = COLOR_GRAY;
+    
+    NSMutableArray* arr = [NSMutableArray new];
+    [arr addObject:@"Удалить из заказа"];
+    for (int i = 1; i < 26; i++) {
+        [arr addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
+    [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:cartItem.idProduct]]]];
+    [picker showInView:self.view];
+}
+
+#pragma mark IQActionSheetPickerDelegate
+
+-(void)actionSheetPickerView:(IQActionSheetPicker *)pickerView didSelectTitles:(NSArray *)titles didSelectIndexes:(NSArray *)indexes
+{
+    if ([[indexes firstObject] integerValue] == 0) {
+        //удаляем товар из заказа
+        [appDelegate.cart addIdProduct:selectedProductID count:0];
+        //[_tableView deleteRowsAtIndexPaths:@[selectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else {
+        //меняем количество товаров для заказа
+        NSUInteger count = [[indexes firstObject] integerValue];
+        
+        [appDelegate.cart addIdProduct:selectedProductID count:count];
+        
+        
+        CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:selectedIndexPath.row];
+        Product* product = [cartItem productFromAllProducts:appDelegate.bundles.products];
+        OrderCell *cell = (OrderCell *)[_tableView cellForRowAtIndexPath:selectedIndexPath];
+        NSMutableAttributedString* buttonAttributedString = [[NSMutableAttributedString alloc]
+                                                             initWithString:[NSString stringWithFormat:@"%d шт. ", count]];
+        [buttonAttributedString appendAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents*count] fromCurrencyCents:product.price.currency]];
+        
+        [cell.onOrderAmount setAttributedTitle:buttonAttributedString forState:UIControlStateNormal];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.indexPath = selectedIndexPath;
+        cell.count = cartItem.count;
+    }
+    [self updateBottom];
+    [self checkOrder];
+    [_tableView reloadData];
 }
 
 #pragma mark - Navigation
- 
+
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
