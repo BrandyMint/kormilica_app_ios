@@ -15,6 +15,7 @@
 #import "CartItem.h"
 #import "UILabel+NUI.h"
 #import "UIView+NUI.h"
+#import "NSString+Currency.h"
 
 @interface OrderVC () <OrderCellDelegate>
 {
@@ -40,16 +41,19 @@
 {
     [_tableView reloadData];
     Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
-    labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents < 500 ? money.cents + 100 : money.cents];
+    
+    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Итого: "];
+    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",money.cents < 500 ? money.cents + 100 : money.cents] fromCurrency:money.currency]];
+    labelAllSum.attributedText = attrString;
+    //labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents < 500 ? money.cents + 100 : money.cents];
     [self checkOrder];
 }
 
 -(void)checkOrder
 {
     BOOL isAllowed = [appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products];
-    labelOrderView.text = isAllowed ? @"Оформить заказ" :
-                                        @"Минимальная сумма заказа - 500 руб.";
-                //[NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
+    
+    //[NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
     labelAllSum.userInteractionEnabled  = _onOrderView.userInteractionEnabled = isAllowed;
     labelAllSum.textAlignment = NSTextAlignmentCenter;
     
@@ -60,9 +64,13 @@
     [labelOrderView setNuiClass:@"Label:WhiteText"];
     if (isAllowed) {
         [NUIRenderer renderView:labelOrderView withClass:@"OrderAllowed"];
+        labelOrderView.text = @"Оформить заказ";
     }
     else {
         [NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
+        NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Минимальная сумма заказа - "];
+        [attrString appendAttributedString:[@"500" fromCurrency:@"RUB"]];
+        labelOrderView.attributedText = attrString;
     }
 }
 
@@ -128,8 +136,19 @@
     Product* product = [cartItem productFromAllProducts:appDelegate.bundles.products];
     
     cell.title.text = product.title;
-    cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",product.price.cents/100];
-    [cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",cartItem.count, product.price.cents/100 * cartItem.count] forState:UIControlStateNormal];
+    
+    //cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",product.price.cents/100];
+    NSMutableAttributedString* sumAttributedString = [[NSMutableAttributedString alloc]
+                                             initWithAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency]];
+    NSAttributedString* sumSubString = [[NSAttributedString alloc] initWithString:@" / шт."];
+    [sumAttributedString appendAttributedString:sumSubString];
+    cell.sum.attributedText = sumAttributedString;
+    
+    //[cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",cartItem.count, product.price.cents/100 * cartItem.count] forState:UIControlStateNormal];
+    NSMutableAttributedString* buttonAttributedString = [[NSMutableAttributedString alloc]
+                                                         initWithString:[NSString stringWithFormat:@"%d шт. ", cartItem.count]];
+    [buttonAttributedString appendAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents*cartItem.count] fromCurrencyCents:product.price.currency]];
+    [cell.onOrderAmount setAttributedTitle:buttonAttributedString forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.indexPath = indexPath;
@@ -161,8 +180,17 @@
     delivery.textAlignment = NSTextAlignmentCenter;
     [view addSubview:delivery];
     
+    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc]
+                                             initWithAttributedString:[@"100" fromCurrency:@"RUB"]];
+    
     UILabel* deliveryPrice = [[UILabel alloc] initWithFrame:CGRectMake(205, 15, 100, 30)];
-    deliveryPrice.text = money.cents < 500 ? @"100 руб" : @"Бесплатно";
+    if (money.cents < 500) {
+        deliveryPrice.attributedText = attrString;
+    }
+    else {
+        deliveryPrice.text = @"Бесплатно";
+    }
+    
     [deliveryPrice setNuiClass:@"Label:TitleProductCell"];
     deliveryPrice.textAlignment = NSTextAlignmentCenter;
     deliveryPrice.layer.cornerRadius = 3;
@@ -216,6 +244,5 @@
         //OrderDetailVC* destination = [segue destinationViewController];
     }
 }
-
 
 @end

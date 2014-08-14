@@ -9,6 +9,7 @@
 #import "BuyView.h"
 #import "UIView+NUI.h"
 #import "UILabel+NUI.h"
+#import "NSString+Currency.h"
 
 @implementation BuyView
 
@@ -63,7 +64,12 @@
     
     AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
     Money* totalPrice = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
-    deliveryPriceLabel.text = [NSString stringWithFormat:@"Итого \n %d %@", totalPrice.cents, totalPrice.currency];
+    //deliveryPriceLabel.text = [NSString stringWithFormat:@"Итого \n %d %@", totalPrice.cents, totalPrice.currency];
+    
+    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Итого:\n"];
+    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",totalPrice.cents] fromCurrency:totalPrice.currency]];
+    deliveryPriceLabel.attributedText = attrString;
+
     checkoutLabel.text = @"Оформить заказ";
 }
 
