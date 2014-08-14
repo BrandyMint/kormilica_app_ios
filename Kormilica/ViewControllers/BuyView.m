@@ -75,20 +75,24 @@
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    [_delegate onBuyAction];
-
-}
-
--(void)userInteractionEnabled:(BOOL)enabled
-{
-    if (!enabled) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"Ваша корзина пуста, выберите товар для заказа"
+    if (isUserInEnabled) {
+        [_delegate onBuyAction];
+    }
+    else {
+        AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Внимание"
+                                                        message:[NSString stringWithFormat:@"Минимальная сумма заказа составляет %d Р", appDelegate.bundles.vendor.minimal_price.cents/100]
                                                        delegate:self
                                               cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
     }
-    self.superview.userInteractionEnabled = enabled;
+
+}
+
+-(void)setUserInteractionEnabled:(BOOL)enabled
+{
+    isUserInEnabled = enabled;
+    //self.superview.userInteractionEnabled = enabled;
 }
 
 /*

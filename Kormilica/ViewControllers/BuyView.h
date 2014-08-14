@@ -15,9 +15,13 @@
 @end
 
 @interface BuyView : UIView
+{
+    BOOL isUserInEnabled;
+}
+
 //public
 -(void)isAllowed:(BOOL)allowed;
--(void)userInteractionEnabled:(BOOL)enabled;
+-(void)setUserInteractionEnabled:(BOOL)enabled;
 
 @property (assign) id<onBuyViewDelegate> delegate;
 @end
