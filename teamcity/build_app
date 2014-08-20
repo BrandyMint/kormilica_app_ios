@@ -1,1 +1,24 @@
 #!/usr/bin/env bash
+
+#xcodebuild -target "${PROJECT_NAME}" \
+#  -sdk iphoneos \
+#  -configuration Release
+
+#xcrun -sdk iphoneos PackageApplication \
+#  -v ./platforms/ios/build/device/*.app \
+#  -o `pwd`/Kormilica.ipa
+
+#xcrun -sdk iphoneos PackageApplication \
+#  -v "${RELEASE_BUILDDIR}/${APPLICATION_NAME}.app" \
+#  -o "${BUILD_HISTORY_DIR}/${APPLICATION_NAME}.ipa" --sign "${DEVELOPER_NAME}" --embed "${PROVISONING_PROFILE}"
+
+
+WORKSPACE="Kormilica.xcworkspace"
+SCHEME="Kormilica"
+ARCHIVE_PATH="build/kormilica.xcarchive"
+EXPORT_PATH="build/kormilica.ipa"
+PROVISIONING_PROFILE="All apps distribution"
+
+xcodebuild -workspace "${WORKSPACE}" -scheme "${SCHEME}" archive -archivePath "${ARCHIVE_PATH}"
+
+xcodebuild -exportArchive -exportFormat ipa -archivePath "${ARCHIVE_PATH}" -exportPath "${EXPORT_PATH}" -exportProvisioningProfile "${PROVISIONING_PROFILE}"
