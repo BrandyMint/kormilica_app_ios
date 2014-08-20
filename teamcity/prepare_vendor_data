@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+#467abe2e7d33e6455fe905e879fd36be
 vendor_key=$1
 
 if [ -z "$vendor_key" ]; then
