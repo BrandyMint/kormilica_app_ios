@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-app_file=`pwd`/Kormilica.ipa
+app_file=`pwd`/build/kormilica.ipa
 
 api_access_token='supertoken'
 #'98b118b9fa89e7aa8c18b0b43f7c178e'
