@@ -13,7 +13,7 @@
 #import "UIButton+NUI.h"
 #import "UILabel+NUI.h"
 #import "UITextView+NUI.h"
-
+#import "NSString+Currency.h"
 
 @interface DetailGoodsVC () <IQActionSheetPickerDelegate, onBuyViewDelegate>
 {
@@ -72,7 +72,14 @@
     _titleProduct.contentMode = UIViewContentModeTop;
     [_titleProduct setNuiClass: @"Label:TitleProductCell"];
     
-    _price.text = [NSString stringWithFormat:@"%d %@ /шт.",product.price.cents/100, product.price.currency];
+    //_price.text = [NSString stringWithFormat:@"%d %@ /шт.",product.price.cents/100, product.price.currency];
+    NSMutableAttributedString* sumAttributedString = [[NSMutableAttributedString alloc]
+                                                      initWithAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency]];
+    
+    NSAttributedString* sumSubString = [[NSAttributedString alloc] initWithString:@" / шт."];
+    [sumAttributedString appendAttributedString:sumSubString];
+    _price.attributedText = sumAttributedString;
+    
     _price.contentMode = UIViewContentModeTop;
     [_price setNuiClass: @"Label:PriceProductCell"];
     

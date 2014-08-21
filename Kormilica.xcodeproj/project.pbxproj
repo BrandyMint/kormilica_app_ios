@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661C6CEE199C91B400B86D24 /* NSString+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 661C6CED199C91B400B86D24 /* NSString+Currency.m */; };
+		66263B60199C09E300E1C1F6 /* DefaultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 66263B5F199C09E300E1C1F6 /* DefaultData.json */; };
 		6643BBC6194061490066D330 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC5194061490066D330 /* Foundation.framework */; };
 		6643BBC8194061490066D330 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC7194061490066D330 /* CoreGraphics.framework */; };
 		6643BBCA194061490066D330 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC9194061490066D330 /* UIKit.framework */; };
@@ -66,7 +68,6 @@
 		66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */; };
 		66F2258D1948477F00D657A1 /* CartTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2258C1948477F00D657A1 /* CartTest.m */; };
 		66F225931948770600D657A1 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F225921948770600D657A1 /* Cart.m */; };
-		66FC794519483E740038D415 /* DefaultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 66FC794419483E740038D415 /* DefaultData.json */; };
 		FF483C3D983C44C1875D9126 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2958C20ED84050A6FD4DBF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		661C6CEC199C91B400B86D24 /* NSString+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Currency.h"; path = "Helpers/NSString+Currency.h"; sourceTree = "<group>"; };
+		661C6CED199C91B400B86D24 /* NSString+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Currency.m"; path = "Helpers/NSString+Currency.m"; sourceTree = "<group>"; };
+		66263B5F199C09E300E1C1F6 /* DefaultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultData.json; sourceTree = "<group>"; };
 		6643BBC2194061490066D330 /* Kormilica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kormilica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6643BBC5194061490066D330 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6643BBC7194061490066D330 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -119,8 +123,6 @@
 		664911D81941AE0800CFA99D /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Size.m"; path = "Helpers/NSString+Size.m"; sourceTree = "<group>"; };
 		664911DD1941FAAF00CFA99D /* MasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterVC.h; path = ViewControllers/MasterVC.h; sourceTree = "<group>"; };
 		664911DE1941FAAF00CFA99D /* MasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterVC.m; path = ViewControllers/MasterVC.m; sourceTree = "<group>"; };
-		665BF4881999D88F0016EFAB /* RUBSR.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RUBSR.otf; sourceTree = "<group>"; };
-		665BF4891999D9270016EFAB /* rouble.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = rouble.otf; sourceTree = "<group>"; };
 		668F84081945DFD0004C8DFE /* DeliveryOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeliveryOrderView.h; path = ViewControllers/OrderDetailVC/DeliveryOrderView.h; sourceTree = "<group>"; };
 		668F84091945DFD0004C8DFE /* DeliveryOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeliveryOrderView.m; path = ViewControllers/OrderDetailVC/DeliveryOrderView.m; sourceTree = "<group>"; };
 		669CCFF219542BF00025E5A1 /* AnswerOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerOrder.h; path = Models/AnswerOrder.h; sourceTree = "<group>"; };
@@ -157,8 +159,6 @@
 		66E262F31952F805003926BE /* Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Address.m; path = Models/Address.m; sourceTree = "<group>"; };
 		66EAEDF619992F72000C3370 /* City.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = City.h; path = Models/City.h; sourceTree = "<group>"; };
 		66EAEDF719992F72000C3370 /* City.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = City.m; path = Models/City.m; sourceTree = "<group>"; };
-		66EAEDF91999558A000C3370 /* FontAwesome.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.otf; sourceTree = "<group>"; };
-		66EAEDFA19995808000C3370 /* Rublsign.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Rublsign.otf; sourceTree = "<group>"; };
 		66EC27CB1946E19600A2990C /* ConvertTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConvertTime.h; path = Helpers/ConvertTime.h; sourceTree = "<group>"; };
 		66EC27CC1946E19600A2990C /* ConvertTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConvertTime.m; path = Helpers/ConvertTime.m; sourceTree = "<group>"; };
 		66EC27CE1946EFAB00A2990C /* FeedBackView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedBackView.h; path = ViewControllers/OrderVC/FeedBackView.h; sourceTree = "<group>"; };
@@ -188,7 +188,6 @@
 		66F2258C1948477F00D657A1 /* CartTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CartTest.m; sourceTree = "<group>"; };
 		66F225911948770600D657A1 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cart.h; path = Models/Cart.h; sourceTree = "<group>"; };
 		66F225921948770600D657A1 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cart.m; path = Models/Cart.m; sourceTree = "<group>"; };
-		66FC794419483E740038D415 /* DefaultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DefaultData.json; sourceTree = "<group>"; };
 		BC2958C20ED84050A6FD4DBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C34A13AB244E24AEC265C2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -262,11 +261,6 @@
 				664911D61941ADE500CFA99D /* Helpers */,
 				6643BBD4194061490066D330 /* AppDelegate.h */,
 				6643BBD5194061490066D330 /* AppDelegate.m */,
-				66EAEDF91999558A000C3370 /* FontAwesome.otf */,
-				665BF4891999D9270016EFAB /* rouble.otf */,
-				66EAEDFA19995808000C3370 /* Rublsign.otf */,
-				665BF4881999D88F0016EFAB /* RUBSR.otf */,
-				66FC794419483E740038D415 /* DefaultData.json */,
 				6643BBD7194061490066D330 /* Main.storyboard */,
 				6643BBDD194061490066D330 /* Images.xcassets */,
 				6643BC0019406F600066D330 /* ViewControllers */,
@@ -387,6 +381,8 @@
 			isa = PBXGroup;
 			children = (
 				6643BBFF19406F4F0066D330 /* DefaultSettings.h */,
+				661C6CEC199C91B400B86D24 /* NSString+Currency.h */,
+				661C6CED199C91B400B86D24 /* NSString+Currency.m */,
 				664911D71941AE0800CFA99D /* NSString+Size.h */,
 				664911D81941AE0800CFA99D /* NSString+Size.m */,
 				66EC27CB1946E19600A2990C /* ConvertTime.h */,
@@ -394,6 +390,7 @@
 				66EC27D9194714CD00A2990C /* SVAnnotation.h */,
 				66EC27DA194714CD00A2990C /* SVAnnotation.m */,
 				66BEBD03195801BD00BFCC42 /* Kormilica.NUI.nss */,
+				66263B5F199C09E300E1C1F6 /* DefaultData.json */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -571,7 +568,7 @@
 				6643BBDE194061490066D330 /* Images.xcassets in Resources */,
 				66BEBD04195801BD00BFCC42 /* Kormilica.NUI.nss in Resources */,
 				66D46861194F0FF400678B9B /* Array.plist in Resources */,
-				66FC794519483E740038D415 /* DefaultData.json in Resources */,
+				66263B60199C09E300E1C1F6 /* DefaultData.json in Resources */,
 				6643BBD0194061490066D330 /* InfoPlist.strings in Resources */,
 				6643BBD9194061490066D330 /* Main.storyboard in Resources */,
 			);
@@ -663,6 +660,7 @@
 				6643BC1A19407CF60066D330 /* Image.m in Sources */,
 				66E262F41952F805003926BE /* Address.m in Sources */,
 				669CCFFA19542D710025E5A1 /* AnswerOrderFactory.m in Sources */,
+				661C6CEE199C91B400B86D24 /* NSString+Currency.m in Sources */,
 				66AAB8A919517A1400B7A458 /* CartCD.m in Sources */,
 				66EC27D81947145400A2990C /* MapVC.m in Sources */,
 				669CCFF719542C980025E5A1 /* Message.m in Sources */,
