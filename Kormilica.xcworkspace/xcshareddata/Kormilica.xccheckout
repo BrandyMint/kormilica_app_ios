@@ -5,36 +5,36 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>87B7F8D9-83E6-4B72-AB22-12B88A598AD8</string>
+	<string>AC0A7750-D22C-4AD0-9E9B-86AAEF685DA1</string>
 	<key>IDESourceControlProjectName</key>
 	<string>Kormilica</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>D9CD11D9-610C-482D-A603-9DDCDBB53E20</key>
-		<string>https://github.com/BrandyMint/kormilica_app_ios.git</string>
+		<key>DF655F92-08A3-4F4C-8D73-2F0446D11ABC</key>
+		<string>https://github.com/artemper/kormilica_app_ios.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>Kormilica.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>D9CD11D9-610C-482D-A603-9DDCDBB53E20</key>
+		<key>DF655F92-08A3-4F4C-8D73-2F0446D11ABC</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/BrandyMint/kormilica_app_ios.git</string>
+	<string>https://github.com/artemper/kormilica_app_ios.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>D9CD11D9-610C-482D-A603-9DDCDBB53E20</string>
+	<string>DF655F92-08A3-4F4C-8D73-2F0446D11ABC</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D9CD11D9-610C-482D-A603-9DDCDBB53E20</string>
+			<string>DF655F92-08A3-4F4C-8D73-2F0446D11ABC</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Kormilica</string>
+			<string>kormilica_app_ios</string>
 		</dict>
 	</array>
 </dict>

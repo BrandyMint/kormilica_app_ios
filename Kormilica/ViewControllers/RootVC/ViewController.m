@@ -50,6 +50,7 @@
     [infoButton addTarget:self action:@selector(onInfo) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *modalButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
     [self.navigationItem setLeftBarButtonItem:modalButton animated:YES];
+    infoButton.frame = CGRectMake(0,0,46,35);
 }
 
 -(void)initScrollViewContent
