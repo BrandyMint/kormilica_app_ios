@@ -18,6 +18,8 @@
 #import "NSString+Currency.h"
 #import "UIButton+NUI.h"
 
+static int positionButtonInfo = 46;
+
 @interface ViewController () <TableViewCellDelegate, onBuyViewDelegate>
 {
     AboutVC* popover;
@@ -50,6 +52,7 @@
     [infoButton addTarget:self action:@selector(onInfo) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *modalButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
     [self.navigationItem setLeftBarButtonItem:modalButton animated:YES];
+    infoButton.frame = CGRectMake(0,0,positionButtonInfo,35);
 }
 
 -(void)initScrollViewContent
