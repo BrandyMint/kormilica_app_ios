@@ -190,8 +190,8 @@ static int positionButtonInfo = 46;
     cell.title.text = product.title;
     cell.price.attributedText = [[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency];
     
-    [cell.logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@""]];
-
+    [cell.logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@"typeImage.png"]];
+    
     cell.indexPath = indexPath;
     //смотрим в корзину, если там есть такой же товар, то указываем количество
     cell.count = [appDelegate.cart countProductInCartWithIdProduct:product.idProduct];
