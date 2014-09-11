@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [_imageView setImageWithURL:[NSURL URLWithString:_imageUrl] placeholderImage:nil];
+    [_imageView setImageWithURL:[NSURL URLWithString:_imageUrl] placeholderImage:[UIImage imageNamed:@"typeImage.png"]];
 }
 
 - (void)didReceiveMemoryWarning

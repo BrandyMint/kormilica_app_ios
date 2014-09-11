@@ -66,7 +66,7 @@
 
 -(void)initData
 {
-    [_logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:nil];
+    [_logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@"typeImage.png"]];
     
     _titleProduct.text = product.title;
     _titleProduct.contentMode = UIViewContentModeTop;
