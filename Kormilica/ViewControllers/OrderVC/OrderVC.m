@@ -194,7 +194,7 @@
     NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc]
                                              initWithAttributedString:[@"100" fromCurrency:@"RUB"]];
     
-    /*
+    
     UILabel* deliveryPrice = [[UILabel alloc] initWithFrame:CGRectMake(205, 15, 100, 30)];
     if (money.cents < appDelegate.bundles.vendor.minimal_price.cents/100) {
         deliveryPrice.attributedText = attrString;
@@ -203,10 +203,10 @@
         deliveryPrice.text = @"Бесплатно";
         
     }
-    */
-    
+    /* для теста
     UILabel* deliveryPrice = [[UILabel alloc] initWithFrame: CGRectMake(205, 15, 100, 30) ];
     deliveryPrice.text = @"Бесплатно";
+    */
     
     [deliveryPrice setNuiClass:@"Label:TitleProductCell"];
     deliveryPrice.textAlignment = NSTextAlignmentCenter;
