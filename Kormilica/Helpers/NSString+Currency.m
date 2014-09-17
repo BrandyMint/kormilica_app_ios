@@ -60,6 +60,7 @@
      range:range];
      return attributeString;
      */
+   
     NSUInteger cents = 0;
     NSString* resultString = @"";
     NSString* resultString2 = @"";

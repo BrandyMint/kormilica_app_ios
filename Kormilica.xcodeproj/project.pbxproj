@@ -68,7 +68,7 @@
 		66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */; };
 		66F2258D1948477F00D657A1 /* CartTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2258C1948477F00D657A1 /* CartTest.m */; };
 		66F225931948770600D657A1 /* Cart.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F225921948770600D657A1 /* Cart.m */; };
-		CEA685BA19C8BE2400A8106D /* W1Rouble-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CEA685B919C8BE2400A8106D /* W1Rouble-Regular.otf */; };
+		CEA685BF19C9FAD100A8106D /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = CEA685BE19C9FAD100A8106D /* Fonts */; };
 		FF483C3D983C44C1875D9126 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2958C20ED84050A6FD4DBF /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -190,7 +190,7 @@
 		66F225911948770600D657A1 /* Cart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Cart.h; path = Models/Cart.h; sourceTree = "<group>"; };
 		66F225921948770600D657A1 /* Cart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Cart.m; path = Models/Cart.m; sourceTree = "<group>"; };
 		BC2958C20ED84050A6FD4DBF /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		CEA685B919C8BE2400A8106D /* W1Rouble-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "W1Rouble-Regular.otf"; path = "../../OTHERS/W1Rouble-Regular.otf"; sourceTree = "<group>"; };
+		CEA685BE19C9FAD100A8106D /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		D5C34A13AB244E24AEC265C2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -257,7 +257,7 @@
 		6643BBCB194061490066D330 /* Kormilica */ = {
 			isa = PBXGroup;
 			children = (
-				CEA685B819C8BDE500A8106D /* Fonts */,
+				CEA685BE19C9FAD100A8106D /* Fonts */,
 				6643BC0B194076E20066D330 /* Factory */,
 				6643BC0A194076DA0066D330 /* Models */,
 				6643BBFA194062B10066D330 /* Managers */,
@@ -487,14 +487,6 @@
 			name = OrderDetailVC;
 			sourceTree = "<group>";
 		};
-		CEA685B819C8BDE500A8106D /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CEA685B919C8BE2400A8106D /* W1Rouble-Regular.otf */,
-			);
-			name = Fonts;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -581,8 +573,8 @@
 				66D46861194F0FF400678B9B /* Array.plist in Resources */,
 				66263B60199C09E300E1C1F6 /* DefaultData.json in Resources */,
 				6643BBD0194061490066D330 /* InfoPlist.strings in Resources */,
-				CEA685BA19C8BE2400A8106D /* W1Rouble-Regular.otf in Resources */,
 				6643BBD9194061490066D330 /* Main.storyboard in Resources */,
+				CEA685BF19C9FAD100A8106D /* Fonts in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
