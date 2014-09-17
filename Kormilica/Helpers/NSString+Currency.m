@@ -19,7 +19,7 @@
     if ([currency isEqualToString:@"RUB"]) {
         cents = [self integerValue]/100;
         resultString = [NSString stringWithFormat:@"%d ",cents];
-        resultString2 = [NSString stringWithFormat:@"%c",'B'];
+        resultString2 = [NSString stringWithFormat:@"%c",'C'];
         
     }
     else if ([currency isEqualToString:@"USD"])
