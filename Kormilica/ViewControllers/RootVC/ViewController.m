@@ -60,6 +60,11 @@ static int positionButtonInfo = 46;
     CGFloat weightButtons = 0;
     
     for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
+        UIButton* button = (UIButton *)[self.view viewWithTag:i+1];
+        [button removeFromSuperview];
+    }
+    
+    for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
         NSString* title = [[appDelegate.bundles.categories objectAtIndex:i] name];
 
         UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -136,6 +141,8 @@ static int positionButtonInfo = 46;
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
     _onBuy.userInteractionEnabled = [appDelegate.cart getItemsCount] > 0 ? YES : NO;
     [self initDataArrayWithCategoriesID:selectedIDCategory];
+    
+    [self initScrollViewContent];
 }
 
 - (void)viewDidLoad
@@ -149,7 +156,6 @@ static int positionButtonInfo = 46;
         appDelegate.bundles = bundles;
         
         [self initText];
-        [self initScrollViewContent];
         
         Product* product = [bundles.products firstObject];
         selectedIDCategory = product.idCategory;
@@ -188,7 +194,8 @@ static int positionButtonInfo = 46;
     
     Product* product = [dataArray objectAtIndex:indexPath.row];
     cell.title.text = product.title;
-    cell.price.attributedText = [[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency];
+    
+    cell.price.attributedText = [[NSAttributedString alloc] initWithAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency]];
     
     [cell.logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@"typeImage.png"]];
     

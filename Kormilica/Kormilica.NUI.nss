@@ -1,4 +1,4 @@
-
+@rubleFont: W1Rouble-Regular;
 @secondaryFontName: ArialRoundedMTBold;
 @secondaryFontNameBold: ArialRoundedMTBold;
 @secondaryFontNameStrong: ArialRoundedMTBold;
@@ -102,12 +102,13 @@ ButtonLastUpdate {
     font-color: black;
 }
 
-Label {
+LabelDefault {
     font-name: HelveticaNeue-Light;
     font-size: 14;
     font-color: black;
     text-auto-fit: false;
 }
+
 NameCompany {
     font-name: @primaryFontName;
     font-size: 18;

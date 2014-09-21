@@ -10,7 +10,9 @@
 
 @interface NSString (currency)
 
+-(NSMutableAttributedString *)fromCurrencyCents:(NSString *)currency font:(UIFont *)theFont;
 -(NSMutableAttributedString *)fromCurrencyCents:(NSString *)currency;
+-(NSMutableAttributedString *)fromCurrency:(NSString *)currency font:(UIFont *)theFont;
 -(NSMutableAttributedString *)fromCurrency:(NSString *)currency;
 
 @end

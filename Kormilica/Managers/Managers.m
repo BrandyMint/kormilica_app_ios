@@ -15,7 +15,6 @@
 
 - (void) getBundles:(void (^) (Bundles* bundles)) block  failBlock:(void (^) (NSException *exception)) blockException
 {
-
     NSString* urlString = BUNDLES_API;
     NSURL *url = [[NSURL alloc] initWithString:urlString];
 
@@ -35,7 +34,6 @@
              blockException(exception);
          }];
     [operation start];
-
 }
 
 -(void)getLocalBundles:(void (^) (Bundles* bundles))block

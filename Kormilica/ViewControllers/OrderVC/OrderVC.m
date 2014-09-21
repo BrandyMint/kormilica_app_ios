@@ -52,10 +52,9 @@
     Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
     
     NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Итого: "];
-    
+    [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, attrString.length)];
     [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",money.cents < appDelegate.bundles.vendor.minimal_price.cents/100 ? money.cents + 100 : money.cents] fromCurrency:money.currency]];
     labelAllSum.attributedText = attrString;
-
 }
 
 -(void)checkOrder
@@ -91,7 +90,7 @@
     
     _allSumView.backgroundColor = [UIColor clearColor];
     labelAllSum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_allSumView.frame), CGRectGetHeight(_allSumView.frame))];
-    [labelAllSum setNuiClass:@"Label:AllSum"];
+    //[labelAllSum setNuiClass:@"Label:AllSum"];
     [_allSumView addSubview:labelAllSum];
     
     _onOrderView.backgroundColor = [UIColor clearColor];
@@ -101,6 +100,7 @@
     labelOrderView.contentMode = UIViewContentModeCenter;
     labelOrderView.textAlignment = NSTextAlignmentCenter;
     labelOrderView.numberOfLines = 2;
+    labelOrderView.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
     _onOrderView.userInteractionEnabled = YES;
     [_onOrderView addSubview:labelOrderView];
     
@@ -191,16 +191,25 @@
     delivery.textAlignment = NSTextAlignmentCenter;
     [view addSubview:delivery];
     
-    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc]
-                                             initWithAttributedString:[@"100" fromCurrency:@"RUB"]];
-    
-    
     UILabel* deliveryPrice = [[UILabel alloc] initWithFrame:CGRectMake(205, 15, 100, 30)];
+    //[deliveryPrice setNuiClass:@"Label:TitleProductCell"];
+    deliveryPrice.textAlignment = NSTextAlignmentCenter;
+    //deliveryPrice.layer.cornerRadius = 3;
+    //deliveryPrice.layer.masksToBounds = YES;
+    //deliveryPrice.layer.borderColor = [UIColor blackColor].CGColor;
+    //deliveryPrice.layer.borderWidth = 1;
+    
     if (money.cents < appDelegate.bundles.vendor.minimal_price.cents/100) {
+        NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc]
+                                                 initWithAttributedString:[@"100" fromCurrency:@"RUB"]];
         deliveryPrice.attributedText = attrString;
     }
     else {
-        deliveryPrice.text = @"Бесплатно";
+        //deliveryPrice.layer.borderColor = [UIColor clearColor].CGColor;
+        //deliveryPrice.layer.borderWidth = 0;
+        NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Бесплатно"];
+        [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, attrString.length)];
+        deliveryPrice.attributedText = attrString;
         
     }
     /* для теста
@@ -208,12 +217,6 @@
     deliveryPrice.text = @"Бесплатно";
     */
     
-    [deliveryPrice setNuiClass:@"Label:TitleProductCell"];
-    deliveryPrice.textAlignment = NSTextAlignmentCenter;
-    deliveryPrice.layer.cornerRadius = 3;
-    deliveryPrice.layer.masksToBounds = YES;
-    deliveryPrice.layer.borderColor = [UIColor blackColor].CGColor;
-    deliveryPrice.layer.borderWidth = 1;
     [view addSubview:deliveryPrice];
     
 /*

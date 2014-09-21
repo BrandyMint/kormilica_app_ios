@@ -40,25 +40,25 @@
         case fill:
             //fill
             label.text = @"Впишите телефон и адрес для доставки";
-            [NUIRenderer renderLabel:label withClass:@"Label:OrderFill"];
+            [NUIRenderer renderLabel:label withClass:@"LabelDefault:OrderFill"];
             break;
         case deliver:
             //deliver
             label.text = @"Доставить заказ";
-            [NUIRenderer renderLabel:label withClass:@"Label:OrderDeliver"];
+            [NUIRenderer renderLabel:label withClass:@"LabelDefault:OrderDeliver"];
             isDeliverAction = YES;
             self.userInteractionEnabled = YES;
             break;
         case sending:
             label.text = @"Отправляем заказ";
-            [NUIRenderer renderLabel:label withClass:@"Label:OrderSending"];
+            [NUIRenderer renderLabel:label withClass:@"LabelDefault:OrderSending"];
             [activityIndicator startAnimating];
             break;
         case backToShop:
             isDeliverAction = NO;
             self.userInteractionEnabled = YES;
             label.text = @"Вернуться в магазин";
-            [NUIRenderer renderLabel:label withClass:@"Label:OrderReturn"];
+            [NUIRenderer renderLabel:label withClass:@"LabelDefault:OrderReturn"];
             break;
         default:
             break;

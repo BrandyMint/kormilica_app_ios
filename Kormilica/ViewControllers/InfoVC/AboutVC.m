@@ -14,6 +14,7 @@
 #import "UILabel+NUI.h"
 #import "UITextView+NUI.h"
 #import "UIView+NUI.h"
+#import "MBProgressHUD.h"
 
 @interface AboutVC ()
 
@@ -101,17 +102,17 @@
 
 - (IBAction)onUpdate:(id)sender {
     
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [self networkActivity:YES];
     [appDelegate.managers getBundles:^(Bundles* bundles) {
         appDelegate.bundles = bundles;
         
         [self updateText];
         appDelegate.cart.vendor = bundles.vendor;
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self networkActivity:NO];
     } failBlock:^(NSException * exception) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:exception.name message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        [self networkActivity:NO];
     }];
 }
 
@@ -124,8 +125,18 @@
         [notPermitted show];
     }
 }
+
 - (IBAction)onAddress:(id)sender {
     [self performSegueWithIdentifier:@"segMap" sender:self];
+}
+
+-(void)networkActivity:(BOOL)activity
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = activity;
+    if (activity)
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    else
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 @end

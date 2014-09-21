@@ -37,7 +37,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _onBuy.delegate = self;
-    
+
     for (Product* product_ in appDelegate.bundles.products) {
         if (product_.idProduct == _idProduct) {
             product = product_;
@@ -46,6 +46,7 @@
     UITapGestureRecognizer* tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onDetailImage)];
     [_logo addGestureRecognizer:tap];
     _logo.userInteractionEnabled = YES;
+    
     [self initData];
 }
 
@@ -70,18 +71,18 @@
     
     _titleProduct.text = product.title;
     _titleProduct.contentMode = UIViewContentModeTop;
-    [_titleProduct setNuiClass: @"Label:TitleProductCell"];
+    [NUIRenderer renderLabel:_titleProduct withClass:@"LabelDefault:TitleProductCell"];
     
     //_price.text = [NSString stringWithFormat:@"%d %@ /шт.",product.price.cents/100, product.price.currency];
     NSMutableAttributedString* sumAttributedString = [[NSMutableAttributedString alloc]
                                                       initWithAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency]];
+
+    NSMutableAttributedString* sumSubString = [[NSMutableAttributedString alloc] initWithString:@" / шт."];
+    [sumSubString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, sumSubString.length)];
     
-    NSAttributedString* sumSubString = [[NSAttributedString alloc] initWithString:@" / шт."];
     [sumAttributedString appendAttributedString:sumSubString];
     _price.attributedText = sumAttributedString;
-    
     _price.contentMode = UIViewContentModeTop;
-    [_price setNuiClass: @"Label:PriceProductCell"];
     
     [_onOrder.titleLabel setFont:[UIFont systemFontOfSize:18]];
     _onOrder.layer.cornerRadius = 4;

@@ -12,76 +12,79 @@
 
 -(NSMutableAttributedString *)fromCurrencyCents:(NSString *)currency
 {
-    NSUInteger cents = 0;
-    NSString* resultString = @"";
-    NSString* resultString2 = @"";
+    return [self fromCurrencyCents:currency font:nil];
+}
+
+-(NSMutableAttributedString *)fromCurrencyCents:(NSString *)currency font:(UIFont *)theFont
+{
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    if (theFont) {
+        font = theFont;
+    }
+    
+    CGFloat cents = [self integerValue]/100;
+    NSMutableAttributedString *amountAttr = [[NSMutableAttributedString alloc] initWithString:[self getFormattedAmount:[NSNumber numberWithFloat:cents]]];
+    [amountAttr addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, amountAttr.length)];
+    
+    NSMutableAttributedString *currencyAttr = [[NSMutableAttributedString alloc] init];
     
     if ([currency isEqualToString:@"RUB"]) {
-        cents = [self integerValue]/100;
-        resultString = [NSString stringWithFormat:@"%d ",cents];
-        resultString2 = [NSString stringWithFormat:@"%c",'B'];
-        
+        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"B"]];
+        [currencyAttr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"W1Rouble-Regular" size:font.pointSize] range:NSMakeRange(0, currencyAttr.length)];
     }
     else if ([currency isEqualToString:@"USD"])
     {
-        cents = [self integerValue]/100;
-        resultString = [NSString stringWithFormat:@"%d $",cents];
+        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"$"]];
     }
     
-    NSDictionary *attDict = @{NSFontAttributeName: [UIFont fontWithName: @"W1Rouble-Regular" size:14.0]};
-    NSMutableAttributedString *attString2 = [[NSMutableAttributedString alloc] initWithString: resultString2 attributes: attDict];
-   
-    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString: resultString];
-    [attributeString appendAttributedString: attString2];
-    return attributeString;
+    [amountAttr appendAttributedString:currencyAttr];
+    
+    return amountAttr;
 }
 
 -(NSMutableAttributedString *)fromCurrency:(NSString *)currency
 {
-    /*
-     NSUInteger cents = 0;
-     NSString* resultString = @"";
-     NSRange range = NSMakeRange(0, 0);
-     
-     if ([currency isEqualToString:@"RUB"]) {
-     cents = [self integerValue];
-     resultString = [NSString stringWithFormat:@"%d Р",cents];
-     range = NSMakeRange(resultString.length - 1, 1);
-     }
-     else if ([currency isEqualToString:@"USD"])
-     {
-     cents = [self integerValue];
-     resultString = [NSString stringWithFormat:@"%d $",cents];
-     }
-     
-     NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:resultString];
-     [attributeString addAttribute:NSStrikethroughStyleAttributeName
-     value:@9
-     range:range];
-     return attributeString;
-     */
-    NSUInteger cents = 0;
-    NSString* resultString = @"";
-    NSString* resultString2 = @"";
+    return [self fromCurrency:currency font:nil];
+}
+
+-(NSMutableAttributedString *)fromCurrency:(NSString *)currency font:(UIFont *)theFont
+{
+    UIFont *font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    if (theFont) {
+        font = theFont;
+    }
+    
+    CGFloat cents = [self integerValue];
+    NSMutableAttributedString *amountAttr = [[NSMutableAttributedString alloc] initWithString:[self getFormattedAmount:[NSNumber numberWithFloat:cents]]];
+    [amountAttr addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, amountAttr.length)];
+    
+    NSMutableAttributedString *currencyAttr = [[NSMutableAttributedString alloc] init];
     
     if ([currency isEqualToString:@"RUB"]) {
-        cents = [self integerValue];
-        resultString = [NSString stringWithFormat:@"%d ",cents];
-        resultString2 = [NSString stringWithFormat:@"%c",'C'];
-        
+        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"B"]];
+        [currencyAttr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"W1Rouble-Regular" size:font.pointSize] range:NSMakeRange(0, currencyAttr.length)];
     }
     else if ([currency isEqualToString:@"USD"])
     {
-        cents = [self integerValue];
-        resultString = [NSString stringWithFormat:@"%d $",cents];
+        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"$"]];
     }
     
-    NSDictionary *attDict = @{NSFontAttributeName: [UIFont fontWithName: @"W1Rouble-Regular" size:17.0]};
-    NSMutableAttributedString *attString2 = [[NSMutableAttributedString alloc] initWithString: resultString2 attributes: attDict];
+    [amountAttr appendAttributedString:currencyAttr];
     
-    NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString: resultString];
-    [attributeString appendAttributedString: attString2];
-    return attributeString;
+    return amountAttr;
+}
+
+-(NSString *)getFormattedAmount:(NSNumber *)theAmount
+{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    [formatter setRoundingIncrement: [NSNumber numberWithDouble:1]];
+    
+    NSLocale *ruLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"ru_RU"];
+    [formatter setLocale:ruLocale];
+    
+    NSString *result = [formatter stringFromNumber:theAmount];
+    return [result stringByAppendingString:@" "];
 }
 
 @end

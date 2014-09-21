@@ -37,7 +37,7 @@
     deliveryPriceLabel.contentMode = UIViewContentModeCenter;
     deliveryPriceLabel.backgroundColor = [UIColor clearColor];
     deliveryPriceLabel.numberOfLines = 2;
-    [deliveryPriceLabel setNuiClass:@"Label:WhiteText"];
+    //[deliveryPriceLabel setNuiClass:@"Label:WhiteText"];
     [view addSubview: deliveryPriceLabel];
     
     UIView* verticalLine = [[UIView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(deliveryPriceLabel.frame), 0, 1, CGRectGetHeight(view.frame))];
@@ -59,7 +59,8 @@
     checkoutLabel.contentMode = UIViewContentModeCenter;
     checkoutLabel.backgroundColor = [UIColor clearColor];
     checkoutLabel.numberOfLines = 1;
-    [checkoutLabel setNuiClass:@"Label:WhiteText"];
+    //[checkoutLabel setNuiClass:@"Label:WhiteText"];
+    checkoutLabel.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
     [view addSubview: checkoutLabel];
     
     AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
@@ -67,7 +68,8 @@
     //deliveryPriceLabel.text = [NSString stringWithFormat:@"Итого \n %d %@", totalPrice.cents, totalPrice.currency];
     
     NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Итого:\n"];
-    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",totalPrice.cents] fromCurrency:totalPrice.currency]];
+    [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, attrString.length)];
+    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",totalPrice.cents] fromCurrency:totalPrice.currency font:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]]];
     deliveryPriceLabel.attributedText = attrString;
 
     checkoutLabel.text = @"Оформить заказ";

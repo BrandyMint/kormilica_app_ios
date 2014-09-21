@@ -4,6 +4,7 @@ PODS:
   - HMSegmentedControl (1.3.0)
   - IQActionSheetPickerView (0.0.1)
   - ISO8601DateFormatter (0.7)
+  - MBProgressHUD (0.9)
   - NSString-HTML (0.0.1)
   - NUI (0.5.4):
     - NUIParse
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - HMSegmentedControl (~> 1.3.0)
   - IQActionSheetPickerView (from `https://raw.github.com/bespalown/IQActionSheetPickerView/master/IQActionSheetPickerView.podspec`)
   - ISO8601DateFormatter
+  - MBProgressHUD
   - NSString-HTML (from `https://raw.githubusercontent.com/bespalown/NSString-HTML/master/NSString-HTML.podspec`)
   - NUI
   - SHSPhoneComponent (< 2.0)
@@ -38,6 +40,7 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 9b3a39b9efd3d370b5d3d7b7cd5430f01a889b0b
   IQActionSheetPickerView: 2ade28a2e7360da6a8447f19f08f142a72a76e5b
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
   NSString-HTML: af40d58077c60e69642ab7c176da406207a7efa8
   NUI: ce8570dc3bb7983ffa8ae58ab0fc852d378b00cb
   NUIParse: f29eb240cfc9848b216c827884f37ae64abd19e4

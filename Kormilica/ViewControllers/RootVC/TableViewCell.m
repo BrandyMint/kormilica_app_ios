@@ -35,8 +35,7 @@
 
 -(void)layoutSubviews
 {
-    [_title setNuiClass:@"Label:TitleProductCell"];
-    [_price setNuiClass:@"Label:PriceProductCell"];
+    [NUIRenderer renderLabel:_title withClass:@"LabelDefault:TitleProductCell"];
     
     if (_count == 0) {
         [_onOrder setTitle:@"в заказ" forState:UIControlStateNormal];
