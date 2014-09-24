@@ -17,16 +17,20 @@
 #import "MapVC.h"
 #import "NSString+Currency.h"
 #import "UIButton+NUI.h"
+#import "IQActionSheetPicker.h"
 
 static int positionButtonInfo = 46;
 
-@interface ViewController () <TableViewCellDelegate, onBuyViewDelegate>
+@interface ViewController () <TableViewCellDelegate, onBuyViewDelegate, IQActionSheetPickerDelegate>
 {
     AboutVC* popover;
     
     NSArray* dataArray;
     NSInteger selectedIDCategory;
     NSInteger selectedIDProduct;
+    
+    Product *selectProduct;
+    NSIndexPath *selectIndexPathProduct;
     
     BOOL isBuy;
 }
@@ -225,9 +229,41 @@ static int positionButtonInfo = 46;
 -(void)onOrderCellAlreadySelect:(NSIndexPath *)indexPath
 {
     Product* product = [dataArray objectAtIndex:indexPath.row];
+    selectProduct = product;
+    selectIndexPathProduct = indexPath;
     selectedIDProduct = product.idProduct;
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"segDetail" sender:self];
+    //[self performSegueWithIdentifier:@"segDetail" sender:self];
+
+    IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
+    [picker setTag:1];
+    picker.backgroundColor = COLOR_GRAY;
+    
+    NSMutableArray* arr = [NSMutableArray new];
+    [arr addObject:@"Удалить из заказа"];
+    for (int i = 1; i < 26; i++) {
+        [arr addObject:[NSString stringWithFormat:@"%d",i]];
+    }
+    [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
+    [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:product.idProduct]]]];
+    [picker showInView:self.view];
+}
+
+#pragma mark IQActionSheetPickerDelegate
+
+-(void)actionSheetPickerView:(IQActionSheetPicker *)pickerView didSelectTitles:(NSArray *)titles didSelectIndexes:(NSArray *)indexes
+{
+    if ([[indexes firstObject] integerValue] == 0) {
+        //удаляем товар из заказа
+        [appDelegate.cart addIdProduct:selectProduct.idProduct count:0];
+    }
+    else {
+        //меняем количество товаров для заказа
+        [appDelegate.cart addIdProduct:selectProduct.idProduct count:[[indexes firstObject] integerValue]];
+    }
+    [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
+    
+    [_tableView reloadRowsAtIndexPaths:@[selectIndexPathProduct] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath

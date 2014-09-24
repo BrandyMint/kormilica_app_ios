@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *header;
 @property (weak, nonatomic) IBOutlet UILabel *subHeader;
 @property (weak, nonatomic) IBOutlet UILabel *phone;
+@property (weak, nonatomic) IBOutlet UILabel *lastUpdate;
 @property (weak, nonatomic) IBOutlet UIButton *onCall;
 - (IBAction)onCall:(id)sender;
 @property (weak, nonatomic) IBOutlet UILabel *address;

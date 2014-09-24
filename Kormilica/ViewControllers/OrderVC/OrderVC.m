@@ -77,7 +77,7 @@
     else {
         [NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
         NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Минимальная сумма заказа - "];
-        [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",appDelegate.bundles.vendor.minimal_price.cents/100] fromCurrency:@"RUB"]];
+        [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",appDelegate.bundles.vendor.minimal_price.cents/100] fromCurrency:@"RUB" font:[UIFont fontWithName:@"HelveticaNeue-Light" size:14]]];
         labelOrderView.attributedText = attrString;
     }
 }

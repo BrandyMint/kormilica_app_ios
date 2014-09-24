@@ -44,12 +44,14 @@
     
     [_onCall setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
     [_onAddress setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
+    [_onUpdate setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
     [_shippingPayment setNuiClass:@"OrderFill"];
-    [_onUpdate setNuiClass:@"ButtonLastUpdate"];
+    [_lastUpdate setNuiClass:@"ButtonLastUpdate"];
     
     [_shippingPayment setTitle:@"Доставка и оплата" forState:UIControlStateNormal];
     [_shippingPayment setNuiClass:@"Label:AllSum"];
     
+    [_onUpdate setTitle:@"Обновить" forState:UIControlStateNormal];
     _subHeader.text = @"описание компании";
     _address.text = @"Крылова, 7";
     [_address setNuiClass:@"Label:AllSum"];
@@ -76,7 +78,7 @@
     _descriptions.text = [appDelegate.bundles.vendor.mobile_description kv_stripHTMLCharacterEntities];
     _city.text = appDelegate.bundles.vendor.city;
     
-    [_onUpdate setTitle:[NSString stringWithFormat:@"Последнее обновление от %@", date] forState:UIControlStateNormal];
+    _lastUpdate.text = [NSString stringWithFormat:@"Последнее обновление от %@", date];
 }
 
 - (void)didReceiveMemoryWarning
