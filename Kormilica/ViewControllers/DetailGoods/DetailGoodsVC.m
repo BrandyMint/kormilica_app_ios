@@ -58,6 +58,7 @@
 -(void)updateOnBuy
 {
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
+    _onBuy.userInteractionEnabled = [appDelegate.cart getItemsCount] > 0 ? YES : NO;
 }
 
 -(void)onDetailImage
