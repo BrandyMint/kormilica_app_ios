@@ -14,7 +14,6 @@
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
@@ -53,6 +52,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+-(NSArray *)dataArrayForPicker
+{
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSMutableArray* arr = [NSMutableArray new];
+        [arr addObject:@"Удалить из заказа"];
+        for (int i = 1; i < 51; i++) {
+            [arr addObject:[NSString stringWithFormat:@"%d",i]];
+        }
+        _dataArrayForPicker = arr;
+    });
+    return _dataArrayForPicker;
 }
 
 #pragma mark - Core Data stack

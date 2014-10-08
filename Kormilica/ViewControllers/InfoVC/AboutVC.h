@@ -11,22 +11,12 @@
 
 
 @interface AboutVC : MasterVC
-@property (weak, nonatomic) IBOutlet UIImageView *logo;
-@property (weak, nonatomic) IBOutlet UILabel *header;
-@property (weak, nonatomic) IBOutlet UILabel *subHeader;
-@property (weak, nonatomic) IBOutlet UILabel *phone;
-@property (weak, nonatomic) IBOutlet UILabel *lastUpdate;
-@property (weak, nonatomic) IBOutlet UIButton *onCall;
-- (IBAction)onCall:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *address;
-@property (weak, nonatomic) IBOutlet UIButton *onAddress;
-- (IBAction)onAddress:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *shippingPayment;
+{
+    CGFloat heightWebView;
+}
 
-@property (weak, nonatomic) IBOutlet UITextView *descriptions;
-@property (weak, nonatomic) IBOutlet UILabel *city;
-- (IBAction)onUpdate:(id)sender;
-@property (weak, nonatomic) IBOutlet UIButton *onUpdate;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
 
 
 @end

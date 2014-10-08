@@ -7,6 +7,7 @@
 //
 
 #import "MasterVC.h"
+#import "MBProgressHUD.h"
 
 @interface MasterVC ()
 
@@ -43,6 +44,26 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self.view endEditing:YES];
+}
+
+-(void)networkActivity:(BOOL)activity
+{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = activity;
+    if (activity)
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    else
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+}
+
+-(void)showAlertException:(NSException*)exception
+{
+    [self networkActivity:NO];
+    if (exception) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:exception.name
+                                                        message:exception.reason
+                                                       delegate:Nil cancelButtonTitle:NSLocalizedString(@"Ок", nil) otherButtonTitles:Nil, nil];
+        [alert show];
+    }
 }
 
 /*

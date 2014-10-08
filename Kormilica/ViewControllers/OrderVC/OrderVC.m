@@ -16,14 +16,15 @@
 #import "UILabel+NUI.h"
 #import "UIView+NUI.h"
 #import "NSString+Currency.h"
-#import "IQActionSheetPicker.h"
+#import "IQActionSheetPickerView.h"
 
-@interface OrderVC () <OrderCellDelegate, IQActionSheetPickerDelegate>
+@interface OrderVC () <OrderCellDelegate, IQActionSheetPickerViewDelegate>
 {
     NSInteger selectedProductID;
     NSIndexPath* selectedIndexPath;
     UILabel* labelAllSum;
     UILabel* labelOrderView;
+    IQActionSheetPickerView *picker;
 }
 
 @end
@@ -69,13 +70,15 @@
     [labelAllSumTopView setNuiClass:@"BottomView"];
     [labelAllSum addSubview:labelAllSumTopView];
     
-    [labelOrderView setNuiClass:@"Label:WhiteText"];
+    //[labelOrderView setNuiClass:@"Label:WhiteText"];
+    labelOrderView.textColor = [UIColor whiteColor];
+    labelOrderView.backgroundColor = [UIColor colorWithRed:0.820 green:0.827 blue:0.831 alpha:1.000];
     if (isAllowed) {
-        [NUIRenderer renderView:labelOrderView withClass:@"OrderAllowed"];
+        //[NUIRenderer renderView:labelOrderView withClass:@"OrderAllowed"];
         labelOrderView.text = @"Оформить заказ";
     }
     else {
-        [NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
+        //[NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
         NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Минимальная сумма заказа - "];
         [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",appDelegate.bundles.vendor.minimal_price.cents/100] fromCurrency:@"RUB" font:[UIFont fontWithName:@"HelveticaNeue-Light" size:14]]];
         labelOrderView.attributedText = attrString;
@@ -108,6 +111,12 @@
     [_onOrderView addGestureRecognizer:tap];
     
     [self checkOrder];
+    
+    picker = [[IQActionSheetPickerView alloc] initWithTitle:@"Сколько заказать?" delegate:self];
+    picker.backgroundColor = COLOR_GRAY;
+    [picker setTitlesForComponenets:[NSArray arrayWithObjects:
+                                     appDelegate.dataArrayForPicker,
+                                     nil]];
 }
 
 - (void)onSendOrder:(UIGestureRecognizer *)gestureRecognizer {
@@ -212,10 +221,6 @@
         deliveryPrice.attributedText = attrString;
         
     }
-    /* для теста
-    UILabel* deliveryPrice = [[UILabel alloc] initWithFrame: CGRectMake(205, 15, 100, 30) ];
-    deliveryPrice.text = @"Бесплатно";
-    */
     
     [view addSubview:deliveryPrice];
     
@@ -252,41 +257,30 @@
     selectedIndexPath = indexPath;
     //[self performSegueWithIdentifier:@"segEditProduct" sender:self];
     
-    IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
-    picker.backgroundColor = COLOR_GRAY;
-    
-    NSMutableArray* arr = [NSMutableArray new];
-    [arr addObject:@"Удалить из заказа"];
-    for (int i = 1; i < 26; i++) {
-        [arr addObject:[NSString stringWithFormat:@"%d",i]];
-    }
-    [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
-    [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:cartItem.idProduct]]]];
-    [picker showInView:self.view];
+    [picker selectIndexes:@[[NSNumber numberWithInteger:[appDelegate.cart countProductInCartWithIdProduct:cartItem.idProduct]]] animated:YES];
+    [picker showInViewController:self];
 }
 
 #pragma mark IQActionSheetPickerDelegate
 
--(void)actionSheetPickerView:(IQActionSheetPicker *)pickerView didSelectTitles:(NSArray *)titles didSelectIndexes:(NSArray *)indexes
+- (void)actionSheetPickerView:(IQActionSheetPickerView *)pickerView didSelectTitles:(NSArray*)titles;
 {
-    if ([[indexes firstObject] integerValue] == 0) {
+    NSInteger indexOfArray = [appDelegate.dataArrayForPicker indexOfObject:titles.firstObject];
+    
+    if (indexOfArray == 0) {
         //удаляем товар из заказа
         [appDelegate.cart addIdProduct:selectedProductID count:0];
-        //[_tableView deleteRowsAtIndexPaths:@[selectedIndexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else {
         //меняем количество товаров для заказа
-        NSUInteger count = [[indexes firstObject] integerValue];
-        
-        [appDelegate.cart addIdProduct:selectedProductID count:count];
-        
+        [appDelegate.cart addIdProduct:selectedProductID count:indexOfArray];
         
         CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:selectedIndexPath.row];
         Product* product = [cartItem productFromAllProducts:appDelegate.bundles.products];
         OrderCell *cell = (OrderCell *)[_tableView cellForRowAtIndexPath:selectedIndexPath];
         NSMutableAttributedString* buttonAttributedString = [[NSMutableAttributedString alloc]
-                                                             initWithString:[NSString stringWithFormat:@"%d шт. ", count]];
-        [buttonAttributedString appendAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents*count] fromCurrencyCents:product.price.currency]];
+                                                             initWithString:[NSString stringWithFormat:@"%d шт. ", indexOfArray]];
+        [buttonAttributedString appendAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents*indexOfArray] fromCurrencyCents:product.price.currency]];
         
         [cell.onOrderAmount setAttributedTitle:buttonAttributedString forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -294,6 +288,7 @@
         cell.indexPath = selectedIndexPath;
         cell.count = cartItem.count;
     }
+    
     [self updateBottom];
     [self checkOrder];
     [_tableView reloadData];

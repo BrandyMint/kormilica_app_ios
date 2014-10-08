@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "Factory.h"
 #import "AnswerOrderFactory.h"
+#import "Reachability.h"
 
 @implementation Managers
 
@@ -21,19 +22,27 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60];
     [request addValue:VENDOR_KEY forHTTPHeaderField:@"X-Vendor-Key"];
     
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
-         {
-             Bundles* bundles = [EKMapper objectFromExternalRepresentation:JSON withMapping:[Factory bundlesMapping]];
-             block(bundles);
-         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)
-         {
-             NSString* errorString = [JSON objectForKey:@"error"];
-             NSException *exception = [[NSException alloc] initWithName:errorString
-                                                                 reason:nil
-                                                               userInfo:nil];
-             blockException(exception);
-         }];
-    [operation start];
+    Reachability* appleReachability = [Reachability reachabilityForInternetConnection];
+    if (appleReachability.currentReachabilityStatus == NotReachable) {
+        NSException *exception = [[NSException alloc] initWithName:nil reason:@"Проверьте соединение с интернетом" userInfo:nil];
+        blockException(exception);
+    }
+    else
+    {
+        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+                                             {
+                                                 Bundles* bundles = [EKMapper objectFromExternalRepresentation:JSON withMapping:[Factory bundlesMapping]];
+                                                 block(bundles);
+                                             }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)
+                                             {
+                                                 NSString* errorString = [JSON objectForKey:@"error"];
+                                                 NSException *exception = [[NSException alloc] initWithName:errorString
+                                                                                                     reason:nil
+                                                                                                   userInfo:nil];
+                                                 blockException(exception);
+                                             }];
+        [operation start];
+    }
 }
 
 -(void)getLocalBundles:(void (^) (Bundles* bundles))block
@@ -67,20 +76,28 @@
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:jsonData];
     
-    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
-         {
-             AnswerOrder* answerOrder = [EKMapper objectFromExternalRepresentation:JSON withMapping:[AnswerOrderFactory answerOrderMapping]];
-             block(answerOrder);
-         }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)
-         {
-             NSInteger code = [[JSON objectForKey:@"code"] integerValue];
-             NSString* errorString = [JSON objectForKey:@"error"];
-             NSException *exception = [[NSException alloc] initWithName:errorString
-                                                                 reason:[NSString stringWithFormat:@"%d",code]
-                                                               userInfo:nil];
-             blockException(exception);
-         }];
-    [operation start];
+    Reachability* appleReachability = [Reachability reachabilityForInternetConnection];
+    if (appleReachability.currentReachabilityStatus == NotReachable) {
+        NSException *exception = [[NSException alloc] initWithName:nil reason:@"Проверьте соединение с интернетом" userInfo:nil];
+        blockException(exception);
+    }
+    else
+    {
+        AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
+                                             {
+                                                 AnswerOrder* answerOrder = [EKMapper objectFromExternalRepresentation:JSON withMapping:[AnswerOrderFactory answerOrderMapping]];
+                                                 block(answerOrder);
+                                             }failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON)
+                                             {
+                                                 NSInteger code = [[JSON objectForKey:@"code"] integerValue];
+                                                 NSString* errorString = [JSON objectForKey:@"error"];
+                                                 NSException *exception = [[NSException alloc] initWithName:errorString
+                                                                                                     reason:[NSString stringWithFormat:@"%d",code]
+                                                                                                   userInfo:nil];
+                                                 blockException(exception);
+                                             }];
+        [operation start];
+    }
 }
 
 -(void)downloadCSS

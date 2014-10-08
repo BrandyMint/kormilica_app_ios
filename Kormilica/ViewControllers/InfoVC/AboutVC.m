@@ -8,15 +8,8 @@
 
 #import "AboutVC.h"
 #import "MapVC.h"
-#import "UIImageView+AFNetworking.h"
-#import "NSString-HTML.h"
-#import "UIButton+NUI.h"
-#import "UILabel+NUI.h"
-#import "UITextView+NUI.h"
-#import "UIView+NUI.h"
-#import "MBProgressHUD.h"
 
-@interface AboutVC ()
+@interface AboutVC () <UIWebViewDelegate>
 
 @end
 
@@ -35,50 +28,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [_header setNuiClass:@"Label:NameCompany"];
-    
-    _descriptions.editable = NO;
-    [_descriptions setNuiClass:@"TextViewDescriptionProduct"];
-    
-    _city.textAlignment = NSTextAlignmentCenter;
-    
-    [_onCall setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
-    [_onAddress setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
-    [_onUpdate setNuiClass:@"ButtonOrderCell:ButtonInNotOrder"];
-    [_shippingPayment setNuiClass:@"OrderFill"];
-    [_lastUpdate setNuiClass:@"ButtonLastUpdate"];
-    
-    [_shippingPayment setTitle:@"Доставка и оплата" forState:UIControlStateNormal];
-    [_shippingPayment setNuiClass:@"Label:AllSum"];
-    
-    [_onUpdate setTitle:@"Обновить" forState:UIControlStateNormal];
-    _subHeader.text = @"описание компании";
-    _address.text = @"Крылова, 7";
-    [_address setNuiClass:@"Label:AllSum"];
-    [_onAddress setTitle:@"на карте" forState:UIControlStateNormal];
-    
-    [_phone setNuiClass:@"Label:Telephone"];
-    _phone.text = @"+7 919 651 04 56";
-    [_onCall setTitle:@"позвонить" forState:UIControlStateNormal];
-    
-    [_logo setImageWithURL:[NSURL URLWithString:appDelegate.bundles.vendor.mobile_logo_url] placeholderImage:[UIImage imageNamed:@""]];
-    
-    UIView* line = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_phone.frame) + 7, CGRectGetWidth(self.view.frame), 1)];
-    [line setNuiClass:@"BottomView"];
-    [self.view addSubview:line];
-    
-    [self updateText];
-}
-
--(void)updateText
-{
-    NSString* date = [appDelegate.convertTime iso8601_to_ddMMYYYY:appDelegate.bundles.vendor.updated_at];
-    
-    _header.text = appDelegate.bundles.vendor.mobile_subject;
-    _descriptions.text = [appDelegate.bundles.vendor.mobile_description kv_stripHTMLCharacterEntities];
-    _city.text = appDelegate.bundles.vendor.city;
-    
-    _lastUpdate.text = [NSString stringWithFormat:@"Последнее обновление от %@", date];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +35,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 /*
 #pragma mark - Navigation
@@ -98,47 +48,5 @@
 }
 */
 
-- (IBAction)onHide:(id)sender {
-
-}
-
-- (IBAction)onUpdate:(id)sender {
-    
-    [self networkActivity:YES];
-    [appDelegate.managers getBundles:^(Bundles* bundles) {
-        appDelegate.bundles = bundles;
-        
-        [self updateText];
-        appDelegate.cart.vendor = bundles.vendor;
-        [self networkActivity:NO];
-    } failBlock:^(NSException * exception) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:exception.name message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
-        [alert show];
-        [self networkActivity:NO];
-    }];
-}
-
-- (IBAction)onCall:(id)sender {
-    UIDevice *device = [UIDevice currentDevice];
-    if ([[device model] isEqualToString:@"iPhone"] ) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",@"+79196510456"]]];
-    } else {
-        UIAlertView *notPermitted=[[UIAlertView alloc] initWithTitle:nil message:@"Устройство не поддерживает эту функцию." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [notPermitted show];
-    }
-}
-
-- (IBAction)onAddress:(id)sender {
-    [self performSegueWithIdentifier:@"segMap" sender:self];
-}
-
--(void)networkActivity:(BOOL)activity
-{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = activity;
-    if (activity)
-        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    else
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
 
 @end

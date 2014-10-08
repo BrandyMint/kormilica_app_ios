@@ -13,4 +13,7 @@
     AppDelegate* appDelegate;
 }
 
+-(void)showAlertException:(NSException*)exception;
+-(void)networkActivity:(BOOL)activity;
+
 @end

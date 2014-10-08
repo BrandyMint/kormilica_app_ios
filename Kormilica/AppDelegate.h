@@ -23,6 +23,9 @@
 @property (nonatomic, strong) Cart* cart;
 @property (nonatomic, strong) CreateOrderToJson* createOrderToJson;
 
+@property (nonatomic, assign) NSUInteger selecrtedIndexCategory;
+@property (nonatomic, strong) NSArray *dataArrayForPicker;
+
 @property (nonatomic, assign) BOOL succesOrFailOrder;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;

@@ -17,7 +17,7 @@
     NSDate * result1 = [date_formatter1 dateFromString: iso8601];
     
     NSDateFormatter *format = [[NSDateFormatter alloc] init];
-    [format setDateFormat:@"dd/MM/yyyy"];
+    [format setDateFormat:@"dd.MM.yyyy"];
     NSString *string = [format stringFromDate:result1];
 
     return string;

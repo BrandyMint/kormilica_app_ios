@@ -17,11 +17,11 @@
 #import "MapVC.h"
 #import "NSString+Currency.h"
 #import "UIButton+NUI.h"
-#import "IQActionSheetPicker.h"
+#import "IQActionSheetPickerView.h"
 
 static int positionButtonInfo = 46;
 
-@interface ViewController () <TableViewCellDelegate, onBuyViewDelegate, IQActionSheetPickerDelegate>
+@interface ViewController () <TableViewCellDelegate, onBuyViewDelegate, IQActionSheetPickerViewDelegate>
 {
     AboutVC* popover;
     
@@ -33,8 +33,9 @@ static int positionButtonInfo = 46;
     NSIndexPath *selectIndexPathProduct;
     
     BOOL isBuy;
+    IQActionSheetPickerView *picker;
 }
-
+@property (nonatomic, strong) SVSegmentedControl *segmentedControl;
 @end
 
 @implementation ViewController
@@ -61,62 +62,39 @@ static int positionButtonInfo = 46;
 
 -(void)initScrollViewContent
 {
-    CGFloat weightButtons = 0;
+    [_segmentedControlView setBackgroundColor: COLOR_GRAY];
     
+    [_segmentedControl removeFromSuperview];
+    _segmentedControl = nil;
+    
+    NSMutableArray *mut = [NSMutableArray new];
     for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
-        UIButton* button = (UIButton *)[self.view viewWithTag:i+1];
-        [button removeFromSuperview];
+        [mut addObject:[[appDelegate.bundles.categories objectAtIndex:i] name]];
     }
-    
-    for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
-        NSString* title = [[appDelegate.bundles.categories objectAtIndex:i] name];
 
-        UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button setFrame:CGRectMake(100*i, 0, 100, 40)];
-        [button setTitle:title forState:UIControlStateNormal];
-        [button setTag:i+1];
-        [button addTarget:self action:@selector(slideAction:) forControlEvents:UIControlEventTouchUpInside];
-        [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategoryNoSelected"];
-        [_scrollView addSubview:button];
-        
-        if (i == 0) {
-            [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategorySelected"];
-        }
-        
-        weightButtons += CGRectGetWidth(button.frame);
-    }
-    
-    //_scrollView.backgroundColor = COLOR_GRAY;
-    _scrollView.contentSize = CGSizeMake(weightButtons, CGRectGetHeight(_scrollView.frame));
-    _scrollView.showsHorizontalScrollIndicator = NO;
-}
-
--(void)slideAction:(id)sender
-{
-    for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
-        UIButton* button = (UIButton *)[self.view viewWithTag:i+1];
-        [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategoryNoSelected"];
-    }
-    UIButton* button = (UIButton *)sender;
-    button.layer.borderWidth = 1;
-    [NUIRenderer renderButton:button withClass:@"ButtonCategory:ButtonCategorySelected"];
-    
-    Categories* categories = [appDelegate.bundles.categories objectAtIndex:button.tag - 1];
-    [self initDataArrayWithCategoriesID:categories.idCategories];
-    selectedIDCategory = categories.idCategories;
-    
-    if (_scrollView.contentSize.width > self.view.frame.size.width) {   //если ширина кнопок с категориями больше ширины экрана, то будут скролится
-        if (button.tag == 1) {
-            [_scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-        }
-        else if (button.tag == appDelegate.bundles.categories.count) {
-            [_scrollView setContentOffset:CGPointMake(_scrollView.contentSize.width - _scrollView.bounds.size.width, 0) animated:YES];
-        }
-        else {
-            CGPoint point = [button convertPoint:CGPointZero toView:_scrollView];
-            [_scrollView setContentOffset:CGPointMake(point.x - CGRectGetWidth(self.view.frame)/2 + CGRectGetWidth(button.frame)/2, 0) animated:YES];
-        }
-    }
+    _segmentedControl = [[SVSegmentedControl alloc] initWithSectionTitles:mut];
+    _segmentedControl.frame = CGRectMake(0, 0, 320, 40);
+    _segmentedControl.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
+    _segmentedControl.textColor = [UIColor whiteColor];
+    _segmentedControl.backgroundTintColor = [UIColor clearColor];
+    _segmentedControl.backgroundColor = [UIColor clearColor];
+    _segmentedControl.innerShadowColor = [UIColor clearColor];
+    _segmentedControl.height = 35;
+    _segmentedControl.textShadowColor = [UIColor clearColor];
+    _segmentedControl.textShadowOffset = CGSizeZero;
+    _segmentedControl.thumb.tintColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.2];
+    _segmentedControl.thumb.backgroundColor = [UIColor clearColor];
+    _segmentedControl.thumb.textShadowColor = [UIColor clearColor];
+    _segmentedControl.thumb.textShadowOffset = CGSizeZero;
+    _segmentedControl.thumb.gradientIntensity = 0;
+    //_segmentedControl.center = CGPointMake(160, 20);
+    _segmentedControl.changeHandler = ^(NSUInteger newIndex) {
+        Categories* categories = [appDelegate.bundles.categories objectAtIndex:newIndex];
+        [self initDataArrayWithCategoriesID:categories.idCategories];
+        selectedIDCategory = categories.idCategories;
+        appDelegate.selecrtedIndexCategory = newIndex;
+    };
+    [_segmentedControlView addSubview:_segmentedControl];
 }
 
 -(void)initText
@@ -147,6 +125,8 @@ static int positionButtonInfo = 46;
     [self initDataArrayWithCategoriesID:selectedIDCategory];
     
     [self initScrollViewContent];
+    
+    [_segmentedControl setSelectedSegmentIndex:appDelegate.selecrtedIndexCategory animated:YES];
 }
 
 - (void)viewDidLoad
@@ -167,6 +147,51 @@ static int positionButtonInfo = 46;
         
         appDelegate.cart.vendor = bundles.vendor;
     }];
+
+    picker = [[IQActionSheetPickerView alloc] initWithTitle:@"Сколько заказать?" delegate:self];
+    picker.backgroundColor = COLOR_GRAY;
+    [picker setTitlesForComponenets:[NSArray arrayWithObjects:
+                                     appDelegate.dataArrayForPicker,
+                                     nil]];
+    
+    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
+    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    [self.tableView addGestureRecognizer:swipeLeft];
+
+    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
+    [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.tableView addGestureRecognizer:swipeRight];
+}
+
+-(void)swipeLeft:(UISwipeGestureRecognizer *)swipe
+{
+    NSLog(@"<-");
+    
+    if (appDelegate.selecrtedIndexCategory > 0) {
+        appDelegate.selecrtedIndexCategory--;
+    }
+    //else
+        //appDelegate.selecrtedIndexCategory = appDelegate.bundles.categories.count - 1;
+    
+    Categories* categories = [appDelegate.bundles.categories objectAtIndex:appDelegate.selecrtedIndexCategory];
+    [self initDataArrayWithCategoriesID:categories.idCategories];
+    selectedIDCategory = categories.idCategories;
+    [_segmentedControl setSelectedSegmentIndex:appDelegate.selecrtedIndexCategory animated:YES];
+}
+
+-(void)swipeRight:(UISwipeGestureRecognizer *)swipe
+{
+    NSLog( @"->");
+
+    if (appDelegate.selecrtedIndexCategory < appDelegate.bundles.categories.count - 1) {
+        appDelegate.selecrtedIndexCategory++;
+    }
+    //else
+        //appDelegate.selecrtedIndexCategory = 0;
+    Categories* categories = [appDelegate.bundles.categories objectAtIndex:appDelegate.selecrtedIndexCategory];
+    [self initDataArrayWithCategoriesID:categories.idCategories];
+    selectedIDCategory = categories.idCategories;
+    [_segmentedControl setSelectedSegmentIndex:appDelegate.selecrtedIndexCategory animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -235,31 +260,23 @@ static int positionButtonInfo = 46;
     [_tableView deselectRowAtIndexPath:indexPath animated:YES];
     //[self performSegueWithIdentifier:@"segDetail" sender:self];
 
-    IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
-    [picker setTag:1];
-    picker.backgroundColor = COLOR_GRAY;
-    
-    NSMutableArray* arr = [NSMutableArray new];
-    [arr addObject:@"Удалить из заказа"];
-    for (int i = 1; i < 26; i++) {
-        [arr addObject:[NSString stringWithFormat:@"%d",i]];
-    }
-    [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
-    [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:product.idProduct]]]];
-    [picker showInView:self.view];
+    [picker selectIndexes:@[[NSNumber numberWithInteger:[appDelegate.cart countProductInCartWithIdProduct:product.idProduct]]] animated:YES];
+    [picker showInViewController:self];
 }
 
 #pragma mark IQActionSheetPickerDelegate
 
--(void)actionSheetPickerView:(IQActionSheetPicker *)pickerView didSelectTitles:(NSArray *)titles didSelectIndexes:(NSArray *)indexes
+- (void)actionSheetPickerView:(IQActionSheetPickerView *)pickerView didSelectTitles:(NSArray*)titles;
 {
-    if ([[indexes firstObject] integerValue] == 0) {
+    NSInteger indexOfArray = [appDelegate.dataArrayForPicker indexOfObject:titles.firstObject];
+    
+    if (indexOfArray == 0) {
         //удаляем товар из заказа
         [appDelegate.cart addIdProduct:selectProduct.idProduct count:0];
     }
     else {
         //меняем количество товаров для заказа
-        [appDelegate.cart addIdProduct:selectProduct.idProduct count:[[indexes firstObject] integerValue]];
+        [appDelegate.cart addIdProduct:selectProduct.idProduct count:indexOfArray];
     }
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
     

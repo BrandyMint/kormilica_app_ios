@@ -7,7 +7,7 @@
 //
 
 #import "DetailGoodsVC.h"
-#import "IQActionSheetPicker.h"
+#import "IQActionSheetPickerView.h"
 #import "DetailImageVC.h"
 #import "UIImageView+AFNetworking.h"
 #import "UIButton+NUI.h"
@@ -15,9 +15,10 @@
 #import "UITextView+NUI.h"
 #import "NSString+Currency.h"
 
-@interface DetailGoodsVC () <IQActionSheetPickerDelegate, onBuyViewDelegate>
+@interface DetailGoodsVC () <IQActionSheetPickerViewDelegate, onBuyViewDelegate>
 {
     Product* product;
+    IQActionSheetPickerView *picker;
 }
 @end
 
@@ -48,6 +49,12 @@
     _logo.userInteractionEnabled = YES;
     
     [self initData];
+    
+    picker = [[IQActionSheetPickerView alloc] initWithTitle:@"Сколько заказать?" delegate:self];
+    picker.backgroundColor = COLOR_GRAY;
+    [picker setTitlesForComponenets:[NSArray arrayWithObjects:
+                                     appDelegate.dataArrayForPicker,
+                                     nil]];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -91,7 +98,7 @@
     _onOrder.layer.masksToBounds = YES;
 
     if ([appDelegate.cart countProductInCartWithIdProduct:_idProduct] == 0) {
-        [_onOrder setTitle:@"Добавить заказ" forState:UIControlStateNormal];
+        [_onOrder setTitle:@"Добавить в заказ" forState:UIControlStateNormal];
         [NUIRenderer renderButton:_onOrder withClass:@"ButtonAddToCart:ButtonAddToCartUnSelected:Detailed"];
     }
     else {
@@ -120,33 +127,27 @@
         [self updateOnBuy];
     }
     else {
-        IQActionSheetPicker *picker = [[IQActionSheetPicker alloc] initWithTitle:@"Сколько заказать?" delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
-        [picker setTag:1];
-        picker.backgroundColor = COLOR_GRAY;
-        
-        NSMutableArray* arr = [NSMutableArray new];
-        [arr addObject:@"Удалить из заказа"];
-        for (int i = 1; i < 26; i++) {
-            [arr addObject:[NSString stringWithFormat:@"%d",i]];
-        }
-        [picker setTitlesForComponenets:[NSArray arrayWithObjects:arr, nil]];
-        [picker setDefaultValues:@[[NSString stringWithFormat:@"%d",[appDelegate.cart countProductInCartWithIdProduct:_idProduct]]]];
-        [picker showInView:self.view];
+        [picker selectIndexes:@[[NSNumber numberWithInteger:[appDelegate.cart countProductInCartWithIdProduct:product.idProduct]]] animated:YES];
+        [picker showInViewController:self];
     }
 }
 
 #pragma mark IQActionSheetPickerDelegate
 
--(void)actionSheetPickerView:(IQActionSheetPicker *)pickerView didSelectTitles:(NSArray *)titles didSelectIndexes:(NSArray *)indexes
+- (void)actionSheetPickerView:(IQActionSheetPickerView *)pickerView didSelectTitles:(NSArray*)titles;
 {
-    if ([[indexes firstObject] integerValue] == 0) {
+    NSInteger indexOfArray = [appDelegate.dataArrayForPicker indexOfObject:titles.firstObject];
+    
+    if (indexOfArray == 0) {
         //удаляем товар из заказа
         [appDelegate.cart addIdProduct:_idProduct count:0];
     }
     else {
         //меняем количество товаров для заказа
-        [appDelegate.cart addIdProduct:_idProduct count:[[indexes firstObject] integerValue]];
+        [appDelegate.cart addIdProduct:_idProduct count:0];
     }
+    [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
+    
     [self initData];
     [self updateOnBuy];
 }
