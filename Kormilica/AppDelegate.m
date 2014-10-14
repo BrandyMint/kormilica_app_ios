@@ -16,6 +16,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     // Override point for customization after application launch.
     _managers = [Managers new];
     _bundles = [Bundles new];
@@ -23,7 +24,10 @@
     _cart = [Cart new];
     _createOrderToJson = [CreateOrderToJson new];
     
-    [NUISettings initWithStylesheet:@"Kormilica.NUI"];
+    //[NUISettings initWithStylesheet:@"Kormilica.NUI"];
+    
+    [[VBStyle sharedInstance] initStyle:@"orange"];
+    
     return YES;
 }
 							

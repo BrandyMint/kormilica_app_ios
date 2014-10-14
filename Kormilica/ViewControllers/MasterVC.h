@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UIViewController+RESideMenu.h"
 
 @interface MasterVC : UIViewController
 {

@@ -11,5 +11,6 @@ pod 'NUI'
 pod 'TTTAttributedLabel'
 pod 'MBProgressHUD'
 pod 'Reachability'
+pod 'RESideMenu'
 #localPods
 #pod 'IQActionSheetPickerView'

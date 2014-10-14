@@ -40,26 +40,6 @@ static int positionButtonInfo = 46;
 
 @implementation ViewController
 
--(void)initTopView
-{
-    if (IS_IOS7) {
-        //self.navigationController.navigationBar.barTintColor = COLOR_ORANGE;
-        //self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        //[self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-        //self.navigationController.navigationBar.translucent = NO;
-    }
-    else
-    {
-        //[self.navigationController.navigationBar setTintColor:COLOR_ORANGE];
-    }
-    UIButton* infoButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-    //[infoButton setTintColor:[UIColor whiteColor]];
-    [infoButton addTarget:self action:@selector(onInfo) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *modalButton = [[UIBarButtonItem alloc] initWithCustomView:infoButton];
-    [self.navigationItem setLeftBarButtonItem:modalButton animated:YES];
-    infoButton.frame = CGRectMake(0,0,positionButtonInfo,35);
-}
-
 -(void)initScrollViewContent
 {
     [_segmentedControlView setBackgroundColor: COLOR_GRAY];
@@ -134,7 +114,6 @@ static int positionButtonInfo = 46;
     [super viewDidLoad];
     _onBuy.delegate = self;
     _onBuy.userInteractionEnabled = NO;
-    [self initTopView];
     
     [appDelegate.managers getLocalBundles:^(Bundles* bundles) {
         appDelegate.bundles = bundles;

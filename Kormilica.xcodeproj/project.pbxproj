@@ -46,10 +46,13 @@
 		6643BC23194084B90066D330 /* Bundles.m in Sources */ = {isa = PBXBuildFile; fileRef = 6643BC22194084B90066D330 /* Bundles.m */; };
 		664911D91941AE0800CFA99D /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911D81941AE0800CFA99D /* NSString+Size.m */; };
 		664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DE1941FAAF00CFA99D /* MasterVC.m */; };
+		6677263919EDAC8A000637AE /* VBStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677263819EDAC8A000637AE /* VBStyle.m */; };
 		668F840A1945DFD0004C8DFE /* DeliveryOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668F84091945DFD0004C8DFE /* DeliveryOrderView.m */; };
 		669CCFF419542BF00025E5A1 /* AnswerOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 669CCFF319542BF00025E5A1 /* AnswerOrder.m */; };
 		669CCFF719542C980025E5A1 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 669CCFF619542C980025E5A1 /* Message.m */; };
 		669CCFFA19542D710025E5A1 /* AnswerOrderFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 669CCFF919542D710025E5A1 /* AnswerOrderFactory.m */; };
+		669D100719EBF43000A70F10 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 669D100619EBF43000A70F10 /* RootVC.m */; };
+		669D100A19EBF59A00A70F10 /* LeftMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 669D100919EBF59A00A70F10 /* LeftMenu.m */; };
 		66AAB87F1951723E00B7A458 /* CartItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 66AAB87E1951723E00B7A458 /* CartItem.m */; };
 		66AAB883195174FC00B7A458 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 66AAB881195174FC00B7A458 /* Model.xcdatamodeld */; };
 		66AAB8851951791900B7A458 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66AAB8841951791900B7A458 /* CoreData.framework */; };
@@ -160,6 +163,8 @@
 		664911D81941AE0800CFA99D /* NSString+Size.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Size.m"; path = "Helpers/NSString+Size.m"; sourceTree = "<group>"; };
 		664911DD1941FAAF00CFA99D /* MasterVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MasterVC.h; path = ViewControllers/MasterVC.h; sourceTree = "<group>"; };
 		664911DE1941FAAF00CFA99D /* MasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterVC.m; path = ViewControllers/MasterVC.m; sourceTree = "<group>"; };
+		6677263719EDAC8A000637AE /* VBStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBStyle.h; path = Helpers/VBStyle.h; sourceTree = "<group>"; };
+		6677263819EDAC8A000637AE /* VBStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBStyle.m; path = Helpers/VBStyle.m; sourceTree = "<group>"; };
 		668F84081945DFD0004C8DFE /* DeliveryOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeliveryOrderView.h; path = ViewControllers/OrderDetailVC/DeliveryOrderView.h; sourceTree = "<group>"; };
 		668F84091945DFD0004C8DFE /* DeliveryOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeliveryOrderView.m; path = ViewControllers/OrderDetailVC/DeliveryOrderView.m; sourceTree = "<group>"; };
 		669CCFF219542BF00025E5A1 /* AnswerOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerOrder.h; path = Models/AnswerOrder.h; sourceTree = "<group>"; };
@@ -168,6 +173,10 @@
 		669CCFF619542C980025E5A1 /* Message.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Message.m; path = Models/Message.m; sourceTree = "<group>"; };
 		669CCFF819542D710025E5A1 /* AnswerOrderFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerOrderFactory.h; path = Factory/AnswerOrderFactory.h; sourceTree = "<group>"; };
 		669CCFF919542D710025E5A1 /* AnswerOrderFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnswerOrderFactory.m; path = Factory/AnswerOrderFactory.m; sourceTree = "<group>"; };
+		669D100519EBF43000A70F10 /* RootVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootVC.h; path = ViewControllers/RootVC.h; sourceTree = "<group>"; };
+		669D100619EBF43000A70F10 /* RootVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootVC.m; path = ViewControllers/RootVC.m; sourceTree = "<group>"; };
+		669D100819EBF59A00A70F10 /* LeftMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LeftMenu.h; path = ViewControllers/LeftMenu.h; sourceTree = "<group>"; };
+		669D100919EBF59A00A70F10 /* LeftMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LeftMenu.m; path = ViewControllers/LeftMenu.m; sourceTree = "<group>"; };
 		66AAB87D1951723E00B7A458 /* CartItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CartItem.h; path = Models/CartItem.h; sourceTree = "<group>"; };
 		66AAB87E1951723E00B7A458 /* CartItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CartItem.m; path = Models/CartItem.m; sourceTree = "<group>"; };
 		66AAB882195174FC00B7A458 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -416,6 +425,10 @@
 		6643BC0019406F600066D330 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				669D100519EBF43000A70F10 /* RootVC.h */,
+				669D100619EBF43000A70F10 /* RootVC.m */,
+				669D100819EBF59A00A70F10 /* LeftMenu.h */,
+				669D100919EBF59A00A70F10 /* LeftMenu.m */,
 				664911DD1941FAAF00CFA99D /* MasterVC.h */,
 				664911DE1941FAAF00CFA99D /* MasterVC.m */,
 				66EDEAAD1945CAA000DB9DA8 /* RootVC */,
@@ -491,6 +504,8 @@
 				660AE22519E42E5700F05089 /* CreateOrderToJson.m */,
 				660AE22619E42E5700F05089 /* SVAnnotation.h */,
 				660AE22719E42E5700F05089 /* SVAnnotation.m */,
+				6677263719EDAC8A000637AE /* VBStyle.h */,
+				6677263819EDAC8A000637AE /* VBStyle.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -631,6 +646,7 @@
 		6643BBBA194061490066D330 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = VB;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = Brandymint;
 				TargetAttributes = {
@@ -737,6 +753,7 @@
 				6643BC09194073420066D330 /* Managers.m in Sources */,
 				66AAB8A019517A1300B7A458 /* ProductCD.m in Sources */,
 				66EC27CD1946E19600A2990C /* ConvertTime.m in Sources */,
+				6677263919EDAC8A000637AE /* VBStyle.m in Sources */,
 				6643BC1419407B5C0066D330 /* Categories.m in Sources */,
 				66EDEAC21945CB6100DB9DA8 /* AboutVC.m in Sources */,
 				66D4685D194EC38600678B9B /* OrderItem.m in Sources */,
@@ -764,6 +781,7 @@
 				66EDEAA619458DB900DB9DA8 /* BuyView.m in Sources */,
 				66AAB8AC19517E5E00B7A458 /* CoreDataHelper.m in Sources */,
 				6643BC11194079550066D330 /* Money.m in Sources */,
+				669D100A19EBF59A00A70F10 /* LeftMenu.m in Sources */,
 				6643BC1A19407CF60066D330 /* Image.m in Sources */,
 				66E262F41952F805003926BE /* Address.m in Sources */,
 				660AE23B19E42F9C00F05089 /* IQActionSheetPickerView.m in Sources */,
@@ -772,6 +790,7 @@
 				661C6CEE199C91B400B86D24 /* NSString+Currency.m in Sources */,
 				660AE22919E42E5700F05089 /* SVAnnotation.m in Sources */,
 				66AAB8A919517A1400B7A458 /* CartCD.m in Sources */,
+				669D100719EBF43000A70F10 /* RootVC.m in Sources */,
 				66EC27D81947145400A2990C /* MapVC.m in Sources */,
 				660AE23C19E42F9C00F05089 /* IQActionSheetViewController.m in Sources */,
 				669CCFF719542C980025E5A1 /* Message.m in Sources */,

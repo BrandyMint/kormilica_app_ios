@@ -30,9 +30,20 @@
     // Do any additional setup after loading the view.
     appDelegate = [[UIApplication sharedApplication] delegate];
     
-    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"Назад" style: UIBarButtonItemStyleBordered target: nil action: nil];
-    [[self navigationItem] setBackBarButtonItem: newBackButton];
+    //UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle: @"Назад" style: UIBarButtonItemStyleBordered target: nil action: nil];
+    //[[self navigationItem] setBackBarButtonItem: newBackButton];
     
+    if (IS_IOS7) {
+        self.navigationController.navigationBar.barTintColor = [[VBStyle sharedInstance] navigationBarColor];
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [[VBStyle sharedInstance] navigationBarFontColor],
+                                                                          NSFontAttributeName : [[VBStyle sharedInstance] navigationBarFont]}];
+        self.navigationController.navigationBar.translucent = NO;
+    }
+    else
+    {
+        [self.navigationController.navigationBar setTintColor:[[VBStyle sharedInstance] navigationBarColor]];
+    }
 }
 
 - (void)didReceiveMemoryWarning

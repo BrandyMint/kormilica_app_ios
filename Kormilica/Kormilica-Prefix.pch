@@ -16,4 +16,7 @@
     #import "DefaultSettings.h"
     #import "AppDelegate.h"
     #import "NSString+Size.h"
+
+//стили
+#import "VBStyle.h"
 #endif
