@@ -95,11 +95,14 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    UIViewController *rootVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
     switch (indexPath.section) {
         case 0:
-            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"]]
-                                                         animated:YES];
-            [self.sideMenuViewController hideMenuViewController];
+            if  (indexPath.row != 0) {
+                appDelegate.selecrtedIndexCategory = indexPath.row - 1;
+                [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:rootVC] animated:YES];
+                [self.sideMenuViewController hideMenuViewController];
+            }
             break;
         case 1:
             //

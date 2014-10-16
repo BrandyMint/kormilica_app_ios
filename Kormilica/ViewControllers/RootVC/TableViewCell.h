@@ -13,6 +13,7 @@
 @optional
 -(void)onOrderCellAlreadySelect:(NSIndexPath *)indexPath;
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath;
+-(void)onOrderCellRemove:(NSIndexPath *)indexPath;
 @end
 
 @interface TableViewCell : UITableViewCell

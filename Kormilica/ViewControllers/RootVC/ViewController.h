@@ -10,12 +10,14 @@
 #import "MasterVC.h"
 #import "BuyView.h"
 #import "SVSegmentedControl.h"
+#import "VBStatusCartButton.h"
 
 @interface ViewController : MasterVC
 
-@property (weak, nonatomic) IBOutlet UIView *segmentedControlView;
 @property (weak, nonatomic) IBOutlet BuyView *onBuy;
-
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet VBStatusCartButton *statusCartButton;
+
+- (IBAction)statusCartButton:(id)sender;
 
 @end

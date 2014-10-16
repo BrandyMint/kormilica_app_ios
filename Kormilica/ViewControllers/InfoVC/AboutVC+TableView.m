@@ -88,7 +88,7 @@
         else  if (indexPath.row == 2) {
             cell.phoneLabel.text = @"Крылова, 7";
             [cell.onPhoneButton setTitle:@"на карте" forState:UIControlStateNormal];
-            [cell.onPhoneButton addTarget:self action:@selector(onAddress:) forControlEvents:UIControlEventTouchUpInside];
+            [cell.onPhoneButton addTarget:self action:@selector(onMap:) forControlEvents:UIControlEventTouchUpInside];
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone;

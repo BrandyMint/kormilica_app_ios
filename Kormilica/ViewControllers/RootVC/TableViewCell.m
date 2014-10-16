@@ -35,21 +35,27 @@
 
 -(void)layoutSubviews
 {
-    [NUIRenderer renderLabel:_title withClass:@"LabelDefault:TitleProductCell"];
+    _title.textColor = [[VBStyle sharedInstance] nameProductColor];
+    _title.font = [[VBStyle sharedInstance] nameProductFont];
+    
+    _price.textColor = [[VBStyle sharedInstance] amountProductColor];
+    _price.font = [[VBStyle sharedInstance] amountProductFont];
     
     if (_count == 0) {
-        [_onOrder setTitle:@"в заказ" forState:UIControlStateNormal];
-        [NUIRenderer renderButton:_onOrder withClass:@"ButtonOrderCell:ButtonInNotOrder"];
+        [_onOrder setBackgroundImage:[[VBStyle sharedInstance] notInOrderStateImage] forState:UIControlStateNormal];
+        [_onOrder setTitle:nil forState:UIControlStateNormal];
     }
     else {
-        [_onOrder setTitle:[NSString stringWithFormat:@"в заказе: %d",_count] forState:UIControlStateNormal];
-        [NUIRenderer renderButton:_onOrder withClass:@"ButtonOrderCell:ButtonInOrder"];
+        [_onOrder setBackgroundImage:[[VBStyle sharedInstance] inOrderStateImage] forState:UIControlStateNormal];
+        [_onOrder setTitle:[NSString stringWithFormat:@"%ld",(long)_count] forState:UIControlStateNormal];
+        [_onOrder setTitleColor:[[VBStyle sharedInstance] inOrderStateCountColor] forState:UIControlStateNormal];
+        [_onOrder.titleLabel setFont:[[VBStyle sharedInstance] inOrderStateCountFont]];
+        _onOrder.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     }
 }
 
 - (IBAction)onOrder:(id)sender {
     if (_count == 0) {
-        
         [_delegate onOrderCellSelect:_indexPath];
     }
     else {

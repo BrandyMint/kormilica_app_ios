@@ -40,43 +40,6 @@ static int positionButtonInfo = 46;
 
 @implementation ViewController
 
--(void)initScrollViewContent
-{
-    [_segmentedControlView setBackgroundColor: COLOR_GRAY];
-    
-    [_segmentedControl removeFromSuperview];
-    _segmentedControl = nil;
-    
-    NSMutableArray *mut = [NSMutableArray new];
-    for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
-        [mut addObject:[[appDelegate.bundles.categories objectAtIndex:i] name]];
-    }
-
-    _segmentedControl = [[SVSegmentedControl alloc] initWithSectionTitles:mut];
-    _segmentedControl.frame = CGRectMake(0, 0, 320, 40);
-    _segmentedControl.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:14];
-    _segmentedControl.textColor = [UIColor whiteColor];
-    _segmentedControl.backgroundTintColor = [UIColor clearColor];
-    _segmentedControl.backgroundColor = [UIColor clearColor];
-    _segmentedControl.innerShadowColor = [UIColor clearColor];
-    _segmentedControl.height = 35;
-    _segmentedControl.textShadowColor = [UIColor clearColor];
-    _segmentedControl.textShadowOffset = CGSizeZero;
-    _segmentedControl.thumb.tintColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.2];
-    _segmentedControl.thumb.backgroundColor = [UIColor clearColor];
-    _segmentedControl.thumb.textShadowColor = [UIColor clearColor];
-    _segmentedControl.thumb.textShadowOffset = CGSizeZero;
-    _segmentedControl.thumb.gradientIntensity = 0;
-    //_segmentedControl.center = CGPointMake(160, 20);
-    _segmentedControl.changeHandler = ^(NSUInteger newIndex) {
-        Categories* categories = [appDelegate.bundles.categories objectAtIndex:newIndex];
-        [self initDataArrayWithCategoriesID:categories.idCategories];
-        selectedIDCategory = categories.idCategories;
-        appDelegate.selecrtedIndexCategory = newIndex;
-    };
-    [_segmentedControlView addSubview:_segmentedControl];
-}
-
 -(void)initText
 {
     [_onBuy isAllowed:NO];
@@ -104,9 +67,11 @@ static int positionButtonInfo = 46;
     _onBuy.userInteractionEnabled = [appDelegate.cart getItemsCount] > 0 ? YES : NO;
     [self initDataArrayWithCategoriesID:selectedIDCategory];
     
-    [self initScrollViewContent];
-    
     [_segmentedControl setSelectedSegmentIndex:appDelegate.selecrtedIndexCategory animated:YES];
+    
+    Categories* categories = [appDelegate.bundles.categories objectAtIndex:appDelegate.selecrtedIndexCategory];
+    [self initDataArrayWithCategoriesID:categories.idCategories];
+    selectedIDCategory = categories.idCategories;
 }
 
 - (void)viewDidLoad
@@ -126,6 +91,14 @@ static int positionButtonInfo = 46;
         
         appDelegate.cart.vendor = bundles.vendor;
     }];
+    
+    NSMutableArray *mut = [NSMutableArray new];
+    for (int i = 0; i < appDelegate.bundles.categories.count; i++) {
+        [mut addObject:[[appDelegate.bundles.categories objectAtIndex:i] name]];
+    }
+    self.title = mut[appDelegate.selecrtedIndexCategory];
+    
+    [_statusCartButton setCountProductInCard:[appDelegate.cart getItemsCount]];
 
     picker = [[IQActionSheetPickerView alloc] initWithTitle:@"Сколько заказать?" delegate:self];
     picker.backgroundColor = COLOR_GRAY;
@@ -133,44 +106,6 @@ static int positionButtonInfo = 46;
                                      appDelegate.dataArrayForPicker,
                                      nil]];
     
-    UISwipeGestureRecognizer *swipeLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeft:)];
-    [swipeLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
-    [self.tableView addGestureRecognizer:swipeLeft];
-
-    UISwipeGestureRecognizer *swipeRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRight:)];
-    [swipeRight setDirection:(UISwipeGestureRecognizerDirectionRight)];
-    [self.tableView addGestureRecognizer:swipeRight];
-}
-
--(void)swipeLeft:(UISwipeGestureRecognizer *)swipe
-{
-    NSLog(@"<-");
-    
-    if (appDelegate.selecrtedIndexCategory > 0) {
-        appDelegate.selecrtedIndexCategory--;
-    }
-    //else
-        //appDelegate.selecrtedIndexCategory = appDelegate.bundles.categories.count - 1;
-    
-    Categories* categories = [appDelegate.bundles.categories objectAtIndex:appDelegate.selecrtedIndexCategory];
-    [self initDataArrayWithCategoriesID:categories.idCategories];
-    selectedIDCategory = categories.idCategories;
-    [_segmentedControl setSelectedSegmentIndex:appDelegate.selecrtedIndexCategory animated:YES];
-}
-
--(void)swipeRight:(UISwipeGestureRecognizer *)swipe
-{
-    NSLog( @"->");
-
-    if (appDelegate.selecrtedIndexCategory < appDelegate.bundles.categories.count - 1) {
-        appDelegate.selecrtedIndexCategory++;
-    }
-    //else
-        //appDelegate.selecrtedIndexCategory = 0;
-    Categories* categories = [appDelegate.bundles.categories objectAtIndex:appDelegate.selecrtedIndexCategory];
-    [self initDataArrayWithCategoriesID:categories.idCategories];
-    selectedIDCategory = categories.idCategories;
-    [_segmentedControl setSelectedSegmentIndex:appDelegate.selecrtedIndexCategory animated:YES];
 }
 
 - (void)didReceiveMemoryWarning
@@ -188,7 +123,7 @@ static int positionButtonInfo = 46;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 60;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -252,10 +187,12 @@ static int positionButtonInfo = 46;
     if (indexOfArray == 0) {
         //удаляем товар из заказа
         [appDelegate.cart addIdProduct:selectProduct.idProduct count:0];
+        [_statusCartButton setCountProductInCard:[appDelegate.cart getItemsCount]];
     }
     else {
         //меняем количество товаров для заказа
         [appDelegate.cart addIdProduct:selectProduct.idProduct count:indexOfArray];
+        [_statusCartButton setCountProductInCard:[appDelegate.cart getItemsCount]];
     }
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
     
@@ -271,6 +208,8 @@ static int positionButtonInfo = 46;
     
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
     _onBuy.userInteractionEnabled = [appDelegate.cart getItemsCount] > 0 ? YES : NO;
+    
+    [_statusCartButton setCountProductInCard:[appDelegate.cart getItemsCount]];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -286,4 +225,6 @@ static int positionButtonInfo = 46;
     [self performSegueWithIdentifier:@"segBuy" sender:self];
 }
 
+- (IBAction)statusCartButton:(id)sender {
+}
 @end

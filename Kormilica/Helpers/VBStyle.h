@@ -7,15 +7,30 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UIImage+Overlay.h"
 
 @interface VBStyle : NSObject
 
 +(id)sharedInstance;
 -(void)initStyle:(NSString *)theStyle;
 
+-(UIColor *)bottomBarAcceptColor;
+-(UIColor *)bottomBarNotAcceptColor;
+
+-(UIColor *)inOrderStateCountColor;
+-(UIFont *)inOrderStateCountFont;
+-(UIImage *)inOrderStateImage;
+-(UIImage *)notInOrderStateImage;
+
+-(UIColor *)nameProductColor;
+-(UIFont *)nameProductFont;
+-(UIColor *)amountProductColor;
+-(UIFont *)amountProductFont;
+
 -(UIColor *)navigationBarFontColor;
 -(UIFont *)navigationBarFont;
 -(UIColor *)navigationBarColor;
+
 -(UIFont *)menuFont;
 -(UIColor *)menuBackground;
 
