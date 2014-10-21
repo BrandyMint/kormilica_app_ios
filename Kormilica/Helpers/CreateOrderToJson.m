@@ -23,7 +23,7 @@
                                 nil];
     
     NSDictionary* total_cost = [NSDictionary dictionaryWithObjectsAndKeys:
-                                [self setObjectOrNull:[NSString stringWithFormat:@"%d",order.total_price.cents*100]],   @"cents",
+                                [self setObjectOrNull:[NSString stringWithFormat:@"%ld",order.total_price.cents*100]],   @"cents",
                                 [self setObjectOrNull:order.total_price.currency],                                      @"currency",
                                 nil];
     
@@ -35,16 +35,16 @@
     NSMutableArray* items = [NSMutableArray new];
     for (OrderItem* orderItem in order.items) {
         NSDictionary* itemsDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                        [self setObjectOrNull:[NSString stringWithFormat:@"%d",orderItem.product.idProduct]],    @"product_id",
-                                        [self setObjectOrNull:[NSString stringWithFormat:@"%d",orderItem.count]],                @"count",
-                                        [self setObjectOrNull:[NSString stringWithFormat:@"%d",orderItem.product.price.cents]],  @"price",
+                                        [self setObjectOrNull:[NSString stringWithFormat:@"%ld",(long)orderItem.product.idProduct]],    @"product_id",
+                                        [self setObjectOrNull:[NSString stringWithFormat:@"%ld",(long)orderItem.count]],                @"count",
+                                        [self setObjectOrNull:[NSString stringWithFormat:@"%ld",(long)orderItem.product.price.cents]],  @"price",
                                         nil];
         [items addObject:itemsDictionary];
     }
     
     NSDictionary* orderDictionary = [NSDictionary dictionaryWithObjectsAndKeys:
-                                    [self setObjectOrNull:[NSString stringWithFormat:@"%d",items.count]],                   @"total_count",
-                                    [self setObjectOrNull:[NSString stringWithFormat:@"%d",order.total_price.cents*100]],   @"total_cost_cents",
+                                    [self setObjectOrNull:[NSString stringWithFormat:@"%lu",(unsigned long)items.count]],   @"total_count",
+                                    [self setObjectOrNull:[NSString stringWithFormat:@"%ld",order.total_price.cents*100]],  @"total_cost_cents",
                                     [self setObjectOrNull:user],                                                            @"user",
                                     [self setObjectOrNull:total_cost],                                                      @"total_cost",
                                     [self setObjectOrNull:delivery_price],                                                  @"delivery_price",

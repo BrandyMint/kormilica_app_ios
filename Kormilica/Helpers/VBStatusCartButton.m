@@ -9,7 +9,6 @@
 #import "VBStatusCartButton.h"
 #import "UIImage+Overlay.h"
 
-
 @implementation VBStatusCartButton
 {
     UIImageView *cartImageView;
@@ -34,17 +33,12 @@
     return self;
 }
 
--(void)layoutSubviews
-{
-    
-}
-
 -(void)initDefault
 {
     [self setFrame:CGRectMake(0, 0, 60, 22)];
     [self setTitle:nil forState:UIControlStateNormal];
     
-    _color = [[VBStyle sharedInstance] navigationBarFontColor];
+    _color = [[VBStyle style] navigationBarFontColor];
     
     cartImageView = [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"cart"]
                             imageWithColor:[UIColor whiteColor]]];

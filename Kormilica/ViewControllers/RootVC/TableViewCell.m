@@ -35,21 +35,20 @@
 
 -(void)layoutSubviews
 {
-    _title.textColor = [[VBStyle sharedInstance] nameProductColor];
-    _title.font = [[VBStyle sharedInstance] nameProductFont];
+    _title.textColor = [[VBStyle style] nameProductColor];
+    _title.font = [[VBStyle style] nameProductFont];
     
-    _price.textColor = [[VBStyle sharedInstance] amountProductColor];
-    _price.font = [[VBStyle sharedInstance] amountProductFont];
+    _price.textColor = [[VBStyle style] amountProductColor];
     
     if (_count == 0) {
-        [_onOrder setBackgroundImage:[[VBStyle sharedInstance] notInOrderStateImage] forState:UIControlStateNormal];
+        [_onOrder setBackgroundImage:[[VBStyle style] notInOrderStateImage] forState:UIControlStateNormal];
         [_onOrder setTitle:nil forState:UIControlStateNormal];
     }
     else {
-        [_onOrder setBackgroundImage:[[VBStyle sharedInstance] inOrderStateImage] forState:UIControlStateNormal];
+        [_onOrder setBackgroundImage:[[VBStyle style] inOrderStateImage] forState:UIControlStateNormal];
         [_onOrder setTitle:[NSString stringWithFormat:@"%ld",(long)_count] forState:UIControlStateNormal];
-        [_onOrder setTitleColor:[[VBStyle sharedInstance] inOrderStateCountColor] forState:UIControlStateNormal];
-        [_onOrder.titleLabel setFont:[[VBStyle sharedInstance] inOrderStateCountFont]];
+        [_onOrder setTitleColor:[[VBStyle style] inOrderStateCountColor] forState:UIControlStateNormal];
+        [_onOrder.titleLabel setFont:[[VBStyle style] inOrderStateCountFont]];
         _onOrder.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
     }
 }

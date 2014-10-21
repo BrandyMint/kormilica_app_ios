@@ -34,15 +34,15 @@
     //[[self navigationItem] setBackBarButtonItem: newBackButton];
     
     if (IS_IOS7) {
-        self.navigationController.navigationBar.barTintColor = [[VBStyle sharedInstance] navigationBarColor];
+        self.navigationController.navigationBar.barTintColor = [[VBStyle style] navigationBarColor];
         self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
-        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [[VBStyle sharedInstance] navigationBarFontColor],
-                                                                          NSFontAttributeName : [[VBStyle sharedInstance] navigationBarFont]}];
+        [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [[VBStyle style] navigationBarFontColor],
+                                                                          NSFontAttributeName : [[VBStyle style] navigationBarFont]}];
         self.navigationController.navigationBar.translucent = NO;
     }
     else
     {
-        [self.navigationController.navigationBar setTintColor:[[VBStyle sharedInstance] navigationBarColor]];
+        [self.navigationController.navigationBar setTintColor:[[VBStyle style] navigationBarColor]];
     }
 }
 

@@ -15,14 +15,8 @@
 
 //public
 @property (nonatomic, assign) NSInteger idProduct;
+@property (nonatomic, assign) BOOL isBigStyle;
 
 @property (weak, nonatomic) IBOutlet BuyView *onBuy;
-
-@property (weak, nonatomic) IBOutlet UIImageView *logo;
-@property (weak, nonatomic) IBOutlet UILabel *titleProduct;
-@property (weak, nonatomic) IBOutlet UILabel *price;
-@property (weak, nonatomic) IBOutlet UITextView *descriptions;
-@property (weak, nonatomic) IBOutlet UIButton *onOrder;
-- (IBAction)onOrder:(id)sender;
 
 @end

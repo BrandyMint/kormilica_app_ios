@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "MasterVC.h"
 
-@interface OrderVC : MasterVC
+@interface VBCartVC : MasterVC
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *allSumView;
 @property (weak, nonatomic) IBOutlet UIView *onOrderView;
 
 @end

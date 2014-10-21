@@ -17,12 +17,12 @@
 		660AE22819E42E5700F05089 /* CreateOrderToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 660AE22519E42E5700F05089 /* CreateOrderToJson.m */; };
 		660AE22919E42E5700F05089 /* SVAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 660AE22719E42E5700F05089 /* SVAnnotation.m */; };
 		660AE22C19E42E6700F05089 /* DefaultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 660AE22A19E42E6700F05089 /* DefaultData.json */; };
-		660AE22F19E42EC600F05089 /* W1Rouble-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 660AE22E19E42EC600F05089 /* W1Rouble-Regular.otf */; };
-		660AE23B19E42F9C00F05089 /* IQActionSheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 660AE23319E42F9C00F05089 /* IQActionSheetPickerView.m */; };
-		660AE23C19E42F9C00F05089 /* IQActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 660AE23519E42F9C00F05089 /* IQActionSheetViewController.m */; };
-		660AE23D19E42F9C00F05089 /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 660AE23819E42F9C00F05089 /* SVSegmentedControl.m */; };
-		660AE23E19E42F9C00F05089 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 660AE23A19E42F9C00F05089 /* SVSegmentedThumb.m */; };
 		661C6CEE199C91B400B86D24 /* NSString+Currency.m in Sources */ = {isa = PBXBuildFile; fileRef = 661C6CED199C91B400B86D24 /* NSString+Currency.m */; };
+		66292F0219F6942F0072A744 /* W1Rouble-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 66292F0119F6942F0072A744 /* W1Rouble-Regular.otf */; };
+		66292F0E19F6949B0072A744 /* IQActionSheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66292F0619F6949A0072A744 /* IQActionSheetPickerView.m */; };
+		66292F0F19F6949B0072A744 /* IQActionSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66292F0819F6949A0072A744 /* IQActionSheetViewController.m */; };
+		66292F1019F6949B0072A744 /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 66292F0B19F6949A0072A744 /* SVSegmentedControl.m */; };
+		66292F1119F6949B0072A744 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 66292F0D19F6949A0072A744 /* SVSegmentedThumb.m */; };
 		6643BBC6194061490066D330 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC5194061490066D330 /* Foundation.framework */; };
 		6643BBC8194061490066D330 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC7194061490066D330 /* CoreGraphics.framework */; };
 		6643BBCA194061490066D330 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6643BBC9194061490066D330 /* UIKit.framework */; };
@@ -47,6 +47,7 @@
 		664911D91941AE0800CFA99D /* NSString+Size.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911D81941AE0800CFA99D /* NSString+Size.m */; };
 		664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 664911DE1941FAAF00CFA99D /* MasterVC.m */; };
 		6677263919EDAC8A000637AE /* VBStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6677263819EDAC8A000637AE /* VBStyle.m */; };
+		668860A319F5679F00241DF3 /* VBAddToCartButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 668860A219F5679F00241DF3 /* VBAddToCartButton.m */; };
 		668F840A1945DFD0004C8DFE /* DeliveryOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 668F84091945DFD0004C8DFE /* DeliveryOrderView.m */; };
 		669CCFF419542BF00025E5A1 /* AnswerOrder.m in Sources */ = {isa = PBXBuildFile; fileRef = 669CCFF319542BF00025E5A1 /* AnswerOrder.m */; };
 		669CCFF719542C980025E5A1 /* Message.m in Sources */ = {isa = PBXBuildFile; fileRef = 669CCFF619542C980025E5A1 /* Message.m */; };
@@ -78,8 +79,8 @@
 		66EDEAB21945CAD200DB9DA8 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAAF1945CAD200DB9DA8 /* TableViewCell.m */; };
 		66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAB11945CAD200DB9DA8 /* ViewController.m */; };
 		66EDEAB71945CB2E00DB9DA8 /* DetailGoodsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAB61945CB2E00DB9DA8 /* DetailGoodsVC.m */; };
-		66EDEABD1945CB4B00DB9DA8 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */; };
-		66EDEABE1945CB4B00DB9DA8 /* OrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */; };
+		66EDEABD1945CB4B00DB9DA8 /* VBCartCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABA1945CB4B00DB9DA8 /* VBCartCell.m */; };
+		66EDEABE1945CB4B00DB9DA8 /* VBCartVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEABC1945CB4B00DB9DA8 /* VBCartVC.m */; };
 		66EDEAC21945CB6100DB9DA8 /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC11945CB6100DB9DA8 /* AboutVC.m */; };
 		66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 66EDEAC51945CBB800DB9DA8 /* OrderDetailVC.m */; };
 		66F2258D1948477F00D657A1 /* CartTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 66F2258C1948477F00D657A1 /* CartTest.m */; };
@@ -116,17 +117,17 @@
 		660AE22619E42E5700F05089 /* SVAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVAnnotation.h; path = Helpers/SVAnnotation.h; sourceTree = "<group>"; };
 		660AE22719E42E5700F05089 /* SVAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SVAnnotation.m; path = Helpers/SVAnnotation.m; sourceTree = "<group>"; };
 		660AE22A19E42E6700F05089 /* DefaultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = DefaultData.json; path = Resources/DefaultData.json; sourceTree = "<group>"; };
-		660AE22E19E42EC600F05089 /* W1Rouble-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "W1Rouble-Regular.otf"; path = "../Resources/Fonts/W1Rouble-Regular.otf"; sourceTree = "<group>"; };
-		660AE23219E42F9C00F05089 /* IQActionSheetPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQActionSheetPickerView.h; sourceTree = "<group>"; };
-		660AE23319E42F9C00F05089 /* IQActionSheetPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQActionSheetPickerView.m; sourceTree = "<group>"; };
-		660AE23419E42F9C00F05089 /* IQActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQActionSheetViewController.h; sourceTree = "<group>"; };
-		660AE23519E42F9C00F05089 /* IQActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQActionSheetViewController.m; sourceTree = "<group>"; };
-		660AE23719E42F9C00F05089 /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
-		660AE23819E42F9C00F05089 /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
-		660AE23919E42F9C00F05089 /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
-		660AE23A19E42F9C00F05089 /* SVSegmentedThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedThumb.m; sourceTree = "<group>"; };
 		661C6CEC199C91B400B86D24 /* NSString+Currency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Currency.h"; path = "Helpers/NSString+Currency.h"; sourceTree = "<group>"; };
 		661C6CED199C91B400B86D24 /* NSString+Currency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Currency.m"; path = "Helpers/NSString+Currency.m"; sourceTree = "<group>"; };
+		66292F0119F6942F0072A744 /* W1Rouble-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "W1Rouble-Regular.otf"; path = "Kormilica/Resources/Fonts/W1Rouble-Regular.otf"; sourceTree = SOURCE_ROOT; };
+		66292F0519F6949A0072A744 /* IQActionSheetPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQActionSheetPickerView.h; sourceTree = "<group>"; };
+		66292F0619F6949A0072A744 /* IQActionSheetPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQActionSheetPickerView.m; sourceTree = "<group>"; };
+		66292F0719F6949A0072A744 /* IQActionSheetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IQActionSheetViewController.h; sourceTree = "<group>"; };
+		66292F0819F6949A0072A744 /* IQActionSheetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IQActionSheetViewController.m; sourceTree = "<group>"; };
+		66292F0A19F6949A0072A744 /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
+		66292F0B19F6949A0072A744 /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
+		66292F0C19F6949A0072A744 /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
+		66292F0D19F6949A0072A744 /* SVSegmentedThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedThumb.m; sourceTree = "<group>"; };
 		6643BBC2194061490066D330 /* Kormilica.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kormilica.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6643BBC5194061490066D330 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6643BBC7194061490066D330 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -167,6 +168,8 @@
 		664911DE1941FAAF00CFA99D /* MasterVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MasterVC.m; path = ViewControllers/MasterVC.m; sourceTree = "<group>"; };
 		6677263719EDAC8A000637AE /* VBStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBStyle.h; path = Helpers/VBStyle.h; sourceTree = "<group>"; };
 		6677263819EDAC8A000637AE /* VBStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBStyle.m; path = Helpers/VBStyle.m; sourceTree = "<group>"; };
+		668860A119F5679F00241DF3 /* VBAddToCartButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBAddToCartButton.h; path = Helpers/VBAddToCartButton.h; sourceTree = "<group>"; };
+		668860A219F5679F00241DF3 /* VBAddToCartButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBAddToCartButton.m; path = Helpers/VBAddToCartButton.m; sourceTree = "<group>"; };
 		668F84081945DFD0004C8DFE /* DeliveryOrderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DeliveryOrderView.h; path = ViewControllers/OrderDetailVC/DeliveryOrderView.h; sourceTree = "<group>"; };
 		668F84091945DFD0004C8DFE /* DeliveryOrderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DeliveryOrderView.m; path = ViewControllers/OrderDetailVC/DeliveryOrderView.m; sourceTree = "<group>"; };
 		669CCFF219542BF00025E5A1 /* AnswerOrder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnswerOrder.h; path = Models/AnswerOrder.h; sourceTree = "<group>"; };
@@ -224,10 +227,10 @@
 		66EDEAB11945CAD200DB9DA8 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = ViewControllers/RootVC/ViewController.m; sourceTree = "<group>"; };
 		66EDEAB51945CB2E00DB9DA8 /* DetailGoodsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailGoodsVC.h; path = ViewControllers/DetailGoods/DetailGoodsVC.h; sourceTree = "<group>"; };
 		66EDEAB61945CB2E00DB9DA8 /* DetailGoodsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailGoodsVC.m; path = ViewControllers/DetailGoods/DetailGoodsVC.m; sourceTree = "<group>"; };
-		66EDEAB91945CB4B00DB9DA8 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderCell.h; path = ViewControllers/OrderVC/OrderCell.h; sourceTree = "<group>"; };
-		66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderCell.m; path = ViewControllers/OrderVC/OrderCell.m; sourceTree = "<group>"; };
-		66EDEABB1945CB4B00DB9DA8 /* OrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderVC.h; path = ViewControllers/OrderVC/OrderVC.h; sourceTree = "<group>"; };
-		66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderVC.m; path = ViewControllers/OrderVC/OrderVC.m; sourceTree = "<group>"; };
+		66EDEAB91945CB4B00DB9DA8 /* VBCartCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBCartCell.h; path = ViewControllers/OrderVC/VBCartCell.h; sourceTree = "<group>"; };
+		66EDEABA1945CB4B00DB9DA8 /* VBCartCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBCartCell.m; path = ViewControllers/OrderVC/VBCartCell.m; sourceTree = "<group>"; };
+		66EDEABB1945CB4B00DB9DA8 /* VBCartVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VBCartVC.h; path = ViewControllers/OrderVC/VBCartVC.h; sourceTree = "<group>"; };
+		66EDEABC1945CB4B00DB9DA8 /* VBCartVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VBCartVC.m; path = ViewControllers/OrderVC/VBCartVC.m; sourceTree = "<group>"; };
 		66EDEAC01945CB6100DB9DA8 /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutVC.h; path = ViewControllers/InfoVC/AboutVC.h; sourceTree = "<group>"; };
 		66EDEAC11945CB6100DB9DA8 /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutVC.m; path = ViewControllers/InfoVC/AboutVC.m; sourceTree = "<group>"; };
 		66EDEAC41945CBB800DB9DA8 /* OrderDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderDetailVC.h; path = ViewControllers/OrderDetailVC/OrderDetailVC.h; sourceTree = "<group>"; };
@@ -292,43 +295,43 @@
 			name = Table;
 			sourceTree = "<group>";
 		};
-		660AE23019E42F9C00F05089 /* LocalPods */ = {
+		660F001819CD5B9800530E90 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				660AE23119E42F9C00F05089 /* IQActionSheetPickerView */,
-				660AE23619E42F9C00F05089 /* SVSegmentedControl */,
+				66292F0119F6942F0072A744 /* W1Rouble-Regular.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		66292F0319F6949A0072A744 /* LocalPods */ = {
+			isa = PBXGroup;
+			children = (
+				66292F0419F6949A0072A744 /* IQActionSheetPickerView */,
+				66292F0919F6949A0072A744 /* SVSegmentedControl */,
 			);
 			path = LocalPods;
 			sourceTree = "<group>";
 		};
-		660AE23119E42F9C00F05089 /* IQActionSheetPickerView */ = {
+		66292F0419F6949A0072A744 /* IQActionSheetPickerView */ = {
 			isa = PBXGroup;
 			children = (
-				660AE23219E42F9C00F05089 /* IQActionSheetPickerView.h */,
-				660AE23319E42F9C00F05089 /* IQActionSheetPickerView.m */,
-				660AE23419E42F9C00F05089 /* IQActionSheetViewController.h */,
-				660AE23519E42F9C00F05089 /* IQActionSheetViewController.m */,
+				66292F0519F6949A0072A744 /* IQActionSheetPickerView.h */,
+				66292F0619F6949A0072A744 /* IQActionSheetPickerView.m */,
+				66292F0719F6949A0072A744 /* IQActionSheetViewController.h */,
+				66292F0819F6949A0072A744 /* IQActionSheetViewController.m */,
 			);
 			path = IQActionSheetPickerView;
 			sourceTree = "<group>";
 		};
-		660AE23619E42F9C00F05089 /* SVSegmentedControl */ = {
+		66292F0919F6949A0072A744 /* SVSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
-				660AE23719E42F9C00F05089 /* SVSegmentedControl.h */,
-				660AE23819E42F9C00F05089 /* SVSegmentedControl.m */,
-				660AE23919E42F9C00F05089 /* SVSegmentedThumb.h */,
-				660AE23A19E42F9C00F05089 /* SVSegmentedThumb.m */,
+				66292F0A19F6949A0072A744 /* SVSegmentedControl.h */,
+				66292F0B19F6949A0072A744 /* SVSegmentedControl.m */,
+				66292F0C19F6949A0072A744 /* SVSegmentedThumb.h */,
+				66292F0D19F6949A0072A744 /* SVSegmentedThumb.m */,
 			);
 			path = SVSegmentedControl;
-			sourceTree = "<group>";
-		};
-		660F001819CD5B9800530E90 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				660AE22E19E42EC600F05089 /* W1Rouble-Regular.otf */,
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		6643BBB9194061490066D330 = {
@@ -387,7 +390,7 @@
 			children = (
 				66BEBD03195801BD00BFCC42 /* Kormilica.NUI.nss */,
 				660AE22A19E42E6700F05089 /* DefaultData.json */,
-				660AE23019E42F9C00F05089 /* LocalPods */,
+				66292F0319F6949A0072A744 /* LocalPods */,
 				660F001819CD5B9800530E90 /* Fonts */,
 				6643BBCD194061490066D330 /* Kormilica-Info.plist */,
 				6643BBCE194061490066D330 /* InfoPlist.strings */,
@@ -439,7 +442,7 @@
 				664911DE1941FAAF00CFA99D /* MasterVC.m */,
 				66EDEAAD1945CAA000DB9DA8 /* RootVC */,
 				66EDEAB41945CB1D00DB9DA8 /* DetailGoodsVC */,
-				66EDEAB81945CB3B00DB9DA8 /* OrderVC */,
+				66EDEAB81945CB3B00DB9DA8 /* CartVC */,
 				66EDEAC31945CB9300DB9DA8 /* OrderDetailVC */,
 				66EC27D11946FBF600A2990C /* DetailImage */,
 				66EDEABF1945CB5300DB9DA8 /* AboutVC */,
@@ -516,6 +519,8 @@
 				6677263819EDAC8A000637AE /* VBStyle.m */,
 				66C7601019F05FB700D3F99F /* VBStatusCartButton.h */,
 				66C7601119F05FB700D3F99F /* VBStatusCartButton.m */,
+				668860A119F5679F00241DF3 /* VBAddToCartButton.h */,
+				668860A219F5679F00241DF3 /* VBAddToCartButton.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -576,15 +581,15 @@
 			name = DetailGoodsVC;
 			sourceTree = "<group>";
 		};
-		66EDEAB81945CB3B00DB9DA8 /* OrderVC */ = {
+		66EDEAB81945CB3B00DB9DA8 /* CartVC */ = {
 			isa = PBXGroup;
 			children = (
-				66EDEABB1945CB4B00DB9DA8 /* OrderVC.h */,
-				66EDEABC1945CB4B00DB9DA8 /* OrderVC.m */,
-				66EDEAB91945CB4B00DB9DA8 /* OrderCell.h */,
-				66EDEABA1945CB4B00DB9DA8 /* OrderCell.m */,
+				66EDEABB1945CB4B00DB9DA8 /* VBCartVC.h */,
+				66EDEABC1945CB4B00DB9DA8 /* VBCartVC.m */,
+				66EDEAB91945CB4B00DB9DA8 /* VBCartCell.h */,
+				66EDEABA1945CB4B00DB9DA8 /* VBCartCell.m */,
 			);
-			name = OrderVC;
+			name = CartVC;
 			sourceTree = "<group>";
 		};
 		66EDEABF1945CB5300DB9DA8 /* AboutVC */ = {
@@ -695,9 +700,9 @@
 				6643BBDE194061490066D330 /* Images.xcassets in Resources */,
 				66BEBD04195801BD00BFCC42 /* Kormilica.NUI.nss in Resources */,
 				660AE22319E42E3F00F05089 /* Array.plist in Resources */,
-				660AE22F19E42EC600F05089 /* W1Rouble-Regular.otf in Resources */,
 				660AE22C19E42E6700F05089 /* DefaultData.json in Resources */,
 				6643BBD0194061490066D330 /* InfoPlist.strings in Resources */,
+				66292F0219F6942F0072A744 /* W1Rouble-Regular.otf in Resources */,
 				6643BBD9194061490066D330 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -750,25 +755,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66EDEABD1945CB4B00DB9DA8 /* OrderCell.m in Sources */,
+				66EDEABD1945CB4B00DB9DA8 /* VBCartCell.m in Sources */,
 				66C7601219F05FB700D3F99F /* VBStatusCartButton.m in Sources */,
 				6643BBD6194061490066D330 /* AppDelegate.m in Sources */,
 				6643BC1719407C050066D330 /* Product.m in Sources */,
 				66EC27D41946FC1300A2990C /* DetailImageVC.m in Sources */,
 				664911D91941AE0800CFA99D /* NSString+Size.m in Sources */,
 				660AE20A19E3C27200F05089 /* AboutDeliveryCell.m in Sources */,
+				66292F1119F6949B0072A744 /* SVSegmentedThumb.m in Sources */,
 				66F225931948770600D657A1 /* Cart.m in Sources */,
 				6643BBD2194061490066D330 /* main.m in Sources */,
-				66EDEABE1945CB4B00DB9DA8 /* OrderVC.m in Sources */,
-				660AE23D19E42F9C00F05089 /* SVSegmentedControl.m in Sources */,
+				66EDEABE1945CB4B00DB9DA8 /* VBCartVC.m in Sources */,
 				6643BC09194073420066D330 /* Managers.m in Sources */,
 				66AAB8A019517A1300B7A458 /* ProductCD.m in Sources */,
 				66EC27CD1946E19600A2990C /* ConvertTime.m in Sources */,
 				6677263919EDAC8A000637AE /* VBStyle.m in Sources */,
 				6643BC1419407B5C0066D330 /* Categories.m in Sources */,
 				66EDEAC21945CB6100DB9DA8 /* AboutVC.m in Sources */,
+				668860A319F5679F00241DF3 /* VBAddToCartButton.m in Sources */,
 				66D4685D194EC38600678B9B /* OrderItem.m in Sources */,
 				664911DF1941FAAF00CFA99D /* MasterVC.m in Sources */,
+				66292F1019F6949B0072A744 /* SVSegmentedControl.m in Sources */,
 				6643BC0E194078580066D330 /* Vendor.m in Sources */,
 				66AAB8A619517A1400B7A458 /* OrderCD.m in Sources */,
 				66EDEAB71945CB2E00DB9DA8 /* DetailGoodsVC.m in Sources */,
@@ -777,11 +784,12 @@
 				66EDEAC61945CBB800DB9DA8 /* OrderDetailVC.m in Sources */,
 				66D46864194F24AE00678B9B /* Order.m in Sources */,
 				66EDEAB21945CAD200DB9DA8 /* TableViewCell.m in Sources */,
-				660AE23E19E42F9C00F05089 /* SVSegmentedThumb.m in Sources */,
 				6643BC2019407DA50066D330 /* Factory.m in Sources */,
 				660AE20119E3C1A600F05089 /* AboutVC+TableView.m in Sources */,
 				66AAB883195174FC00B7A458 /* Model.xcdatamodeld in Sources */,
+				66292F0E19F6949B0072A744 /* IQActionSheetPickerView.m in Sources */,
 				660AE20719E3C24A00F05089 /* AboutPhoneCell.m in Sources */,
+				66292F0F19F6949B0072A744 /* IQActionSheetViewController.m in Sources */,
 				66EDEAB31945CAD200DB9DA8 /* ViewController.m in Sources */,
 				66EAEDF819992F72000C3370 /* City.m in Sources */,
 				66EC27D01946EFAB00A2990C /* FeedBackView.m in Sources */,
@@ -796,7 +804,6 @@
 				669D100A19EBF59A00A70F10 /* LeftMenu.m in Sources */,
 				6643BC1A19407CF60066D330 /* Image.m in Sources */,
 				66E262F41952F805003926BE /* Address.m in Sources */,
-				660AE23B19E42F9C00F05089 /* IQActionSheetPickerView.m in Sources */,
 				669CCFFA19542D710025E5A1 /* AnswerOrderFactory.m in Sources */,
 				660AE20D19E3C2BE00F05089 /* AboutTextCell.m in Sources */,
 				661C6CEE199C91B400B86D24 /* NSString+Currency.m in Sources */,
@@ -804,7 +811,6 @@
 				66AAB8A919517A1400B7A458 /* CartCD.m in Sources */,
 				669D100719EBF43000A70F10 /* RootVC.m in Sources */,
 				66EC27D81947145400A2990C /* MapVC.m in Sources */,
-				660AE23C19E42F9C00F05089 /* IQActionSheetViewController.m in Sources */,
 				669CCFF719542C980025E5A1 /* Message.m in Sources */,
 				660AE21019E3C2DA00F05089 /* AboutOtherCell.m in Sources */,
 				66AAB8A319517A1400B7A458 /* OrderItemCD.m in Sources */,

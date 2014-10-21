@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Brandymint. All rights reserved.
 //
 
-#import "OrderCell.h"
+#import "VBCartCell.h"
 #import "UILabel+NUI.h"
 #import "UIButton+NUI.h"
 
-@implementation OrderCell
+@implementation VBCartCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -35,8 +35,11 @@
 
 -(void)layoutSubviews
 {
-    _title.numberOfLines = 2;
-    [_onOrderAmount.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    _itemLabel.textColor = [[VBStyle style] cartNumberRowColor];
+    _itemLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:12];
+    
+    _titleLabel.textColor = [[VBStyle style] cartTitleColor];
+    _titleLabel.font = [[VBStyle style] cartTitleFont];
 }
 
 - (IBAction)onOrderAmount:(id)sender {

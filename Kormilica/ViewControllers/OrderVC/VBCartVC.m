@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Brandymint. All rights reserved.
 //
 
-#import "OrderVC.h"
-#import "OrderCell.h"
+#import "VBCartVC.h"
+#import "VBCartCell.h"
 #import "Product.h"
 #import "DetailGoodsVC.h"
 #import "OrderDetailVC.h"
@@ -18,18 +18,17 @@
 #import "NSString+Currency.h"
 #import "IQActionSheetPickerView.h"
 
-@interface OrderVC () <OrderCellDelegate, IQActionSheetPickerViewDelegate>
+@interface VBCartVC () <OrderCellDelegate, IQActionSheetPickerViewDelegate>
 {
     NSInteger selectedProductID;
     NSIndexPath* selectedIndexPath;
-    UILabel* labelAllSum;
     UILabel* labelOrderView;
     IQActionSheetPickerView *picker;
 }
 
 @end
 
-@implementation OrderVC
+@implementation VBCartVC
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,17 +44,6 @@
     [_tableView reloadData];
         //labelAllSum.text = [NSString stringWithFormat:@"Итого: %d р.", money.cents < 500 ? money.cents + 100 : money.cents];
     [self checkOrder];
-    [self updateBottom];
-}
-
--(void)updateBottom
-{
-    Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
-    
-    NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Итого: "];
-    [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, attrString.length)];
-    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",money.cents < appDelegate.bundles.vendor.minimal_price.cents/100 ? money.cents + 100 : money.cents] fromCurrency:money.currency]];
-    labelAllSum.attributedText = attrString;
 }
 
 -(void)checkOrder
@@ -63,12 +51,7 @@
     BOOL isAllowed = [appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products];
     
     //[NSString stringWithFormat:@"%@\n %@", appDelegate.bundles.vendor.mobile_footer, appDelegate.bundles.vendor.mobile_delivery];
-    labelAllSum.userInteractionEnabled  = _onOrderView.userInteractionEnabled = isAllowed;
-    labelAllSum.textAlignment = NSTextAlignmentCenter;
-    
-    UIView* labelAllSumTopView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(labelAllSum.frame), 1)];
-    [labelAllSumTopView setNuiClass:@"BottomView"];
-    [labelAllSum addSubview:labelAllSumTopView];
+    _onOrderView.userInteractionEnabled = isAllowed;
     
     //[labelOrderView setNuiClass:@"Label:WhiteText"];
     labelOrderView.textColor = [UIColor whiteColor];
@@ -80,7 +63,7 @@
     else {
         //[NUIRenderer renderView:labelOrderView withClass:@"OrderNotAllowed"];
         NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Минимальная сумма заказа - "];
-        [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",appDelegate.bundles.vendor.minimal_price.cents/100] fromCurrency:@"RUB" font:[UIFont fontWithName:@"HelveticaNeue-Light" size:14]]];
+        [attrString appendAttributedString:[[NSString stringWithFormat:@"%ld",(long)appDelegate.bundles.vendor.minimal_price.cents/100] fromCurrency:@"RUB" font:[UIFont fontWithName:@"HelveticaNeue-Light" size:14]]];
         labelOrderView.attributedText = attrString;
     }
 }
@@ -89,12 +72,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.title = @"Ваш заказ";
-    
-    _allSumView.backgroundColor = [UIColor clearColor];
-    labelAllSum = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_allSumView.frame), CGRectGetHeight(_allSumView.frame))];
-    //[labelAllSum setNuiClass:@"Label:AllSum"];
-    [_allSumView addSubview:labelAllSum];
+    self.navigationItem.title = @"Корзина";
     
     _onOrderView.backgroundColor = [UIColor clearColor];
     labelOrderView = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_onOrderView.frame), CGRectGetHeight(_onOrderView.frame))];
@@ -112,7 +90,7 @@
     
     [self checkOrder];
     
-    picker = [[IQActionSheetPickerView alloc] initWithTitle:@"Сколько заказать?" delegate:self];
+    picker = [[IQActionSheetPickerView alloc] initWithTitle:@"Заказать" delegate:self];
     picker.backgroundColor = COLOR_GRAY;
     [picker setTitlesForComponenets:[NSArray arrayWithObjects:
                                      appDelegate.dataArrayForPicker,
@@ -138,35 +116,27 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 65;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    VBCartCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     if (cell == nil) {
-        cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[VBCartCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
+    
+    cell.itemLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row + 1];
     
     CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:indexPath.row];
     Product* product = [cartItem productFromAllProducts:appDelegate.bundles.products];
+    cell.titleLabel.text = product.title;
     
-    cell.title.text = product.title;
+    [cell.onOrderAmount setAmount:[NSNumber numberWithDouble:product.price.cents] currency:product.price.currency];
+    [cell.onOrderAmount goodsCountInCart:[NSNumber numberWithLong:[appDelegate.cart countProductInCartWithIdProduct:product.idProduct]]];
     
-    //cell.sum.text = [NSString stringWithFormat:@"%d р./шт.",product.price.cents/100];
-    NSMutableAttributedString* sumAttributedString = [[NSMutableAttributedString alloc]
-                                             initWithAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency]];
-    NSAttributedString* sumSubString = [[NSAttributedString alloc] initWithString:@" / шт."];
-    [sumAttributedString appendAttributedString:sumSubString];
-    cell.sum.attributedText = sumAttributedString;
-    
-    //[cell.onOrderAmount setTitle:[NSString stringWithFormat:@"%d шт. %d р.",cartItem.count, product.price.cents/100 * cartItem.count] forState:UIControlStateNormal];
-    NSMutableAttributedString* buttonAttributedString = [[NSMutableAttributedString alloc]
-                                                         initWithString:[NSString stringWithFormat:@"%d шт. ", cartItem.count]];
-    [buttonAttributedString appendAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents*cartItem.count] fromCurrencyCents:product.price.currency]];
-    [cell.onOrderAmount setAttributedTitle:buttonAttributedString forState:UIControlStateNormal];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
     cell.indexPath = indexPath;
@@ -184,7 +154,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 60;
+    return 65;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -192,8 +162,26 @@
     Money* money = [appDelegate.cart getTotalPriceFromProducts:appDelegate.bundles.products];
     
     UIView* view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(_tableView.frame), 60)];
-    view.backgroundColor = [UIColor whiteColor];
+    view.backgroundColor = [[VBStyle style] cartItogoBackGroundColor];
     
+    UILabel *itogoLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 100, CGRectGetHeight(view.frame))];
+    itogoLabel.backgroundColor = [UIColor clearColor];
+    itogoLabel.textColor = [[VBStyle style] cartItogoColor];
+    itogoLabel.text = @"Итого:";
+    itogoLabel.font = [[VBStyle style] cartItogoFont];
+    [view addSubview:itogoLabel];
+    
+    UILabel *sumLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(view.frame) - 150, 0, 130, CGRectGetHeight(view.frame))];
+    sumLabel.backgroundColor = [UIColor clearColor];
+    sumLabel.textColor = [[VBStyle style] cartItogoColor];
+    sumLabel.textAlignment = NSTextAlignmentRight;
+    sumLabel.attributedText = [[NSAttributedString alloc] initWithAttributedString:
+                               [[NSString stringWithFormat:@"%ld",(long)money.cents * 100]
+                                                                                     fromCurrencyCents:money.currency
+                                                                                     font:[[VBStyle style] cartItogoFont]]];
+    [view addSubview:sumLabel];
+    
+    /*
     UILabel* delivery = [[UILabel alloc] initWithFrame:CGRectMake(0, 15, 100, 30)];
     delivery.text = @"Доставка";
     [delivery setNuiClass:@"Label:TitleProductCell"];
@@ -201,12 +189,7 @@
     [view addSubview:delivery];
     
     UILabel* deliveryPrice = [[UILabel alloc] initWithFrame:CGRectMake(205, 15, 100, 30)];
-    //[deliveryPrice setNuiClass:@"Label:TitleProductCell"];
     deliveryPrice.textAlignment = NSTextAlignmentCenter;
-    //deliveryPrice.layer.cornerRadius = 3;
-    //deliveryPrice.layer.masksToBounds = YES;
-    //deliveryPrice.layer.borderColor = [UIColor blackColor].CGColor;
-    //deliveryPrice.layer.borderWidth = 1;
     
     if (money.cents < appDelegate.bundles.vendor.minimal_price.cents/100) {
         NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc]
@@ -214,15 +197,13 @@
         deliveryPrice.attributedText = attrString;
     }
     else {
-        //deliveryPrice.layer.borderColor = [UIColor clearColor].CGColor;
-        //deliveryPrice.layer.borderWidth = 0;
         NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Бесплатно"];
         [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, attrString.length)];
         deliveryPrice.attributedText = attrString;
         
     }
-    
-    [view addSubview:deliveryPrice];
+    */
+    //[view addSubview:deliveryPrice];
     
 /*
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -237,14 +218,6 @@
     description.textAlignment = NSTextAlignmentCenter;
     [view addSubview:description];
 */
-    UIView* topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(view.frame), 1)];
-    [topView setNuiClass:@"BottomView"];
-    [view addSubview:topView];
-    
-    UIView* bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(view.frame)-1, CGRectGetWidth(view.frame), 1)];
-    [bottomView setNuiClass:@"BottomView"];
-    [view addSubview:bottomView];
-    
     return view;
 }
 
@@ -277,10 +250,10 @@
         
         CartItem* cartItem = [[appDelegate.cart getItems] objectAtIndex:selectedIndexPath.row];
         Product* product = [cartItem productFromAllProducts:appDelegate.bundles.products];
-        OrderCell *cell = (OrderCell *)[_tableView cellForRowAtIndexPath:selectedIndexPath];
+        VBCartCell *cell = (VBCartCell *)[_tableView cellForRowAtIndexPath:selectedIndexPath];
         NSMutableAttributedString* buttonAttributedString = [[NSMutableAttributedString alloc]
-                                                             initWithString:[NSString stringWithFormat:@"%d шт. ", indexOfArray]];
-        [buttonAttributedString appendAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents*indexOfArray] fromCurrencyCents:product.price.currency]];
+                                                             initWithString:[NSString stringWithFormat:@"%ld шт. ", (long)indexOfArray]];
+        [buttonAttributedString appendAttributedString:[[NSString stringWithFormat:@"%ld",product.price.cents*indexOfArray] fromCurrencyCents:product.price.currency]];
         
         [cell.onOrderAmount setAttributedTitle:buttonAttributedString forState:UIControlStateNormal];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -288,8 +261,7 @@
         cell.indexPath = selectedIndexPath;
         cell.count = cartItem.count;
     }
-    
-    [self updateBottom];
+
     [self checkOrder];
     [_tableView reloadData];
 }

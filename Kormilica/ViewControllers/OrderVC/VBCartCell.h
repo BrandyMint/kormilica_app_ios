@@ -7,22 +7,24 @@
 //
 
 #import <UIKit/UIKit.h>
-@class OrderCell;
+#import "VBAddToCartButton.h"
+
+@class VBCartCell;
 @protocol OrderCellDelegate
 @optional
 -(void)onOrderCellSelect:(NSIndexPath *)indexPath;
 @end
 
-@interface OrderCell : UITableViewCell
+@interface VBCartCell : UITableViewCell
 @property (assign) id<OrderCellDelegate> delegate;
 
 //public
 @property (nonatomic, strong) NSIndexPath* indexPath;
 @property (nonatomic, assign) NSInteger count;
 
-@property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UILabel *sum;
-@property (weak, nonatomic) IBOutlet UIButton *onOrderAmount;
+@property (weak, nonatomic) IBOutlet UILabel *itemLabel;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet VBAddToCartButton *onOrderAmount;
 - (IBAction)onOrderAmount:(id)sender;
 
 @end

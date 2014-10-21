@@ -11,17 +11,34 @@
 
 @interface VBStyle : NSObject
 
-+(id)sharedInstance;
++(id)style;
 -(void)initStyle:(NSString *)theStyle;
 
+//корзина
+-(UIColor *)cartNumberRowColor;
+-(UIColor *)cartTitleColor;
+-(UIFont *)cartTitleFont;
+-(UIColor *)cartCountViewBacgroundColor;
+-(UIColor *)cartSumViewBackgroundColor;
+-(UIFont *)cartSumViewBackgroundFont;
+-(UIColor *)cartItogoBackGroundColor;
+-(UIFont *)cartItogoFont;
+-(UIColor *)cartItogoColor;
+
+//подробное описание
+
+
+//
 -(UIColor *)bottomBarAcceptColor;
 -(UIColor *)bottomBarNotAcceptColor;
 
+//
 -(UIColor *)inOrderStateCountColor;
 -(UIFont *)inOrderStateCountFont;
 -(UIImage *)inOrderStateImage;
 -(UIImage *)notInOrderStateImage;
 
+//таблица
 -(UIColor *)nameProductColor;
 -(UIFont *)nameProductFont;
 -(UIColor *)amountProductColor;

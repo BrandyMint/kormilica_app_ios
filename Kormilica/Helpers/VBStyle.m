@@ -31,9 +31,21 @@
     
     UIColor *_bottomBarAcceptColor;
     UIColor *_bottomBarNotAcceptColor;
+    
+    //cart
+    UIColor *_cartNumberRowColor;
+    UIColor *_cartTitleColor;
+    UIColor *_cartCountViewBacgroundColor;
+    UIColor *_cartSumViewBackgroundColor;
+    UIFont *_cartTitleFont;
+    UIFont *_cartSumViewBackgroundFont;
+    UIFont *_cartItogoFont;
+    UIColor *_cartItogoBackGroundColor;
+    UIColor *_cartItogoColor;
+    
 }
 
-+(id)sharedInstance;{
++(id)style;{
     static VBStyle *style = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -49,25 +61,45 @@
     }
     if ([theStyle isEqualToString:@"orange"]) {
         _menuBackgroundColor = [UIColor colorWithRed:0.302 green:0.337 blue:0.353 alpha:1.000];
-        _menuFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+        _menuFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
         _navigationBarColor = [UIColor colorWithRed:0.941 green:0.475 blue:0.349 alpha:1.000];
         _navigationBarFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:17];
         _navigationBarFontColor = [UIColor whiteColor];
         _nameProductColor = [UIColor colorWithWhite:0.165 alpha:1.000];
-        _nameProductFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:12];
+        _nameProductFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:13];
         _amountProductColor = [UIColor colorWithRed:0.000 green:0.478 blue:1.000 alpha:1.000];
-        _amountProductFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:12];
+        _amountProductFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:13];
         _bottomBarAcceptColor = [UIColor colorWithRed:0.388 green:0.686 blue:0.188 alpha:1.000];
         _bottomBarNotAcceptColor = [UIColor colorWithRed:1.000 green:0.902 blue:0.553 alpha:1.000];
         _inOrderStateImage = [[UIImage imageNamed:@"circle"] imageWithColor:_bottomBarAcceptColor];
         _notInOrderStateImage = [[UIImage imageNamed:@"plus"] imageWithColor:_amountProductColor];
         _inOrderStateCountColor = [UIColor whiteColor];
-        _inOrderStateCountFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:12];
+        _inOrderStateCountFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13];
+        
+        _cartNumberRowColor = [UIColor colorWithRed:0.941 green:0.475 blue:0.349 alpha:1.000];
+        _cartTitleColor = [UIColor colorWithWhite:0.123 alpha:1.000];
+        _cartCountViewBacgroundColor = [UIColor colorWithWhite:0.330 alpha:1.000];
+        _cartSumViewBackgroundColor = _bottomBarAcceptColor;
+        _cartTitleFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:12];
+        _cartSumViewBackgroundFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:13.5];
+        _cartItogoColor = [UIColor colorWithWhite:0.202 alpha:1.000];
+        _cartItogoFont = [UIFont fontWithName:@"HelveticaNeue-Bold" size:15];
+        _cartItogoBackGroundColor = [UIColor colorWithWhite:0.951 alpha:1.000];
     }
     else if ([theStyle isEqualToString:@"blue"]) {
         _menuBackgroundColor = [UIColor colorWithWhite:0.169 alpha:1.000];
     }
 }
+
+-(UIColor *)cartNumberRowColor          { return _cartNumberRowColor; }
+-(UIColor *)cartTitleColor              { return _cartTitleColor; }
+-(UIFont *)cartTitleFont                { return _cartTitleFont; }
+-(UIColor *)cartCountViewBacgroundColor { return _cartCountViewBacgroundColor; }
+-(UIColor *)cartSumViewBackgroundColor  { return _cartSumViewBackgroundColor; }
+-(UIFont *)cartSumViewBackgroundFont    { return _cartSumViewBackgroundFont; }
+-(UIColor *)cartItogoBackGroundColor    { return _cartItogoBackGroundColor; }
+-(UIFont *)cartItogoFont                { return _cartItogoFont; }
+-(UIColor *)cartItogoColor              { return _cartItogoColor; }
 
 -(UIColor *)bottomBarAcceptColor    { return _bottomBarAcceptColor;     }
 -(UIColor *)bottomBarNotAcceptColor { return _bottomBarNotAcceptColor;  }
@@ -87,6 +119,6 @@
 -(UIColor *)navigationBarColor {    return _navigationBarColor; }
 
 -(UIFont *)menuFont {    return _menuFont;   }
-- (UIColor *)menuBackground {    return _menuBackgroundColor;    }
+-(UIColor *)menuBackground {    return _menuBackgroundColor;    }
 
 @end

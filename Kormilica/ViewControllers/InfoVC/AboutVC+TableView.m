@@ -59,7 +59,7 @@
     static NSString *CellIdentifier0 = @"AboutLogoCell";
     static NSString *CellIdentifier1 = @"AboutPhoneCell";
     //static NSString *CellIdentifier2 = @"AboutPhoneCell";
-    static NSString *CellIdentifier3 = @"AboutDeliveryCell";
+    //static NSString *CellIdentifier3 = @"AboutDeliveryCell";
     static NSString *CellIdentifier4 = @"AboutTextCell";
     static NSString *CellIdentifier5 = @"AboutOtherCell";
     

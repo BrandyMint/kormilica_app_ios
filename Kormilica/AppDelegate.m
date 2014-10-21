@@ -26,7 +26,7 @@
     
     //[NUISettings initWithStylesheet:@"Kormilica.NUI"];
     
-    [[VBStyle sharedInstance] initStyle:@"orange"];
+    [[VBStyle style] initStyle:@"orange"];
     
     return YES;
 }

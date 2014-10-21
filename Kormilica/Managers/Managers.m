@@ -92,7 +92,7 @@
                                                  NSInteger code = [[JSON objectForKey:@"code"] integerValue];
                                                  NSString* errorString = [JSON objectForKey:@"error"];
                                                  NSException *exception = [[NSException alloc] initWithName:errorString
-                                                                                                     reason:[NSString stringWithFormat:@"%d",code]
+                                                                                                     reason:[NSString stringWithFormat:@"%ld",(long)code]
                                                                                                    userInfo:nil];
                                                  blockException(exception);
                                              }];
@@ -122,8 +122,8 @@
                          atomically:YES encoding:NSUTF8StringEncoding error:&error];
         
         //прочли из документов
-        NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
-        NSString* foofile = [documentsPath stringByAppendingPathComponent:@"Style.nss"];
+        //NSString* documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        //NSString* foofile = [documentsPath stringByAppendingPathComponent:@"Style.nss"];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         

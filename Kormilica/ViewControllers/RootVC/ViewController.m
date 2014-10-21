@@ -19,8 +19,6 @@
 #import "UIButton+NUI.h"
 #import "IQActionSheetPickerView.h"
 
-static int positionButtonInfo = 46;
-
 @interface ViewController () <TableViewCellDelegate, onBuyViewDelegate, IQActionSheetPickerViewDelegate>
 {
     AboutVC* popover;
@@ -63,6 +61,8 @@ static int positionButtonInfo = 46;
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [_statusCartButton setCountProductInCard:[appDelegate.cart getItemsCount]];
+    
     [_onBuy isAllowed:[appDelegate.cart isAllowedOrderFromProducts:appDelegate.bundles.products] ? YES : NO];
     _onBuy.userInteractionEnabled = [appDelegate.cart getItemsCount] > 0 ? YES : NO;
     [self initDataArrayWithCategoriesID:selectedIDCategory];
@@ -138,7 +138,7 @@ static int positionButtonInfo = 46;
     Product* product = [dataArray objectAtIndex:indexPath.row];
     cell.title.text = product.title;
     
-    cell.price.attributedText = [[NSAttributedString alloc] initWithAttributedString:[[NSString stringWithFormat:@"%d",product.price.cents] fromCurrencyCents:product.price.currency]];
+    cell.price.attributedText = [[NSAttributedString alloc] initWithAttributedString:[[NSString stringWithFormat:@"%ld",(long)product.price.cents] fromCurrencyCents:product.price.currency font:[[VBStyle style] amountProductFont]]];
     
     [cell.logo setImageWithURL:[NSURL URLWithString:product.image.mobile_url] placeholderImage:[UIImage imageNamed:@"typeImage.png"]];
     
@@ -220,11 +220,8 @@ static int positionButtonInfo = 46;
     }
 }
 
--(void)onBuyAction
-{
+- (IBAction)statusCartButton:(id)sender {
     [self performSegueWithIdentifier:@"segBuy" sender:self];
 }
 
-- (IBAction)statusCartButton:(id)sender {
-}
 @end

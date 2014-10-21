@@ -29,7 +29,7 @@
     NSMutableAttributedString *currencyAttr = [[NSMutableAttributedString alloc] init];
     
     if ([currency isEqualToString:@"RUB"]) {
-        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"B"]];
+        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"C"]];
         [currencyAttr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"W1Rouble-Regular" size:font.pointSize] range:NSMakeRange(0, currencyAttr.length)];
     }
     else if ([currency isEqualToString:@"USD"])
@@ -61,7 +61,7 @@
     NSMutableAttributedString *currencyAttr = [[NSMutableAttributedString alloc] init];
     
     if ([currency isEqualToString:@"RUB"]) {
-        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"B"]];
+        [currencyAttr appendAttributedString:[[NSAttributedString alloc] initWithString:@"C"]];
         [currencyAttr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"W1Rouble-Regular" size:font.pointSize] range:NSMakeRange(0, currencyAttr.length)];
     }
     else if ([currency isEqualToString:@"USD"])

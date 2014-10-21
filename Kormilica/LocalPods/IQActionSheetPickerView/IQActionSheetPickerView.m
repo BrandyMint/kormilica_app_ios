@@ -53,7 +53,7 @@
         //UIToolbar
         {
             _actionToolbar = [[UIToolbar alloc] init];
-            _actionToolbar.barStyle = UIBarStyleBlackTranslucent;
+            _actionToolbar.barStyle = UIBarStyleDefault;
             [_actionToolbar sizeToFit];
             
             CGRect toolbarFrame = _actionToolbar.frame;
@@ -63,11 +63,12 @@
             NSMutableArray *items = [[NSMutableArray alloc] init];
             
             //  Create a cancel button to show on keyboard to resign it. Adding a selector to resign it.
-            UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(pickerCancelClicked:)];
+            
+            UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Отменить" style:UIBarButtonItemStyleBordered target:self action:@selector(pickerCancelClicked:)];
             [items addObject:cancelButton];
             
-            _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, _actionToolbar.frame.size.width-66-57.0-16, 44)];
-            _titleLabel.font = [UIFont boldSystemFontOfSize:12.0];
+            _titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 120, 44)];
+            _titleLabel.font = [UIFont fontWithName:@"HelveticaNeue-Medium" size:15];
             [_titleLabel setBackgroundColor:[UIColor clearColor]];
             [_titleLabel setTextAlignment:NSTextAlignmentCenter];
             [_titleLabel setText:title];
@@ -75,14 +76,15 @@
             
             UIBarButtonItem *titlebutton = [[UIBarButtonItem alloc] initWithCustomView:_titleLabel];
             titlebutton.enabled = NO;
-            
+            [items addObject:titlebutton];
             
             //  Create a fake button to maintain flexibleSpace between doneButton and nilButton. (Actually it moves done button to right side.
             UIBarButtonItem *nilButton =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
             [items addObject:nilButton];
             
             //  Create a done button to show on keyboard to resign it. Adding a selector to resign it.
-            UIBarButtonItem *doneButton =[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pickerDoneClicked:)];
+            
+            UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Сохранить" style:UIBarButtonItemStyleBordered target:self action:@selector(pickerDoneClicked:)];
             [items addObject:doneButton];
             
             //  Adding button to toolBar.

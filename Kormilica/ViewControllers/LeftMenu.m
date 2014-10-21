@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [[VBStyle sharedInstance] menuBackground];
+    self.view.backgroundColor = [[VBStyle style] menuBackground];
     
     spacing = 100;
     
@@ -105,7 +105,9 @@
             }
             break;
         case 1:
-            //
+            [self.sideMenuViewController setContentViewController:[[UINavigationController alloc] initWithRootViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"OrderVC"]]
+                                                         animated:YES];
+            [self.sideMenuViewController hideMenuViewController];
             break;
         case 2:
             //
@@ -153,7 +155,7 @@
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         cell.backgroundColor = [UIColor clearColor];
-        cell.textLabel.font = [[VBStyle sharedInstance] menuFont];
+        cell.textLabel.font = [[VBStyle style] menuFont];
         cell.textLabel.textColor = [UIColor whiteColor];
         cell.selectedBackgroundView = [[UIView alloc] init];
     }

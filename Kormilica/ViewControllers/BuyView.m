@@ -69,7 +69,7 @@
     
     NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString:@"Итого:\n"];
     [attrString addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Light" size:14] range:NSMakeRange(0, attrString.length)];
-    [attrString appendAttributedString:[[NSString stringWithFormat:@"%d",totalPrice.cents] fromCurrency:totalPrice.currency font:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]]];
+    [attrString appendAttributedString:[[NSString stringWithFormat:@"%ld",(long)totalPrice.cents] fromCurrency:totalPrice.currency font:[UIFont fontWithName:@"HelveticaNeue-Light" size:17]]];
     deliveryPriceLabel.attributedText = attrString;
 
     checkoutLabel.text = @"Оформить заказ";
@@ -83,7 +83,7 @@
     else {
         AppDelegate* appDelegate = [[UIApplication sharedApplication] delegate];
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Внимание"
-                                                        message:[NSString stringWithFormat:@"Минимальная сумма заказа составляет %d Р", appDelegate.bundles.vendor.minimal_price.cents/100]
+                                                        message:[NSString stringWithFormat:@"Минимальная сумма заказа составляет %ld Р", appDelegate.bundles.vendor.minimal_price.cents/100]
                                                        delegate:self
                                               cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil];
         [alert show];
